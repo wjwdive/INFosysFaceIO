@@ -23,6 +23,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)backToHomeVC:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"跳会Home");
+    }];
+}
 
 /*
 #pragma mark - Navigation

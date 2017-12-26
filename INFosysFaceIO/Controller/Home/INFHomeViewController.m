@@ -34,9 +34,9 @@ extern NSInteger userStatus;
 }
 
 - (IBAction)gotoMyVC:(id)sender {
-    INFMyViewController *myVC = [[INFMyViewController alloc] init];
+    INFMyViewController *myVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFMyViewController"];
     [self presentViewController:myVC animated:YES completion:^{
-        NSLog(@"已经跳转到个人信息界面");
+        NSLog(@"跳转到MyVC");
     }];
 }
 
@@ -60,7 +60,7 @@ extern NSInteger userStatus;
             break;
     }
 }
-
+//跳转到LoginVC
 - (void)gotoLoginVC {
     INFLoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFLoginViewController"];
     NSLog(@"LginVC:%@",loginVC);
@@ -68,13 +68,16 @@ extern NSInteger userStatus;
         NSLog(@"跳转到LoginVC");
     }];
 }
-
+//跳转到CHeckfaceVC
 - (void)gotoCheckFaceVC {
-    INFCheckViewController *checkVC = [[INFCheckViewController alloc] init];
+    INFCheckViewController *checkVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFCheckViewController"];
     [self presentViewController:checkVC animated:YES completion:^{
         NSLog(@"跳转到chechkVC");
     }];
 }
+
+
+
 
 /*
 #pragma mark - Navigation

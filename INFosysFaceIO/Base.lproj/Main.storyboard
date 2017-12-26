@@ -34,7 +34,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="user1"/>
                                 <connections>
-                                    <action selector="gotoMyVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N9d-X9-Z5P"/>
+                                    <action selector="gotoMyVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VZc-o6-ibf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpY-Xw-wq9" userLabel="scan">
@@ -311,6 +311,9 @@
                                         <rect key="frame" x="337" y="4" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="close"/>
+                                        <connections>
+                                            <action selector="backToHomeVC:" destination="uBL-qh-Taf" eventType="touchUpInside" id="0eY-qa-t0C"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </view>
