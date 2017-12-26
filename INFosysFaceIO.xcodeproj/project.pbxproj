@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		348D853B34FD3EEDFE9FF667 /* libPods-INFosysFaceIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */; };
 		B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0C1FF0F68C004267E8 /* AppDelegate.m */; };
 		B8247D101FF0F68C004267E8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0F1FF0F68C004267E8 /* ViewController.m */; };
 		B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8247D111FF0F68C004267E8 /* Main.storyboard */; };
@@ -15,6 +16,16 @@
 		B8247D1B1FF0F68C004267E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D1A1FF0F68C004267E8 /* main.m */; };
 		B8247D251FF0F68D004267E8 /* INFosysFaceIOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D241FF0F68D004267E8 /* INFosysFaceIOTests.m */; };
 		B8247D301FF0F68D004267E8 /* INFosysFaceIOUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D2F1FF0F68D004267E8 /* INFosysFaceIOUITests.m */; };
+		B84DE79C1FF0FF99008A69DD /* PrefixHeader.pch in Sources */ = {isa = PBXBuildFile; fileRef = B84DE79A1FF0FEBA008A69DD /* PrefixHeader.pch */; };
+		B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE79F1FF145AA008A69DD /* INFLoginViewController.m */; };
+		B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7A21FF145C8008A69DD /* INFMyViewController.m */; };
+		B84DE7A61FF145DC008A69DD /* INFCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7A51FF145DC008A69DD /* INFCheckViewController.m */; };
+		B84DE7A91FF145F3008A69DD /* INFRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7A81FF145F3008A69DD /* INFRecordsViewController.m */; };
+		B84DE7AD1FF20D18008A69DD /* INFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7AC1FF20D18008A69DD /* INFUser.m */; };
+		B84DE7B01FF21CE6008A69DD /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7AF1FF21CE6008A69DD /* NSString+Utils.m */; };
+		B84DE7B51FF2202E008A69DD /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7B21FF2202E008A69DD /* NetWorkManager.m */; };
+		B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */; };
+		B87D10031FF0FC22000D924D /* INFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87D10021FF0FC22000D924D /* INFHomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35D5E4C1727B11D633CA96A6 /* Pods-INFosysFaceIO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INFosysFaceIO.release.xcconfig"; path = "Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO.release.xcconfig"; sourceTree = "<group>"; };
+		7C378AD0B107B8726E9CC8AE /* Pods-INFosysFaceIO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INFosysFaceIO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO.debug.xcconfig"; sourceTree = "<group>"; };
 		B8247D081FF0F68C004267E8 /* INFosysFaceIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INFosysFaceIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8247D0B1FF0F68C004267E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8247D0C1FF0F68C004267E8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +64,26 @@
 		B8247D2B1FF0F68D004267E8 /* INFosysFaceIOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = INFosysFaceIOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8247D2F1FF0F68D004267E8 /* INFosysFaceIOUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFosysFaceIOUITests.m; sourceTree = "<group>"; };
 		B8247D311FF0F68D004267E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B84DE79A1FF0FEBA008A69DD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		B84DE79E1FF145AA008A69DD /* INFLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFLoginViewController.h; sourceTree = "<group>"; };
+		B84DE79F1FF145AA008A69DD /* INFLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFLoginViewController.m; sourceTree = "<group>"; };
+		B84DE7A11FF145C8008A69DD /* INFMyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFMyViewController.h; sourceTree = "<group>"; };
+		B84DE7A21FF145C8008A69DD /* INFMyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFMyViewController.m; sourceTree = "<group>"; };
+		B84DE7A41FF145DC008A69DD /* INFCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFCheckViewController.h; sourceTree = "<group>"; };
+		B84DE7A51FF145DC008A69DD /* INFCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFCheckViewController.m; sourceTree = "<group>"; };
+		B84DE7A71FF145F3008A69DD /* INFRecordsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFRecordsViewController.h; sourceTree = "<group>"; };
+		B84DE7A81FF145F3008A69DD /* INFRecordsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFRecordsViewController.m; sourceTree = "<group>"; };
+		B84DE7AB1FF20D18008A69DD /* INFUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFUser.h; sourceTree = "<group>"; };
+		B84DE7AC1FF20D18008A69DD /* INFUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFUser.m; sourceTree = "<group>"; };
+		B84DE7AE1FF21CE6008A69DD /* NSString+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
+		B84DE7AF1FF21CE6008A69DD /* NSString+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		B84DE7B11FF2202E008A69DD /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
+		B84DE7B21FF2202E008A69DD /* NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkManager.m; sourceTree = "<group>"; };
+		B84DE7B31FF2202E008A69DD /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
+		B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		B87D10011FF0FC22000D924D /* INFHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFHomeViewController.h; sourceTree = "<group>"; };
+		B87D10021FF0FC22000D924D /* INFHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFHomeViewController.m; sourceTree = "<group>"; };
+		EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-INFosysFaceIO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348D853B34FD3EEDFE9FF667 /* libPods-INFosysFaceIO.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03B38A88037340A71F8D7D45 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C378AD0B107B8726E9CC8AE /* Pods-INFosysFaceIO.debug.xcconfig */,
+				35D5E4C1727B11D633CA96A6 /* Pods-INFosysFaceIO.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B8247CFF1FF0F68C004267E8 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +128,8 @@
 				B8247D231FF0F68D004267E8 /* INFosysFaceIOTests */,
 				B8247D2E1FF0F68D004267E8 /* INFosysFaceIOUITests */,
 				B8247D091FF0F68C004267E8 /* Products */,
+				03B38A88037340A71F8D7D45 /* Pods */,
+				F14FF36BEADD6C13E1F72549 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +146,10 @@
 		B8247D0A1FF0F68C004267E8 /* INFosysFaceIO */ = {
 			isa = PBXGroup;
 			children = (
+				B84DE7AA1FF1FCF8008A69DD /* Model */,
+				B87D0FFD1FF0FB9F000D924D /* Controller */,
+				B87D0FFB1FF0FB89000D924D /* Resource */,
+				B8247D3D1FF0F785004267E8 /* ThirdLib */,
 				B8247D0B1FF0F68C004267E8 /* AppDelegate.h */,
 				B8247D0C1FF0F68C004267E8 /* AppDelegate.m */,
 				B8247D0E1FF0F68C004267E8 /* ViewController.h */,
@@ -110,6 +159,7 @@
 				B8247D161FF0F68C004267E8 /* LaunchScreen.storyboard */,
 				B8247D191FF0F68C004267E8 /* Info.plist */,
 				B8247D1A1FF0F68C004267E8 /* main.m */,
+				B84DE79A1FF0FEBA008A69DD /* PrefixHeader.pch */,
 			);
 			path = INFosysFaceIO;
 			sourceTree = "<group>";
@@ -132,6 +182,100 @@
 			path = INFosysFaceIOUITests;
 			sourceTree = "<group>";
 		};
+		B8247D3D1FF0F785004267E8 /* ThirdLib */ = {
+			isa = PBXGroup;
+			children = (
+				B84DE7AE1FF21CE6008A69DD /* NSString+Utils.h */,
+				B84DE7AF1FF21CE6008A69DD /* NSString+Utils.m */,
+				B84DE7B31FF2202E008A69DD /* NetWorkManager.h */,
+				B84DE7B21FF2202E008A69DD /* NetWorkManager.m */,
+				B84DE7B11FF2202E008A69DD /* UIImage+Utils.h */,
+				B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */,
+			);
+			path = ThirdLib;
+			sourceTree = "<group>";
+		};
+		B84DE79D1FF14592008A69DD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B84DE79E1FF145AA008A69DD /* INFLoginViewController.h */,
+				B84DE79F1FF145AA008A69DD /* INFLoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B84DE7AA1FF1FCF8008A69DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B84DE7AB1FF20D18008A69DD /* INFUser.h */,
+				B84DE7AC1FF20D18008A69DD /* INFUser.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B87D0FFB1FF0FB89000D924D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		B87D0FFC1FF0FB92000D924D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B87D10011FF0FC22000D924D /* INFHomeViewController.h */,
+				B87D10021FF0FC22000D924D /* INFHomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B87D0FFD1FF0FB9F000D924D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B84DE79D1FF14592008A69DD /* Login */,
+				B87D10001FF0FBD4000D924D /* Records */,
+				B87D0FFF1FF0FBBA000D924D /* FaceCheck */,
+				B87D0FFE1FF0FBA8000D924D /* My */,
+				B87D0FFC1FF0FB92000D924D /* Home */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B87D0FFE1FF0FBA8000D924D /* My */ = {
+			isa = PBXGroup;
+			children = (
+				B84DE7A11FF145C8008A69DD /* INFMyViewController.h */,
+				B84DE7A21FF145C8008A69DD /* INFMyViewController.m */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		B87D0FFF1FF0FBBA000D924D /* FaceCheck */ = {
+			isa = PBXGroup;
+			children = (
+				B84DE7A41FF145DC008A69DD /* INFCheckViewController.h */,
+				B84DE7A51FF145DC008A69DD /* INFCheckViewController.m */,
+			);
+			path = FaceCheck;
+			sourceTree = "<group>";
+		};
+		B87D10001FF0FBD4000D924D /* Records */ = {
+			isa = PBXGroup;
+			children = (
+				B84DE7A71FF145F3008A69DD /* INFRecordsViewController.h */,
+				B84DE7A81FF145F3008A69DD /* INFRecordsViewController.m */,
+			);
+			path = Records;
+			sourceTree = "<group>";
+		};
+		F14FF36BEADD6C13E1F72549 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +283,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8247D341FF0F68D004267E8 /* Build configuration list for PBXNativeTarget "INFosysFaceIO" */;
 			buildPhases = (
+				4EFFC1A876A423E7AEBA79D4 /* [CP] Check Pods Manifest.lock */,
 				B8247D041FF0F68C004267E8 /* Sources */,
 				B8247D051FF0F68C004267E8 /* Frameworks */,
 				B8247D061FF0F68C004267E8 /* Resources */,
+				71B2C47616BB336FB637B6FA /* [CP] Embed Pods Frameworks */,
+				08186361C283CDEF770788F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,14 +407,86 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		08186361C283CDEF770788F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4EFFC1A876A423E7AEBA79D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-INFosysFaceIO-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71B2C47616BB336FB637B6FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B8247D041FF0F68C004267E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84DE7B51FF2202E008A69DD /* NetWorkManager.m in Sources */,
+				B84DE79C1FF0FF99008A69DD /* PrefixHeader.pch in Sources */,
 				B8247D101FF0F68C004267E8 /* ViewController.m in Sources */,
+				B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */,
+				B84DE7AD1FF20D18008A69DD /* INFUser.m in Sources */,
+				B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */,
+				B84DE7B01FF21CE6008A69DD /* NSString+Utils.m in Sources */,
 				B8247D1B1FF0F68C004267E8 /* main.m in Sources */,
 				B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */,
+				B84DE7A61FF145DC008A69DD /* INFCheckViewController.m in Sources */,
+				B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */,
+				B84DE7A91FF145F3008A69DD /* INFRecordsViewController.m in Sources */,
+				B87D10031FF0FC22000D924D /* INFHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +579,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/INFosysFaceIO/PrefixHeader.h";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -370,7 +590,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -413,13 +633,14 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/INFosysFaceIO/PrefixHeader.h";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -428,10 +649,12 @@
 		};
 		B8247D351FF0F68D004267E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C378AD0B107B8726E9CC8AE /* Pods-INFosysFaceIO.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LHK6PK48JE;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/INFosysFaceIO/PrefixHeader.pch";
 				INFOPLIST_FILE = INFosysFaceIO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wjw.INFosysFaceIO;
@@ -442,10 +665,12 @@
 		};
 		B8247D361FF0F68D004267E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35D5E4C1727B11D633CA96A6 /* Pods-INFosysFaceIO.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LHK6PK48JE;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/INFosysFaceIO/PrefixHeader.pch";
 				INFOPLIST_FILE = INFosysFaceIO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wjw.INFosysFaceIO;

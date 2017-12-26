@@ -1,0 +1,6 @@
+framework module Pods_INFosysFaceIO {
+  umbrella header "Pods-INFosysFaceIO-umbrella.h"
+
+  export *
+  module * { export * }
+}

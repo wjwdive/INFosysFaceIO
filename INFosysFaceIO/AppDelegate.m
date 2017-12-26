@@ -7,6 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "INFHomeViewController.h"
+
+/** 定义一个全局外部变量，标注当前用户的状态，此外，每次状态变化把该变量持久化到本地
+ *  1,用户未登录
+ *  2,用登录成功，但是未注册人脸
+ *  3,用户登陆成功，且注册过人脸，可以刷脸登录了
+ */
+NSInteger userStatus;
 
 @interface AppDelegate ()
 
@@ -17,9 +25,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    INFHomeViewController *HomeVC = [storyboard instantiateViewControllerWithIdentifier:@"INFHomeViewController"];
+    
+    self.window.rootViewController = HomeVC;
+    [self checkUserStatus];
     return YES;
 }
 
+
+- (void)checkUserStatus {
+    NSUserDefaults *defaults = [NSUserDefaults  standardUserDefaults];
+    NSInteger tempStatus = [defaults integerForKey:@"userStatus"];
+    if (tempStatus) {
+        NSLog(@"if当前用户状态为：%ld",tempStatus);
+        userStatus = [defaults integerForKey:@"userStatus"];
+    }else{
+        [defaults setInteger:1 forKey:@"userStatus"];
+        [[NSUserDefaults standardUserDefaults] synchronize]; 
+        userStatus = [defaults integerForKey:@"userStatus"];
+         NSLog(@"else当前用户状态为：%ld",userStatus);
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

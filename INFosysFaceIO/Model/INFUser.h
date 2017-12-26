@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "YYModel.h"
 @interface INFUser : NSObject
-
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *userNo;
+@property (nonatomic, strong) NSString *password;
 @end
