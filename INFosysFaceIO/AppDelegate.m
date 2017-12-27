@@ -5,7 +5,6 @@
 //  Created by jiangwei.wang on 2017/12/25.
 //  Copyright © 2017年 jiangwei.wang. All rights reserved.
 //
-//
 
 #import "AppDelegate.h"
 #import "INFHomeViewController.h"
@@ -25,6 +24,8 @@ NSInteger userStatus;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -32,6 +33,7 @@ NSInteger userStatus;
     INFHomeViewController *HomeVC = [storyboard instantiateViewControllerWithIdentifier:@"INFHomeViewController"];
     
     self.window.rootViewController = HomeVC;
+    
     [self checkUserStatus];
     return YES;
 }

@@ -14,5 +14,9 @@
 #import "AFNetworking.h"
 #import "YYCache.h"
 #import "YYModel.h"
+#import "Config.h"
+#import "UIColor+hexColor.h"
+#import "UIView+Extension.h"
+#import <Masonry.h>
 
 #endif /* PrefixHeader_pch */
