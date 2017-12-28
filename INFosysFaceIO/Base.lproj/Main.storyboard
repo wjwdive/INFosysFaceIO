@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vI1-PT-3bj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -49,9 +49,11 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="KqA-bG-HOw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1008.8" y="85.907046476761622"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="8bB-W0-KN5">
@@ -167,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pky-S0-7UU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1429.5999999999999" y="32.833583208395808"/>
+            <point key="canvasLocation" x="1768.8" y="32.833583208395808"/>
         </scene>
         <!--Check View Controller-->
         <scene sceneID="RlL-uS-IEI">
@@ -181,36 +183,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ac-0Sv" userLabel="userPhoto">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="659"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XI-c0-7V4">
+                                <rect key="frame" x="309" y="20" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mask" translatesAutoresizingMaskIntoConstraints="NO" id="Kno-Jr-UaV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scan" translatesAutoresizingMaskIntoConstraints="NO" id="WvD-zA-B5I">
-                                <rect key="frame" x="75" y="162" width="227" height="227"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="make your face in the react, Identity recognition please wait a minute " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIA-vT-3ul">
-                                <rect key="frame" x="0.0" y="531" width="375" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="closeCheckVC:" destination="IKZ-uU-Ub6" eventType="touchUpInside" id="bpD-nO-jHL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="userPhotoIMG" destination="MYl-ac-0Sv" id="SR4-mm-dbh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8FC-Yk-lgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2181.5999999999999" y="32.833583208395808"/>
+            <point key="canvasLocation" x="2529" y="-90"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="sRI-WT-0D5">
@@ -417,6 +404,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWa-Mt-IeC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1430" y="742"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="M3u-uE-tL7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vI1-PT-3bj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ruu-oX-VDl">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="8vY-0A-1gg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lLM-HO-2Wl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="143" y="86"/>
+        </scene>
+        <!--Overlay View Controller-->
+        <scene sceneID="RJA-k4-bDy">
+            <objects>
+                <viewController storyboardIdentifier="INFOverlayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hin-J1-Yfi" customClass="INFOverlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TQE-8Y-Y18"/>
+                        <viewControllerLayoutGuide type="bottom" id="AiR-34-MUx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="udb-ux-WX6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="seu-ZN-dg3" userLabel="userPhoto">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="659"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mask" translatesAutoresizingMaskIntoConstraints="NO" id="T9U-qQ-dH1">
+                                <rect key="frame" x="1" y="4" width="375" height="655"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scan" translatesAutoresizingMaskIntoConstraints="NO" id="xX4-Vc-rpP">
+                                <rect key="frame" x="107" y="210" width="160" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="make your face in the react, Identity recognition please wait a minute " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jR2-Tj-p4F">
+                                <rect key="frame" x="0.0" y="499" width="375" height="160"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="Bgv-N9-d5V"/>
+                                    <constraint firstAttribute="width" constant="375" id="hFn-vL-TOn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNn-h2-VM9">
+                                <rect key="frame" x="309" y="20" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="closeCheckVC:" destination="Hin-J1-Yfi" eventType="touchUpInside" id="vHe-i8-QfO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jR2-Tj-p4F" firstAttribute="leading" secondItem="udb-ux-WX6" secondAttribute="leading" id="18l-c3-VOX"/>
+                            <constraint firstAttribute="trailing" secondItem="jR2-Tj-p4F" secondAttribute="trailing" id="Hlu-ud-FIc"/>
+                            <constraint firstItem="AiR-34-MUx" firstAttribute="top" secondItem="jR2-Tj-p4F" secondAttribute="bottom" constant="8" id="b8V-bU-ci2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="maskIMG" destination="T9U-qQ-dH1" id="Id5-LT-KlM"/>
+                        <outlet property="scanIMG" destination="xX4-Vc-rpP" id="gZx-wW-drF"/>
+                        <outlet property="userPhotoIMG" destination="seu-ZN-dg3" id="zhW-Md-ub5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ik8-Y1-zuc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3242" y="-90"/>
         </scene>
     </scenes>
     <resources>

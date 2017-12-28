@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface INFCheckViewController : UIViewController
-
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
 @end

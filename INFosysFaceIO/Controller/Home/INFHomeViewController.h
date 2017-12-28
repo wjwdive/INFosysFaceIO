@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface INFHomeViewController : UIViewController
-
+@property (strong,nonatomic)UIImagePickerController * imagePicker;
 @end

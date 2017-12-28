@@ -26,6 +26,10 @@
 		B84DE7B51FF2202E008A69DD /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7B21FF2202E008A69DD /* NetWorkManager.m */; };
 		B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */; };
 		B87D10031FF0FC22000D924D /* INFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87D10021FF0FC22000D924D /* INFHomeViewController.m */; };
+		B8A296CE1FF3785300D3499A /* INFOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */; };
+		B8A296D01FF3D23000D3499A /* INFOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */; };
+		B8A296D31FF3D58C00D3499A /* INFCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */; };
+		B8A296D71FF3D5DB00D3499A /* INFCameraOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A296D61FF3D5DB00D3499A /* INFCameraOverlayView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,12 @@
 		B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		B87D10011FF0FC22000D924D /* INFHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFHomeViewController.h; sourceTree = "<group>"; };
 		B87D10021FF0FC22000D924D /* INFHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFHomeViewController.m; sourceTree = "<group>"; };
+		B8A296CC1FF3785300D3499A /* INFOverlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFOverlayViewController.h; sourceTree = "<group>"; };
+		B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFOverlayViewController.m; sourceTree = "<group>"; };
+		B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFOverlayViewController.xib; sourceTree = "<group>"; };
+		B8A296D11FF3D58C00D3499A /* INFCameraOverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFCameraOverlayView.h; sourceTree = "<group>"; };
+		B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFCameraOverlayView.m; sourceTree = "<group>"; };
+		B8A296D61FF3D5DB00D3499A /* INFCameraOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFCameraOverlayView.xib; sourceTree = "<group>"; };
 		EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-INFosysFaceIO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -244,8 +254,8 @@
 		B87D0FFE1FF0FBA8000D924D /* My */ = {
 			isa = PBXGroup;
 			children = (
-				B84DE7A11FF145C8008A69DD /* INFMyViewController.h */,
 				B84DE7A21FF145C8008A69DD /* INFMyViewController.m */,
+				B84DE7A11FF145C8008A69DD /* INFMyViewController.h */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -255,6 +265,12 @@
 			children = (
 				B84DE7A41FF145DC008A69DD /* INFCheckViewController.h */,
 				B84DE7A51FF145DC008A69DD /* INFCheckViewController.m */,
+				B8A296CC1FF3785300D3499A /* INFOverlayViewController.h */,
+				B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */,
+				B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */,
+				B8A296D11FF3D58C00D3499A /* INFCameraOverlayView.h */,
+				B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */,
+				B8A296D61FF3D5DB00D3499A /* INFCameraOverlayView.xib */,
 			);
 			path = FaceCheck;
 			sourceTree = "<group>";
@@ -388,6 +404,8 @@
 				B8247D181FF0F68C004267E8 /* LaunchScreen.storyboard in Resources */,
 				B8247D151FF0F68C004267E8 /* Assets.xcassets in Resources */,
 				B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */,
+				B8A296D71FF3D5DB00D3499A /* INFCameraOverlayView.xib in Resources */,
+				B8A296D01FF3D23000D3499A /* INFOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,8 +499,10 @@
 				B84DE7AD1FF20D18008A69DD /* INFUser.m in Sources */,
 				B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */,
 				B84DE7B01FF21CE6008A69DD /* NSString+Utils.m in Sources */,
+				B8A296D31FF3D58C00D3499A /* INFCameraOverlayView.m in Sources */,
 				B8247D1B1FF0F68C004267E8 /* main.m in Sources */,
 				B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */,
+				B8A296CE1FF3785300D3499A /* INFOverlayViewController.m in Sources */,
 				B84DE7A61FF145DC008A69DD /* INFCheckViewController.m in Sources */,
 				B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */,
 				B84DE7A91FF145F3008A69DD /* INFRecordsViewController.m in Sources */,

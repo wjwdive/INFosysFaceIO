@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface INFCameraOverlayView : UIView
+@protocol takePhotoDelegate
+@required
+- (void)closeCamera;
+- (void)takePhoto;
+@end
 
+@interface INFCameraOverlayView : UIView
+@property (weak, nonatomic) IBOutlet UIImageView *userPhotoIMG;
+@property (weak, nonatomic) IBOutlet UIImageView *scanIMG;
+@property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
+@property (weak, nonatomic) IBOutlet UILabel *cautionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *barIMG;
+@property (nonatomic, weak) id<takePhotoDelegate> delegate;
 @end
