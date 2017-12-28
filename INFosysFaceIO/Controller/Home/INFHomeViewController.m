@@ -16,7 +16,7 @@
 #import "INFCheckViewController.h"
 #import "NetWorkManager.h"
 extern NSInteger userStatus;
-@interface INFHomeViewController ()<takePhotoDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface INFHomeViewController ()<takePhotoDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong) INFCameraOverlayView *overView;
 //@property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
@@ -36,9 +36,25 @@ extern NSInteger userStatus;
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.navigationController.navigationBar.hidden = YES;
     self.imagePicker = [[UIImagePickerController alloc] init];
+    //给图片 添加手势，失败 原因未知
 //    UITapGestureRecognizer *tapTakePicture = [[UITapGestureRecognizer alloc] initWithTarget:self.scanImg action:@selector(takePhoto)];
 //    [self.scanImg addGestureRecognizer:tapTakePicture];
     
+    
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [UIView animateWithDuration: 2 delay: 0.35 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
+        [self.barImg layoutIfNeeded];
+        [self.barImg setFrame:CGRectMake(77, 383, 220, 4)];
+        self.scanImg.alpha = 0;
+    } completion: ^(BOOL finished) {
+        [UIView animateWithDuration: 2 animations: ^{
+//            [self.barImg setFrame:CGRectMake(77, 383, 220, 4)];
+            self.scanImg.alpha = 1;
+        }];
+    }];
     
 }
 
@@ -56,8 +72,8 @@ extern NSInteger userStatus;
 //第一种方法，自定义界面、动画显得乏力
 - (void)gotoCheckVCUseImgePicker {
     //未注册人脸
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"You haven't register your face, pleace register FACE first" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"You haven't register your face, pleace register FACE first" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+//    [alert show];
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         if (!_imagePicker) {
@@ -118,7 +134,7 @@ extern NSInteger userStatus;
 //    extern NSInteger userStatus;
 //    = [defaults integerForKey:@"userStatus"];
     NSLog(@"scanBtn userStatus:%ld",userStatus);
-    userStatus = 2;
+//    userStatus = 2;
     switch (userStatus) {
         case 1:
             NSLog(@"用户未登录，请先登录");
@@ -212,6 +228,7 @@ extern NSInteger userStatus;
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [_timer invalidate];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

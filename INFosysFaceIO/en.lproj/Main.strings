@@ -1,0 +1,54 @@
+
+/* Class = "UILabel"; text = "Congratulations on your success in signing and starting a new day's work "; ObjectID = "6jK-1Y-eDc"; */
+"6jK-1Y-eDc.text" = "Congratulations on your success in signing and starting a new day's work ";
+
+/* Class = "UILabel"; text = "本月缺勤"; ObjectID = "7h5-zW-vye"; */
+"7h5-zW-vye.text" = "本月缺勤";
+
+/* Class = "UILabel"; text = "Welcome UserName"; ObjectID = "AY5-Py-Dsu"; */
+"AY5-Py-Dsu.text" = "Welcome UserName";
+
+/* Class = "UILabel"; text = "Time Attendance"; ObjectID = "CAh-dR-LV5"; */
+"CAh-dR-LV5.text" = "Time Attendance";
+
+/* Class = "UILabel"; text = "AM"; ObjectID = "Dn8-BC-W7c"; */
+"Dn8-BC-W7c.text" = "AM";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EP6-Zj-7l7"; */
+"EP6-Zj-7l7.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "HHg-KC-GFw"; */
+"HHg-KC-GFw.normalTitle" = "Login";
+
+/* Class = "UILabel"; text = "370348"; ObjectID = "JJu-wm-9sI"; */
+"JJu-wm-9sI.text" = "370348";
+
+/* Class = "UILabel"; text = "9:15"; ObjectID = "WUG-Vk-Rfo"; */
+"WUG-Vk-Rfo.text" = "9:15";
+
+/* Class = "UILabel"; text = "userName"; ObjectID = "Wsv-Ib-iU7"; */
+"Wsv-Ib-iU7.text" = "userName";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "e4F-wM-R87"; */
+"e4F-wM-R87.text" = "Label";
+
+/* Class = "UILabel"; text = "make your face in the react, Identity recognition please wait a minute "; ObjectID = "jR2-Tj-p4F"; */
+"jR2-Tj-p4F.text" = "make your face in the react, Identity recognition please wait a minute ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ryW-KK-HLY"; */
+"ryW-KK-HLY.text" = "Label";
+
+/* Class = "UILabel"; text = "人 脸 识 别 考 勤 系 统"; ObjectID = "tBj-tb-COh"; */
+"tBj-tb-COh.text" = "人 脸 识 别 考 勤 系 统";
+
+/* Class = "UILabel"; text = "userName"; ObjectID = "wJ0-zJ-maP"; */
+"wJ0-zJ-maP.text" = "userName";
+
+/* Class = "UILabel"; text = "20"; ObjectID = "wwg-Gd-n2X"; */
+"wwg-Gd-n2X.text" = "20";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "ylm-ry-NhJ"; */
+"ylm-ry-NhJ.text" = "2";
+
+/* Class = "UILabel"; text = "本月出勤"; ObjectID = "zOh-ai-z5S"; */
+"zOh-ai-z5S.text" = "本月出勤";

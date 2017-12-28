@@ -33,19 +33,24 @@ NSInteger userStatus;
     INFHomeViewController *HomeVC = [storyboard instantiateViewControllerWithIdentifier:@"INFHomeViewController"];
     
     self.window.rootViewController = HomeVC;
-    
+    NSUserDefaults *defaults = [NSUserDefaults  standardUserDefaults];
     [self checkUserStatus];
+    
     return YES;
 }
 
-
+//检查用户状态
 - (void)checkUserStatus {
     NSUserDefaults *defaults = [NSUserDefaults  standardUserDefaults];
     NSInteger tempStatus = [defaults integerForKey:@"userStatus"];
+    //如果从缓存获取到了 userStatus，证明以前登陆过，并找到该缓存值  赋值给 全局变量 userStatus
     if (tempStatus) {
         NSLog(@"if当前用户状态为：%ld",tempStatus);
+        [defaults setInteger:1 forKey:@"userStatus"];
+        [defaults synchronize];
         userStatus = [defaults integerForKey:@"userStatus"];
     }else{
+        //如果没有 从缓存获取到了 userStatus, 证明是第一次登录设初始值为1  没有登陆过
         [defaults setInteger:1 forKey:@"userStatus"];
         [[NSUserDefaults standardUserDefaults] synchronize]; 
         userStatus = [defaults integerForKey:@"userStatus"];
