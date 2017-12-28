@@ -8,6 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		348D853B34FD3EEDFE9FF667 /* libPods-INFosysFaceIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */; };
+		975860301FF3986300E04F5F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758602F1FF3986300E04F5F /* UIView+Extension.m */; };
+		979A81511FF389C9006AF3AF /* AttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81501FF389C9006AF3AF /* AttendanceViewController.m */; };
+		979A81541FF38F74006AF3AF /* AttendanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81531FF38F74006AF3AF /* AttendanceView.m */; };
+		979A816C1FF39042006AF3AF /* BXHCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A815A1FF39042006AF3AF /* BXHCalendarDayView.m */; };
+		979A816D1FF39042006AF3AF /* BXHCalendarLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A815C1FF39042006AF3AF /* BXHCalendarLayout.m */; };
+		979A816E1FF39042006AF3AF /* BXHCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A815E1FF39042006AF3AF /* BXHCalendarManager.m */; };
+		979A816F1FF39042006AF3AF /* BXHCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81601FF39042006AF3AF /* BXHCalendarMonthView.m */; };
+		979A81701FF39042006AF3AF /* BXHCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81631FF39042006AF3AF /* BXHCalendarView.m */; };
+		979A81711FF39042006AF3AF /* BXHCalenderIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81651FF39042006AF3AF /* BXHCalenderIndexPath.m */; };
+		979A81721FF39042006AF3AF /* BXHWeekendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81671FF39042006AF3AF /* BXHWeekendView.m */; };
+		979A81731FF39042006AF3AF /* NSDate+BXHCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81691FF39042006AF3AF /* NSDate+BXHCalendar.m */; };
+		979A81741FF39042006AF3AF /* NSDate+BXHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A816B1FF39042006AF3AF /* NSDate+BXHCategory.m */; };
+		97B6E6F41FF3688E00976902 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FA1FF3688E00976902 /* libAFNetworking.a */; };
+		97B6E6F51FF3688E00976902 /* libFSCalendar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FB1FF3688E00976902 /* libFSCalendar.a */; };
+		97B6E6F61FF3688E00976902 /* libMasonry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FC1FF3688E00976902 /* libMasonry.a */; };
+		97B6E6F71FF3688E00976902 /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FD1FF3688E00976902 /* libMBProgressHUD.a */; };
+		97B6E6F81FF3688E00976902 /* libYYCache.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FE1FF3688E00976902 /* libYYCache.a */; };
+		97B6E6F91FF3688E00976902 /* libYYModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FF1FF3688E00976902 /* libYYModel.a */; };
+		97B6E7061FF3733900976902 /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B6E7051FF3733800976902 /* UIColor+hexColor.m */; };
+		97B6E7091FF37B3500976902 /* MyViewLitsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B6E7081FF37B3500976902 /* MyViewLitsCell.m */; };
 		B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0C1FF0F68C004267E8 /* AppDelegate.m */; };
 		B8247D101FF0F68C004267E8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0F1FF0F68C004267E8 /* ViewController.m */; };
 		B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8247D111FF0F68C004267E8 /* Main.storyboard */; };
@@ -52,6 +72,42 @@
 /* Begin PBXFileReference section */
 		35D5E4C1727B11D633CA96A6 /* Pods-INFosysFaceIO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INFosysFaceIO.release.xcconfig"; path = "Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO.release.xcconfig"; sourceTree = "<group>"; };
 		7C378AD0B107B8726E9CC8AE /* Pods-INFosysFaceIO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INFosysFaceIO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO.debug.xcconfig"; sourceTree = "<group>"; };
+		9758602E1FF3986300E04F5F /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		9758602F1FF3986300E04F5F /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		979A814F1FF389C9006AF3AF /* AttendanceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceViewController.h; sourceTree = "<group>"; };
+		979A81501FF389C9006AF3AF /* AttendanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceViewController.m; sourceTree = "<group>"; };
+		979A81521FF38F74006AF3AF /* AttendanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceView.h; sourceTree = "<group>"; };
+		979A81531FF38F74006AF3AF /* AttendanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceView.m; sourceTree = "<group>"; };
+		979A81591FF39042006AF3AF /* BXHCalendarDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarDayView.h; sourceTree = "<group>"; };
+		979A815A1FF39042006AF3AF /* BXHCalendarDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarDayView.m; sourceTree = "<group>"; };
+		979A815B1FF39042006AF3AF /* BXHCalendarLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarLayout.h; sourceTree = "<group>"; };
+		979A815C1FF39042006AF3AF /* BXHCalendarLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarLayout.m; sourceTree = "<group>"; };
+		979A815D1FF39042006AF3AF /* BXHCalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarManager.h; sourceTree = "<group>"; };
+		979A815E1FF39042006AF3AF /* BXHCalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarManager.m; sourceTree = "<group>"; };
+		979A815F1FF39042006AF3AF /* BXHCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarMonthView.h; sourceTree = "<group>"; };
+		979A81601FF39042006AF3AF /* BXHCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarMonthView.m; sourceTree = "<group>"; };
+		979A81611FF39042006AF3AF /* BXHCalendarSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarSupport.h; sourceTree = "<group>"; };
+		979A81621FF39042006AF3AF /* BXHCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarView.h; sourceTree = "<group>"; };
+		979A81631FF39042006AF3AF /* BXHCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarView.m; sourceTree = "<group>"; };
+		979A81641FF39042006AF3AF /* BXHCalenderIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalenderIndexPath.h; sourceTree = "<group>"; };
+		979A81651FF39042006AF3AF /* BXHCalenderIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalenderIndexPath.m; sourceTree = "<group>"; };
+		979A81661FF39042006AF3AF /* BXHWeekendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHWeekendView.h; sourceTree = "<group>"; };
+		979A81671FF39042006AF3AF /* BXHWeekendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHWeekendView.m; sourceTree = "<group>"; };
+		979A81681FF39042006AF3AF /* NSDate+BXHCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BXHCalendar.h"; sourceTree = "<group>"; };
+		979A81691FF39042006AF3AF /* NSDate+BXHCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BXHCalendar.m"; sourceTree = "<group>"; };
+		979A816A1FF39042006AF3AF /* NSDate+BXHCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BXHCategory.h"; sourceTree = "<group>"; };
+		979A816B1FF39042006AF3AF /* NSDate+BXHCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BXHCategory.m"; sourceTree = "<group>"; };
+		97B6E6FA1FF3688E00976902 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B6E6FB1FF3688E00976902 /* libFSCalendar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFSCalendar.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B6E6FC1FF3688E00976902 /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B6E6FD1FF3688E00976902 /* libMBProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMBProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B6E6FE1FF3688E00976902 /* libYYCache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYYCache.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B6E6FF1FF3688E00976902 /* libYYModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYYModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B6E7031FF3733800976902 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		97B6E7041FF3733800976902 /* UIColor+hexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hexColor.h"; sourceTree = "<group>"; };
+		97B6E7051FF3733800976902 /* UIColor+hexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hexColor.m"; sourceTree = "<group>"; };
+		97B6E7071FF37B3500976902 /* MyViewLitsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyViewLitsCell.h; sourceTree = "<group>"; };
+		97B6E7081FF37B3500976902 /* MyViewLitsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewLitsCell.m; sourceTree = "<group>"; };
 		B8247D081FF0F68C004267E8 /* INFosysFaceIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INFosysFaceIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8247D0B1FF0F68C004267E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8247D0C1FF0F68C004267E8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -101,6 +157,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B6E6F41FF3688E00976902 /* libAFNetworking.a in Frameworks */,
+				97B6E6F51FF3688E00976902 /* libFSCalendar.a in Frameworks */,
+				97B6E6F61FF3688E00976902 /* libMasonry.a in Frameworks */,
+				97B6E6F71FF3688E00976902 /* libMBProgressHUD.a in Frameworks */,
+				97B6E6F81FF3688E00976902 /* libYYCache.a in Frameworks */,
+				97B6E6F91FF3688E00976902 /* libYYModel.a in Frameworks */,
 				348D853B34FD3EEDFE9FF667 /* libPods-INFosysFaceIO.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +191,44 @@
 				35D5E4C1727B11D633CA96A6 /* Pods-INFosysFaceIO.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		979A81581FF39042006AF3AF /* BXHCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				979A81591FF39042006AF3AF /* BXHCalendarDayView.h */,
+				979A815A1FF39042006AF3AF /* BXHCalendarDayView.m */,
+				979A815B1FF39042006AF3AF /* BXHCalendarLayout.h */,
+				979A815C1FF39042006AF3AF /* BXHCalendarLayout.m */,
+				979A815D1FF39042006AF3AF /* BXHCalendarManager.h */,
+				979A815E1FF39042006AF3AF /* BXHCalendarManager.m */,
+				979A815F1FF39042006AF3AF /* BXHCalendarMonthView.h */,
+				979A81601FF39042006AF3AF /* BXHCalendarMonthView.m */,
+				979A81611FF39042006AF3AF /* BXHCalendarSupport.h */,
+				979A81621FF39042006AF3AF /* BXHCalendarView.h */,
+				979A81631FF39042006AF3AF /* BXHCalendarView.m */,
+				979A81641FF39042006AF3AF /* BXHCalenderIndexPath.h */,
+				979A81651FF39042006AF3AF /* BXHCalenderIndexPath.m */,
+				979A81661FF39042006AF3AF /* BXHWeekendView.h */,
+				979A81671FF39042006AF3AF /* BXHWeekendView.m */,
+				979A81681FF39042006AF3AF /* NSDate+BXHCalendar.h */,
+				979A81691FF39042006AF3AF /* NSDate+BXHCalendar.m */,
+				979A816A1FF39042006AF3AF /* NSDate+BXHCategory.h */,
+				979A816B1FF39042006AF3AF /* NSDate+BXHCategory.m */,
+			);
+			path = BXHCalendar;
+			sourceTree = "<group>";
+		};
+		97B6E7021FF3730800976902 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				9758602E1FF3986300E04F5F /* UIView+Extension.h */,
+				9758602F1FF3986300E04F5F /* UIView+Extension.m */,
+				97B6E7031FF3733800976902 /* Config.h */,
+				97B6E7041FF3733800976902 /* UIColor+hexColor.h */,
+				97B6E7051FF3733800976902 /* UIColor+hexColor.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		B8247CFF1FF0F68C004267E8 = {
@@ -162,6 +262,7 @@
 				B8247D3D1FF0F785004267E8 /* ThirdLib */,
 				B8247D0B1FF0F68C004267E8 /* AppDelegate.h */,
 				B8247D0C1FF0F68C004267E8 /* AppDelegate.m */,
+				97B6E7021FF3730800976902 /* Tools */,
 				B8247D0E1FF0F68C004267E8 /* ViewController.h */,
 				B8247D0F1FF0F68C004267E8 /* ViewController.m */,
 				B8247D111FF0F68C004267E8 /* Main.storyboard */,
@@ -256,6 +357,13 @@
 			children = (
 				B84DE7A21FF145C8008A69DD /* INFMyViewController.m */,
 				B84DE7A11FF145C8008A69DD /* INFMyViewController.h */,
+				97B6E7071FF37B3500976902 /* MyViewLitsCell.h */,
+				97B6E7081FF37B3500976902 /* MyViewLitsCell.m */,
+				979A814F1FF389C9006AF3AF /* AttendanceViewController.h */,
+				979A81501FF389C9006AF3AF /* AttendanceViewController.m */,
+				979A81521FF38F74006AF3AF /* AttendanceView.h */,
+				979A81531FF38F74006AF3AF /* AttendanceView.m */,
+				979A81581FF39042006AF3AF /* BXHCalendar */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -287,6 +395,12 @@
 		F14FF36BEADD6C13E1F72549 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97B6E6FA1FF3688E00976902 /* libAFNetworking.a */,
+				97B6E6FB1FF3688E00976902 /* libFSCalendar.a */,
+				97B6E6FC1FF3688E00976902 /* libMasonry.a */,
+				97B6E6FD1FF3688E00976902 /* libMBProgressHUD.a */,
+				97B6E6FE1FF3688E00976902 /* libYYCache.a */,
+				97B6E6FF1FF3688E00976902 /* libYYModel.a */,
 				EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */,
 			);
 			name = Frameworks;
@@ -492,21 +606,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				979A816F1FF39042006AF3AF /* BXHCalendarMonthView.m in Sources */,
 				B84DE7B51FF2202E008A69DD /* NetWorkManager.m in Sources */,
+				979A81721FF39042006AF3AF /* BXHWeekendView.m in Sources */,
+				97B6E7091FF37B3500976902 /* MyViewLitsCell.m in Sources */,
+				979A81731FF39042006AF3AF /* NSDate+BXHCalendar.m in Sources */,
 				B84DE79C1FF0FF99008A69DD /* PrefixHeader.pch in Sources */,
+				979A816D1FF39042006AF3AF /* BXHCalendarLayout.m in Sources */,
+				979A816E1FF39042006AF3AF /* BXHCalendarManager.m in Sources */,
+				979A81541FF38F74006AF3AF /* AttendanceView.m in Sources */,
 				B8247D101FF0F68C004267E8 /* ViewController.m in Sources */,
 				B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */,
+				979A816C1FF39042006AF3AF /* BXHCalendarDayView.m in Sources */,
 				B84DE7AD1FF20D18008A69DD /* INFUser.m in Sources */,
 				B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */,
 				B84DE7B01FF21CE6008A69DD /* NSString+Utils.m in Sources */,
 				B8A296D31FF3D58C00D3499A /* INFCameraOverlayView.m in Sources */,
+				979A81711FF39042006AF3AF /* BXHCalenderIndexPath.m in Sources */,
+				97B6E7061FF3733900976902 /* UIColor+hexColor.m in Sources */,
 				B8247D1B1FF0F68C004267E8 /* main.m in Sources */,
+				975860301FF3986300E04F5F /* UIView+Extension.m in Sources */,
 				B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */,
 				B8A296CE1FF3785300D3499A /* INFOverlayViewController.m in Sources */,
+				979A81741FF39042006AF3AF /* NSDate+BXHCategory.m in Sources */,
+				979A81511FF389C9006AF3AF /* AttendanceViewController.m in Sources */,
 				B84DE7A61FF145DC008A69DD /* INFCheckViewController.m in Sources */,
 				B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */,
 				B84DE7A91FF145F3008A69DD /* INFRecordsViewController.m in Sources */,
 				B87D10031FF0FC22000D924D /* INFHomeViewController.m in Sources */,
+				979A81701FF39042006AF3AF /* BXHCalendarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +808,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = wjw.INFosysFaceIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)";
 			};
 			name = Debug;
 		};
@@ -696,6 +825,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = wjw.INFosysFaceIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PODS_ROOT)";
 			};
 			name = Release;
 		};
