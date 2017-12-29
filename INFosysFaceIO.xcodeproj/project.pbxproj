@@ -143,6 +143,7 @@
 		B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		B87D10011FF0FC22000D924D /* INFHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFHomeViewController.h; sourceTree = "<group>"; };
 		B87D10021FF0FC22000D924D /* INFHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFHomeViewController.m; sourceTree = "<group>"; };
+		B88AACE21FF4D92900EF4AE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B8A296CC1FF3785300D3499A /* INFOverlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFOverlayViewController.h; sourceTree = "<group>"; };
 		B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFOverlayViewController.m; sourceTree = "<group>"; };
 		B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFOverlayViewController.xib; sourceTree = "<group>"; };
@@ -674,6 +675,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B8247D121FF0F68C004267E8 /* Base */,
+				B88AACE21FF4D92900EF4AE2 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

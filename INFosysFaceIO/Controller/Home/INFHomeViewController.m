@@ -106,6 +106,19 @@ extern NSInteger userStatus;
         [self presentViewController:_imagePicker animated:YES completion:^{
             _timer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(takePhoto)  userInfo:nil repeats:NO];
             [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
+            
+            [UIView animateWithDuration: 2 delay: 0.35 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
+                [self.barImg layoutIfNeeded];
+                [self.barImg setFrame:CGRectMake(77, 383, 220, 4)];
+                self.scanImg.alpha = 0;
+            } completion: ^(BOOL finished) {
+                [UIView animateWithDuration: 2 animations: ^{
+                    //            [self.barImg setFrame:CGRectMake(77, 383, 220, 4)];
+                    self.scanImg.alpha = 1;
+                }];
+            }];
+            
+            
         }];
 
     } else {
