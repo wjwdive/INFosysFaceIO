@@ -9,17 +9,12 @@
 /* Begin PBXBuildFile section */
 		348D853B34FD3EEDFE9FF667 /* libPods-INFosysFaceIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */; };
 		975860301FF3986300E04F5F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758602F1FF3986300E04F5F /* UIView+Extension.m */; };
+		978459021FF4907100DD6747 /* YXCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978458FA1FF4907100DD6747 /* YXCalendarView.m */; };
+		978459031FF4907100DD6747 /* YXDateHelpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 978458FC1FF4907100DD6747 /* YXDateHelpObject.m */; };
+		978459041FF4907100DD6747 /* YXDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 978458FE1FF4907100DD6747 /* YXDayCell.m */; };
+		978459051FF4907100DD6747 /* YXDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978458FF1FF4907100DD6747 /* YXDayCell.xib */; };
+		978459061FF4907100DD6747 /* YXMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978459011FF4907100DD6747 /* YXMonthView.m */; };
 		979A81511FF389C9006AF3AF /* AttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81501FF389C9006AF3AF /* AttendanceViewController.m */; };
-		979A81541FF38F74006AF3AF /* AttendanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81531FF38F74006AF3AF /* AttendanceView.m */; };
-		979A816C1FF39042006AF3AF /* BXHCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A815A1FF39042006AF3AF /* BXHCalendarDayView.m */; };
-		979A816D1FF39042006AF3AF /* BXHCalendarLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A815C1FF39042006AF3AF /* BXHCalendarLayout.m */; };
-		979A816E1FF39042006AF3AF /* BXHCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A815E1FF39042006AF3AF /* BXHCalendarManager.m */; };
-		979A816F1FF39042006AF3AF /* BXHCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81601FF39042006AF3AF /* BXHCalendarMonthView.m */; };
-		979A81701FF39042006AF3AF /* BXHCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81631FF39042006AF3AF /* BXHCalendarView.m */; };
-		979A81711FF39042006AF3AF /* BXHCalenderIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81651FF39042006AF3AF /* BXHCalenderIndexPath.m */; };
-		979A81721FF39042006AF3AF /* BXHWeekendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81671FF39042006AF3AF /* BXHWeekendView.m */; };
-		979A81731FF39042006AF3AF /* NSDate+BXHCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A81691FF39042006AF3AF /* NSDate+BXHCalendar.m */; };
-		979A81741FF39042006AF3AF /* NSDate+BXHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 979A816B1FF39042006AF3AF /* NSDate+BXHCategory.m */; };
 		97B6E6F41FF3688E00976902 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FA1FF3688E00976902 /* libAFNetworking.a */; };
 		97B6E6F51FF3688E00976902 /* libFSCalendar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FB1FF3688E00976902 /* libFSCalendar.a */; };
 		97B6E6F61FF3688E00976902 /* libMasonry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FC1FF3688E00976902 /* libMasonry.a */; };
@@ -28,6 +23,8 @@
 		97B6E6F91FF3688E00976902 /* libYYModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97B6E6FF1FF3688E00976902 /* libYYModel.a */; };
 		97B6E7061FF3733900976902 /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B6E7051FF3733800976902 /* UIColor+hexColor.m */; };
 		97B6E7091FF37B3500976902 /* MyViewLitsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B6E7081FF37B3500976902 /* MyViewLitsCell.m */; };
+		97FD1D671FF4C69F001B34C8 /* AttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D661FF4C69F001B34C8 /* AttendanceModel.m */; };
+		97FD1D6A1FF4CC0C001B34C8 /* AttendanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D691FF4CC0C001B34C8 /* AttendanceCell.m */; };
 		B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0C1FF0F68C004267E8 /* AppDelegate.m */; };
 		B8247D101FF0F68C004267E8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0F1FF0F68C004267E8 /* ViewController.m */; };
 		B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8247D111FF0F68C004267E8 /* Main.storyboard */; };
@@ -70,29 +67,17 @@
 		7C378AD0B107B8726E9CC8AE /* Pods-INFosysFaceIO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INFosysFaceIO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO.debug.xcconfig"; sourceTree = "<group>"; };
 		9758602E1FF3986300E04F5F /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		9758602F1FF3986300E04F5F /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		978458F91FF4907100DD6747 /* YXCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCalendarView.h; sourceTree = "<group>"; };
+		978458FA1FF4907100DD6747 /* YXCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCalendarView.m; sourceTree = "<group>"; };
+		978458FB1FF4907100DD6747 /* YXDateHelpObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDateHelpObject.h; sourceTree = "<group>"; };
+		978458FC1FF4907100DD6747 /* YXDateHelpObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDateHelpObject.m; sourceTree = "<group>"; };
+		978458FD1FF4907100DD6747 /* YXDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDayCell.h; sourceTree = "<group>"; };
+		978458FE1FF4907100DD6747 /* YXDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDayCell.m; sourceTree = "<group>"; };
+		978458FF1FF4907100DD6747 /* YXDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YXDayCell.xib; sourceTree = "<group>"; };
+		978459001FF4907100DD6747 /* YXMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMonthView.h; sourceTree = "<group>"; };
+		978459011FF4907100DD6747 /* YXMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMonthView.m; sourceTree = "<group>"; };
 		979A814F1FF389C9006AF3AF /* AttendanceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceViewController.h; sourceTree = "<group>"; };
 		979A81501FF389C9006AF3AF /* AttendanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceViewController.m; sourceTree = "<group>"; };
-		979A81521FF38F74006AF3AF /* AttendanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceView.h; sourceTree = "<group>"; };
-		979A81531FF38F74006AF3AF /* AttendanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceView.m; sourceTree = "<group>"; };
-		979A81591FF39042006AF3AF /* BXHCalendarDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarDayView.h; sourceTree = "<group>"; };
-		979A815A1FF39042006AF3AF /* BXHCalendarDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarDayView.m; sourceTree = "<group>"; };
-		979A815B1FF39042006AF3AF /* BXHCalendarLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarLayout.h; sourceTree = "<group>"; };
-		979A815C1FF39042006AF3AF /* BXHCalendarLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarLayout.m; sourceTree = "<group>"; };
-		979A815D1FF39042006AF3AF /* BXHCalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarManager.h; sourceTree = "<group>"; };
-		979A815E1FF39042006AF3AF /* BXHCalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarManager.m; sourceTree = "<group>"; };
-		979A815F1FF39042006AF3AF /* BXHCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarMonthView.h; sourceTree = "<group>"; };
-		979A81601FF39042006AF3AF /* BXHCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarMonthView.m; sourceTree = "<group>"; };
-		979A81611FF39042006AF3AF /* BXHCalendarSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarSupport.h; sourceTree = "<group>"; };
-		979A81621FF39042006AF3AF /* BXHCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalendarView.h; sourceTree = "<group>"; };
-		979A81631FF39042006AF3AF /* BXHCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalendarView.m; sourceTree = "<group>"; };
-		979A81641FF39042006AF3AF /* BXHCalenderIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHCalenderIndexPath.h; sourceTree = "<group>"; };
-		979A81651FF39042006AF3AF /* BXHCalenderIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHCalenderIndexPath.m; sourceTree = "<group>"; };
-		979A81661FF39042006AF3AF /* BXHWeekendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXHWeekendView.h; sourceTree = "<group>"; };
-		979A81671FF39042006AF3AF /* BXHWeekendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXHWeekendView.m; sourceTree = "<group>"; };
-		979A81681FF39042006AF3AF /* NSDate+BXHCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BXHCalendar.h"; sourceTree = "<group>"; };
-		979A81691FF39042006AF3AF /* NSDate+BXHCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BXHCalendar.m"; sourceTree = "<group>"; };
-		979A816A1FF39042006AF3AF /* NSDate+BXHCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BXHCategory.h"; sourceTree = "<group>"; };
-		979A816B1FF39042006AF3AF /* NSDate+BXHCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BXHCategory.m"; sourceTree = "<group>"; };
 		97B6E6FA1FF3688E00976902 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97B6E6FB1FF3688E00976902 /* libFSCalendar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFSCalendar.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		97B6E6FC1FF3688E00976902 /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +89,10 @@
 		97B6E7051FF3733800976902 /* UIColor+hexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hexColor.m"; sourceTree = "<group>"; };
 		97B6E7071FF37B3500976902 /* MyViewLitsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyViewLitsCell.h; sourceTree = "<group>"; };
 		97B6E7081FF37B3500976902 /* MyViewLitsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewLitsCell.m; sourceTree = "<group>"; };
+		97FD1D651FF4C69F001B34C8 /* AttendanceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceModel.h; sourceTree = "<group>"; };
+		97FD1D661FF4C69F001B34C8 /* AttendanceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceModel.m; sourceTree = "<group>"; };
+		97FD1D681FF4CC0C001B34C8 /* AttendanceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceCell.h; sourceTree = "<group>"; };
+		97FD1D691FF4CC0C001B34C8 /* AttendanceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceCell.m; sourceTree = "<group>"; };
 		B8247D081FF0F68C004267E8 /* INFosysFaceIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INFosysFaceIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8247D0B1FF0F68C004267E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8247D0C1FF0F68C004267E8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -183,30 +172,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		979A81581FF39042006AF3AF /* BXHCalendar */ = {
+		978458F81FF4907100DD6747 /* YXCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				979A81591FF39042006AF3AF /* BXHCalendarDayView.h */,
-				979A815A1FF39042006AF3AF /* BXHCalendarDayView.m */,
-				979A815B1FF39042006AF3AF /* BXHCalendarLayout.h */,
-				979A815C1FF39042006AF3AF /* BXHCalendarLayout.m */,
-				979A815D1FF39042006AF3AF /* BXHCalendarManager.h */,
-				979A815E1FF39042006AF3AF /* BXHCalendarManager.m */,
-				979A815F1FF39042006AF3AF /* BXHCalendarMonthView.h */,
-				979A81601FF39042006AF3AF /* BXHCalendarMonthView.m */,
-				979A81611FF39042006AF3AF /* BXHCalendarSupport.h */,
-				979A81621FF39042006AF3AF /* BXHCalendarView.h */,
-				979A81631FF39042006AF3AF /* BXHCalendarView.m */,
-				979A81641FF39042006AF3AF /* BXHCalenderIndexPath.h */,
-				979A81651FF39042006AF3AF /* BXHCalenderIndexPath.m */,
-				979A81661FF39042006AF3AF /* BXHWeekendView.h */,
-				979A81671FF39042006AF3AF /* BXHWeekendView.m */,
-				979A81681FF39042006AF3AF /* NSDate+BXHCalendar.h */,
-				979A81691FF39042006AF3AF /* NSDate+BXHCalendar.m */,
-				979A816A1FF39042006AF3AF /* NSDate+BXHCategory.h */,
-				979A816B1FF39042006AF3AF /* NSDate+BXHCategory.m */,
+				978458F91FF4907100DD6747 /* YXCalendarView.h */,
+				978458FA1FF4907100DD6747 /* YXCalendarView.m */,
+				978458FB1FF4907100DD6747 /* YXDateHelpObject.h */,
+				978458FC1FF4907100DD6747 /* YXDateHelpObject.m */,
+				978458FD1FF4907100DD6747 /* YXDayCell.h */,
+				978458FE1FF4907100DD6747 /* YXDayCell.m */,
+				978458FF1FF4907100DD6747 /* YXDayCell.xib */,
+				978459001FF4907100DD6747 /* YXMonthView.h */,
+				978459011FF4907100DD6747 /* YXMonthView.m */,
 			);
-			path = BXHCalendar;
+			path = YXCalendar;
 			sourceTree = "<group>";
 		};
 		97B6E7021FF3730800976902 /* Tools */ = {
@@ -310,6 +289,8 @@
 			children = (
 				B84DE7AB1FF20D18008A69DD /* INFUser.h */,
 				B84DE7AC1FF20D18008A69DD /* INFUser.m */,
+				97FD1D651FF4C69F001B34C8 /* AttendanceModel.h */,
+				97FD1D661FF4C69F001B34C8 /* AttendanceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -351,9 +332,9 @@
 				97B6E7081FF37B3500976902 /* MyViewLitsCell.m */,
 				979A814F1FF389C9006AF3AF /* AttendanceViewController.h */,
 				979A81501FF389C9006AF3AF /* AttendanceViewController.m */,
-				979A81521FF38F74006AF3AF /* AttendanceView.h */,
-				979A81531FF38F74006AF3AF /* AttendanceView.m */,
-				979A81581FF39042006AF3AF /* BXHCalendar */,
+				978458F81FF4907100DD6747 /* YXCalendar */,
+				97FD1D681FF4CC0C001B34C8 /* AttendanceCell.h */,
+				97FD1D691FF4CC0C001B34C8 /* AttendanceCell.m */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -500,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8247D181FF0F68C004267E8 /* LaunchScreen.storyboard in Resources */,
+				978459051FF4907100DD6747 /* YXDayCell.xib in Resources */,
 				B8247D151FF0F68C004267E8 /* Assets.xcassets in Resources */,
 				B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */,
 			);
@@ -588,33 +570,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				979A816F1FF39042006AF3AF /* BXHCalendarMonthView.m in Sources */,
 				B84DE7B51FF2202E008A69DD /* NetWorkManager.m in Sources */,
-				979A81721FF39042006AF3AF /* BXHWeekendView.m in Sources */,
 				97B6E7091FF37B3500976902 /* MyViewLitsCell.m in Sources */,
-				979A81731FF39042006AF3AF /* NSDate+BXHCalendar.m in Sources */,
 				B84DE79C1FF0FF99008A69DD /* PrefixHeader.pch in Sources */,
-				979A816D1FF39042006AF3AF /* BXHCalendarLayout.m in Sources */,
-				979A816E1FF39042006AF3AF /* BXHCalendarManager.m in Sources */,
-				979A81541FF38F74006AF3AF /* AttendanceView.m in Sources */,
+				978459041FF4907100DD6747 /* YXDayCell.m in Sources */,
 				B8247D101FF0F68C004267E8 /* ViewController.m in Sources */,
 				B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */,
-				979A816C1FF39042006AF3AF /* BXHCalendarDayView.m in Sources */,
 				B84DE7AD1FF20D18008A69DD /* INFUser.m in Sources */,
 				B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */,
+				978459031FF4907100DD6747 /* YXDateHelpObject.m in Sources */,
 				B84DE7B01FF21CE6008A69DD /* NSString+Utils.m in Sources */,
-				979A81711FF39042006AF3AF /* BXHCalenderIndexPath.m in Sources */,
+				97FD1D6A1FF4CC0C001B34C8 /* AttendanceCell.m in Sources */,
 				97B6E7061FF3733900976902 /* UIColor+hexColor.m in Sources */,
 				B8247D1B1FF0F68C004267E8 /* main.m in Sources */,
+				97FD1D671FF4C69F001B34C8 /* AttendanceModel.m in Sources */,
 				975860301FF3986300E04F5F /* UIView+Extension.m in Sources */,
 				B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */,
-				979A81741FF39042006AF3AF /* NSDate+BXHCategory.m in Sources */,
 				979A81511FF389C9006AF3AF /* AttendanceViewController.m in Sources */,
+				978459061FF4907100DD6747 /* YXMonthView.m in Sources */,
 				B84DE7A61FF145DC008A69DD /* INFCheckViewController.m in Sources */,
 				B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */,
 				B84DE7A91FF145F3008A69DD /* INFRecordsViewController.m in Sources */,
 				B87D10031FF0FC22000D924D /* INFHomeViewController.m in Sources */,
-				979A81701FF39042006AF3AF /* BXHCalendarView.m in Sources */,
+				978459021FF4907100DD6747 /* YXCalendarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
