@@ -25,6 +25,8 @@
 		97B6E7091FF37B3500976902 /* MyViewLitsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B6E7081FF37B3500976902 /* MyViewLitsCell.m */; };
 		97FD1D671FF4C69F001B34C8 /* AttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D661FF4C69F001B34C8 /* AttendanceModel.m */; };
 		97FD1D6A1FF4CC0C001B34C8 /* AttendanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D691FF4CC0C001B34C8 /* AttendanceCell.m */; };
+		97FD1D6E1FF5EC7D001B34C8 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D6D1FF5EC7D001B34C8 /* BaseNavigationController.m */; };
+		97FD1D711FF6166D001B34C8 /* AttendanceLeftLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D701FF6166D001B34C8 /* AttendanceLeftLine.m */; };
 		B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0C1FF0F68C004267E8 /* AppDelegate.m */; };
 		B8247D101FF0F68C004267E8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0F1FF0F68C004267E8 /* ViewController.m */; };
 		B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8247D111FF0F68C004267E8 /* Main.storyboard */; };
@@ -43,6 +45,10 @@
 		B84DE7B51FF2202E008A69DD /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7B21FF2202E008A69DD /* NetWorkManager.m */; };
 		B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */; };
 		B87D10031FF0FC22000D924D /* INFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87D10021FF0FC22000D924D /* INFHomeViewController.m */; };
+		B8A296CE1FF3785300D3499A /* INFOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */; };
+		B8A296D01FF3D23000D3499A /* INFOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */; };
+		B8A296D31FF3D58C00D3499A /* INFCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */; };
+		B8A296D71FF3D5DB00D3499A /* INFCameraOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A296D61FF3D5DB00D3499A /* INFCameraOverlayView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +99,10 @@
 		97FD1D661FF4C69F001B34C8 /* AttendanceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceModel.m; sourceTree = "<group>"; };
 		97FD1D681FF4CC0C001B34C8 /* AttendanceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceCell.h; sourceTree = "<group>"; };
 		97FD1D691FF4CC0C001B34C8 /* AttendanceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceCell.m; sourceTree = "<group>"; };
+		97FD1D6C1FF5EC7D001B34C8 /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		97FD1D6D1FF5EC7D001B34C8 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		97FD1D6F1FF6166D001B34C8 /* AttendanceLeftLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceLeftLine.h; sourceTree = "<group>"; };
+		97FD1D701FF6166D001B34C8 /* AttendanceLeftLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceLeftLine.m; sourceTree = "<group>"; };
 		B8247D081FF0F68C004267E8 /* INFosysFaceIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INFosysFaceIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8247D0B1FF0F68C004267E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8247D0C1FF0F68C004267E8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -128,6 +138,13 @@
 		B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		B87D10011FF0FC22000D924D /* INFHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFHomeViewController.h; sourceTree = "<group>"; };
 		B87D10021FF0FC22000D924D /* INFHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFHomeViewController.m; sourceTree = "<group>"; };
+		B88AACE21FF4D92900EF4AE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		B8A296CC1FF3785300D3499A /* INFOverlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFOverlayViewController.h; sourceTree = "<group>"; };
+		B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFOverlayViewController.m; sourceTree = "<group>"; };
+		B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFOverlayViewController.xib; sourceTree = "<group>"; };
+		B8A296D11FF3D58C00D3499A /* INFCameraOverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFCameraOverlayView.h; sourceTree = "<group>"; };
+		B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFCameraOverlayView.m; sourceTree = "<group>"; };
+		B8A296D61FF3D5DB00D3499A /* INFCameraOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFCameraOverlayView.xib; sourceTree = "<group>"; };
 		EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-INFosysFaceIO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -200,6 +217,15 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		97FD1D6B1FF5EA8A001B34C8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				97FD1D6C1FF5EC7D001B34C8 /* BaseNavigationController.h */,
+				97FD1D6D1FF5EC7D001B34C8 /* BaseNavigationController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		B8247CFF1FF0F68C004267E8 = {
 			isa = PBXGroup;
 			children = (
@@ -225,9 +251,9 @@
 		B8247D0A1FF0F68C004267E8 /* INFosysFaceIO */ = {
 			isa = PBXGroup;
 			children = (
+				97FD1D6B1FF5EA8A001B34C8 /* Base */,
 				B84DE7AA1FF1FCF8008A69DD /* Model */,
 				B87D0FFD1FF0FB9F000D924D /* Controller */,
-				B87D0FFB1FF0FB89000D924D /* Resource */,
 				B8247D3D1FF0F785004267E8 /* ThirdLib */,
 				B8247D0B1FF0F68C004267E8 /* AppDelegate.h */,
 				B8247D0C1FF0F68C004267E8 /* AppDelegate.m */,
@@ -295,13 +321,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B87D0FFB1FF0FB89000D924D /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
 		B87D0FFC1FF0FB92000D924D /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,13 +347,15 @@
 			children = (
 				B84DE7A11FF145C8008A69DD /* INFMyViewController.h */,
 				B84DE7A21FF145C8008A69DD /* INFMyViewController.m */,
-				97B6E7071FF37B3500976902 /* MyViewLitsCell.h */,
-				97B6E7081FF37B3500976902 /* MyViewLitsCell.m */,
 				979A814F1FF389C9006AF3AF /* AttendanceViewController.h */,
 				979A81501FF389C9006AF3AF /* AttendanceViewController.m */,
-				978458F81FF4907100DD6747 /* YXCalendar */,
+				97B6E7071FF37B3500976902 /* MyViewLitsCell.h */,
+				97B6E7081FF37B3500976902 /* MyViewLitsCell.m */,
 				97FD1D681FF4CC0C001B34C8 /* AttendanceCell.h */,
 				97FD1D691FF4CC0C001B34C8 /* AttendanceCell.m */,
+				97FD1D6F1FF6166D001B34C8 /* AttendanceLeftLine.h */,
+				97FD1D701FF6166D001B34C8 /* AttendanceLeftLine.m */,
+				978458F81FF4907100DD6747 /* YXCalendar */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -344,6 +365,12 @@
 			children = (
 				B84DE7A41FF145DC008A69DD /* INFCheckViewController.h */,
 				B84DE7A51FF145DC008A69DD /* INFCheckViewController.m */,
+				B8A296CC1FF3785300D3499A /* INFOverlayViewController.h */,
+				B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */,
+				B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */,
+				B8A296D11FF3D58C00D3499A /* INFCameraOverlayView.h */,
+				B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */,
+				B8A296D61FF3D5DB00D3499A /* INFCameraOverlayView.xib */,
 			);
 			path = FaceCheck;
 			sourceTree = "<group>";
@@ -484,6 +511,8 @@
 				978459051FF4907100DD6747 /* YXDayCell.xib in Resources */,
 				B8247D151FF0F68C004267E8 /* Assets.xcassets in Resources */,
 				B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */,
+				B8A296D71FF3D5DB00D3499A /* INFCameraOverlayView.xib in Resources */,
+				B8A296D01FF3D23000D3499A /* INFOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,17 +605,21 @@
 				978459041FF4907100DD6747 /* YXDayCell.m in Sources */,
 				B8247D101FF0F68C004267E8 /* ViewController.m in Sources */,
 				B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */,
+				97FD1D6E1FF5EC7D001B34C8 /* BaseNavigationController.m in Sources */,
 				B84DE7AD1FF20D18008A69DD /* INFUser.m in Sources */,
 				B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */,
 				978459031FF4907100DD6747 /* YXDateHelpObject.m in Sources */,
 				B84DE7B01FF21CE6008A69DD /* NSString+Utils.m in Sources */,
 				97FD1D6A1FF4CC0C001B34C8 /* AttendanceCell.m in Sources */,
+				B8A296D31FF3D58C00D3499A /* INFCameraOverlayView.m in Sources */,
 				97B6E7061FF3733900976902 /* UIColor+hexColor.m in Sources */,
 				B8247D1B1FF0F68C004267E8 /* main.m in Sources */,
 				97FD1D671FF4C69F001B34C8 /* AttendanceModel.m in Sources */,
 				975860301FF3986300E04F5F /* UIView+Extension.m in Sources */,
 				B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */,
+				B8A296CE1FF3785300D3499A /* INFOverlayViewController.m in Sources */,
 				979A81511FF389C9006AF3AF /* AttendanceViewController.m in Sources */,
+				97FD1D711FF6166D001B34C8 /* AttendanceLeftLine.m in Sources */,
 				978459061FF4907100DD6747 /* YXMonthView.m in Sources */,
 				B84DE7A61FF145DC008A69DD /* INFCheckViewController.m in Sources */,
 				B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */,
@@ -632,6 +665,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B8247D121FF0F68C004267E8 /* Base */,
+				B88AACE21FF4D92900EF4AE2 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

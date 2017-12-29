@@ -11,7 +11,8 @@
 #import "NetWorkManager.h"
 
 //#define FACE_CHECK_URL @"http://infosys.com/faceCheck"
-static const NSString *faceCheckUrl = @"http://infosys.com/faceCheck";
+static const NSString *faceCheckUrl = @"facade/faceClockFacade";
+static const NSString *loginUrl = @"loginfacade/loginFacade";
 extern NSInteger userStatus;
 @interface INFLoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
@@ -65,14 +66,14 @@ extern NSInteger userStatus;
 //登录按钮 事件
 - (IBAction)loginBtnAction:(id)sender {
     //用户从未登陆过
-    userStatus = 2;
+    userStatus = 1;
     if (userStatus == 1) {
-        if ((_user.userName != nil || _user.userNo != nil) && _user.password) {
+//        if ((_user.userName != nil || _user.userNo != nil) && _user.password) {
             [self doPostLogin];
-        }else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"please input your userName&password or userNo&password" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
-            [alert show];
-        }
+//        }else {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"please input your userName&password or userNo&password" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+//            [alert show];
+//        }
     }else {
         //用户登陆成功过，且本地存储了 token
         //        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -87,23 +88,35 @@ extern NSInteger userStatus;
     NSLog(@"userStatus in login vc:%ld", userStatus);
     if (userStatus == 1) {
         NSDictionary *params = @{
-                                 @"userName":_user.userNo,
-                                 @"userNo":_user.userNo,
-                                 @"password":_user.password
+//                                 @"empid":_user.userNo,
+//                                 @"userNo":_user.userNo,
+//                                 @"password":_user.password
+                                 @"empid":@"160208",
+                                 @"password":@"jerry"
                                  };
         
         [NetWorkManager requestWithType:1
-                          withUrlString:faceCheckUrl withParaments:params
+                          withUrlString:loginUrl withParaments:params
                        withSuccessBlock:^(NSDictionary *responseObject) {
+//                           NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                           NSString *token = [responseObject objectForKey:@"token"];
+                           NSLog(@"token %@",token);
                            NSLog(@"请求成功：%@",responseObject);
                            //                       todo
-//                           NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                           NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //                           NSString *token = responseObject.tocken;
 //                           [defaults setObject:token forKey:@"token"];
 //                           返回到 扫脸界面
+                           userStatus = 2;
+                           [defaults setInteger:userStatus forKey:@"userStatus"];
+//                           NSLog(@"success json: %@",responseObject);
                        }
                        withFailureBlock:^(NSError *error) {
                            NSLog(@"请求失败：%@",error);
+                           NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                           userStatus = 1;
+                           [defaults setInteger:userStatus forKey:@"userStatus"];
+                           
                        }
                                progress:^(float progress) {
                                    NSLog(@"请求过程");
@@ -111,15 +124,15 @@ extern NSInteger userStatus;
     }else {
 //        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //        NSString *token = [defaults integerForKey:@"token"];
-        NSDictionary *params = @{@"token":@"token.............."};
+        NSDictionary *params = @{@"token":@"ad108004-a1ba-4d2e-83e5-3a7b5d1a8963"};
         [NetWorkManager requestWithType:1
                           withUrlString:faceCheckUrl
                           withParaments:params
                        withSuccessBlock:^(NSDictionary *responseObject) {
-                            NSLog(@"请求成功：%@",responseObject);
+                            NSLog(@"token 登录 请求成功：%@",responseObject);
                     }
                        withFailureBlock:^(NSError *error) {
-                            NSLog(@"请求失败：%@",error);
+                            NSLog(@"token 登录 请求失败：%@",error);
                        }
                                progress:^(float progress) {
                                    NSLog(@"请求过程");

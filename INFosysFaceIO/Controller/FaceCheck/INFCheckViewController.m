@@ -8,27 +8,66 @@
 
 #import "INFCheckViewController.h"
 #import "NetWorkManager.h"
+#import "INFOverlayViewController.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 extern NSInteger userStatus;
 
+
+// Transform values for full screen support:
+#define CAMERA_TRANSFORM_X 1
+// this works for iOS 4.x
+#define CAMERA_TRANSFORM_Y 1.24299
+
+
 @interface INFCheckViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *userPhotoIMG;
-@property (nonatomic, strong) UIImagePickerController *imagePicker;
+
+@property (strong, nonatomic) IBOutlet UIImageView *userPhotoIMG;
+@property (weak, nonatomic) IBOutlet UIImageView *maskIMG;
+@property (weak, nonatomic) IBOutlet UIImageView *scanIMG;
+
+@property (nonatomic, strong) INFOverlayViewController *overView;
+
+
 
 @end
 
 @implementation INFCheckViewController
 
+
+- (void)viewWillAppear:(BOOL)animated {
+   
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //初始化imagePicker
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"caution" message:@"Device has no camera" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+    }
+    
+    
     [self imagePicker];
-    [self.view addSubview:_imagePicker];
+    [self presentViewController:_imagePicker animated:NO completion:nil];
+
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)];
+    [_maskIMG addGestureRecognizer:singleTap];
+    NSLog(@" INFCheckViewController view did load ");
+    
+}
+
+- (void)singleTap {
+    NSLog(@"拍照。。。");
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)closeCheckVC:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIImagePickerController代理方法
@@ -69,34 +108,27 @@ extern NSInteger userStatus;
 - (UIImagePickerController *)imagePicker {
     if (!_imagePicker) {
         _imagePicker = [[UIImagePickerController alloc] init];
-        //判断现在可以获得多媒体的方式
-        if ([UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera]) {
-            //设置imagePicker 的来源，这里设置为摄像头
-            _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            //设置使用哪个摄像头，这里默认设置为前置摄像头
-            _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-//            self.isVedio
-            if (TRUE) {
-                _imagePicker.mediaTypes = @[(NSString*)kUTTypeMovie];
-//              _imagePicker.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
-                // 设置摄像头模式（拍照，录制视频）
-                _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
-                
-            }else {
-//                设置摄像头模式为照相
-                _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-                
-            }
-        } else {
-            _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            
-        }
+        //设置imagePicker 的来源，这里设置为摄像头
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        //设置使用哪个摄像头，这里默认设置为前置摄像头
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+        //设置摄像头模式为照相
+        _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
         //允许编辑
         _imagePicker.allowsEditing = YES;
         //设置代理，检测操作
+        _imagePicker.delegate = self;
+        self.overView = [self.storyboard instantiateViewControllerWithIdentifier:@"INFOverlayViewController"];
+//        self.overView.view.backgroundColor = [UIColor clearColor];//设定透明背景色
+        _imagePicker.cameraOverlayView = self.overView.view;
     }
     return _imagePicker;
 }
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)checkFace {
     if (userStatus == 2) {
@@ -105,16 +137,6 @@ extern NSInteger userStatus;
         NSLog(@"face check for attendence records");
     }
 }
-//判断是否有摄像头
-//－ (BOOL)isCameraAvailable {
-//    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-//}
-//判断前置摄像头是否可用
-//－ (BOOL)isFrontCameraAvailable {
-//    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront];
-//}
-
-
 
 /*
 #pragma mark - Navigation

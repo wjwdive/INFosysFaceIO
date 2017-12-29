@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Eric. All rights reserved.
 //
 
-#define  BASE_URL      @"http://www.xxxx.com"
+#define  BASE_URL      @"http://122.112.204.186:8080/FaceClock"
 //官方调用方法一比较简单，不需要认证，认证比较麻烦，正式开发可以添加gai。人脸识别api  access-tocken 不能被修改。有效期30天，之后需要重新申请该tocken
 #define BAIDU_API @"https://aip.baidubce.com/rest/2.0/face/v2/detect?access_token=24.2305cb665898a0f32fdd9238338d65f3.2592000.1516414222.282335-10563166"
 
@@ -83,7 +83,7 @@
         
         
         /**设置apikey ------类似于自己应用中的tokken---此处仅仅作为测试使用*/
-        [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [self.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         
         /**设置可接受的类型*/
         [self.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/plain",@"application/json",@"text/json",@"text/javascript",@"text/html", nil]];
@@ -108,6 +108,12 @@
     
     NSLog(@"请求URL： %@/%@",BASE_URL,urlString);
     NSLog(@"请求参数：%@",paraments);
+    
+//    urlString = [urlString  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+//    NSURL*url=[NSURL URLWithString:urlString];
+    //iOS9 之后的url 编码方法
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
     
     switch (type) {
             
