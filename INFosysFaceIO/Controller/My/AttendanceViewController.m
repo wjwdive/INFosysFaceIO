@@ -35,9 +35,9 @@
     self.navigationItem.rightBarButtonItems = @[dayItem];
 }
 
-//- (void)todayClick {
-//
-//}
+- (void)todayClick {
+    [_calendar setDate:[[NSDate alloc] init]];
+}
 //
 //- (void)dateClick {
 //

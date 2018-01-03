@@ -15,7 +15,6 @@ static CGFloat const weeksH = 30;       //周高度
 
 @interface YXCalendarView ()
 
-@property (nonatomic, strong) UILabel *yearMonthL;      //年月label
 @property (nonatomic, strong) UIScrollView *scrollV;    //scrollview
 @property (nonatomic, assign) CalendarType type;        //选择类型
 @property (nonatomic, strong) NSDate *currentDate;      //当前月份
@@ -136,7 +135,6 @@ static CGFloat const weeksH = 30;       //周高度
         [self setData];
         [self scrollToCenter];
     }
-    
 }
 
 //MARK: - setViewMethod
@@ -160,12 +158,6 @@ static CGFloat const weeksH = 30;       //周高度
 }
 
 - (void)settingHeadLabel {
-    
-//    _yearMonthL = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ViewW, yearMonthH)];
-//    _yearMonthL.text = [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy年MM月" Date:_currentDate];
-//    _yearMonthL.textAlignment = NSTextAlignmentCenter;
-//    _yearMonthL.font = [UIFont systemFontOfSize:15];
-//    [self addSubview:_yearMonthL];
     
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, yearMonthH, ViewW, weeksH)];
     bgView.backgroundColor = [UIColor colorWithHexString:@"#f1f1f1"];
@@ -227,6 +219,12 @@ static CGFloat const weeksH = 30;       //周高度
     [self scrollToCenter];
 }
 
+- (void)setDate:(NSDate *)date {
+    self.selectDate = date;
+    
+    [self setData];
+}
+
 - (void)setData {
     
     if (_type == CalendarType_Month) {
@@ -245,9 +243,7 @@ static CGFloat const weeksH = 30;       //周高度
         _rightView.selectDate = _selectDate;
     }
     
-    
     self.type = _type;
-    
 }
 
 //MARK: - kvo
@@ -276,7 +272,6 @@ static CGFloat const weeksH = 30;       //周高度
             _currentDate = [[YXDateHelpObject manager] getNextMonth:_currentDate];
             _rightView.currentDate = [[YXDateHelpObject manager] getNextMonth:_currentDate];
             _rightView.selectDate = _selectDate;
-            _yearMonthL.text = [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy年MM月" Date:_currentDate];
         } else {
             //下周
             _middleView.currentDate = [[YXDateHelpObject manager] getEarlyOrLaterDate:_currentDate LeadTime:7 Type:2];
@@ -287,7 +282,6 @@ static CGFloat const weeksH = 30;       //周高度
             _tmpCurrentDate = _currentDate.copy;
             _rightView.currentDate = [[YXDateHelpObject manager] getEarlyOrLaterDate:_currentDate LeadTime:7 Type:2];
             _rightView.selectDate = _selectDate;
-            _yearMonthL.text = [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy年MM月" Date:_currentDate];
         }
         
         [self scrollToCenter];
@@ -304,7 +298,6 @@ static CGFloat const weeksH = 30;       //周高度
             _currentDate = [[YXDateHelpObject manager] getPreviousMonth:_currentDate];
             _leftView.currentDate = [[YXDateHelpObject manager] getPreviousMonth:_currentDate];
             _leftView.selectDate = _selectDate;
-            _yearMonthL.text = [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy年MM月" Date:_currentDate];
         } else {
             //上周
             _middleView.currentDate = [[YXDateHelpObject manager] getEarlyOrLaterDate:_currentDate LeadTime:-7 Type:2];
@@ -315,14 +308,11 @@ static CGFloat const weeksH = 30;       //周高度
             _tmpCurrentDate = _currentDate.copy;
             _leftView.currentDate = [[YXDateHelpObject manager] getEarlyOrLaterDate:_currentDate LeadTime:-7 Type:2];
             _leftView.selectDate = _selectDate;
-            _yearMonthL.text = [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy年MM月" Date:_currentDate];
         }
         
         [self scrollToCenter];
         self.type = _type;
-        
     }
-    
 }
 
 //MARK: - scrollViewMethod
