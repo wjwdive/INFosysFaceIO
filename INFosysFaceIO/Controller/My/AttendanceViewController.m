@@ -28,20 +28,20 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    UIBarButtonItem *dayItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_today"] style:UIBarButtonItemStylePlain target:self action:@selector(todayClick)]; 
-    [dayItem setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
-    UIBarButtonItem *dateItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_date"] style:UIBarButtonItemStylePlain target:self action:@selector(dateClick)];
-    
-    self.navigationItem.rightBarButtonItems = @[dateItem, dayItem];
+    UIBarButtonItem *dayItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_today"] style:UIBarButtonItemStylePlain target:self action:@selector(todayClick)];
+//    [dayItem setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
+//    UIBarButtonItem *dateItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_date"] style:UIBarButtonItemStylePlain target:self action:@selector(dateClick)];
+//
+    self.navigationItem.rightBarButtonItems = @[dayItem];
 }
 
-- (void)todayClick {
-    
-}
-
-- (void)dateClick {
-    
-}
+//- (void)todayClick {
+//
+//}
+//
+//- (void)dateClick {
+//
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

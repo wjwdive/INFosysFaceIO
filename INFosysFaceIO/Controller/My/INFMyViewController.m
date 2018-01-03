@@ -63,6 +63,15 @@
         make.top.mas_equalTo(55);
     }];
     
+    UIImageView *vipIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vip"]];
+    [self.view addSubview:vipIcon];
+    [vipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(nameLabel.mas_right).offset(5);
+        make.centerY.equalTo(nameLabel);
+        make.width.mas_equalTo(17);
+        make.height.mas_equalTo(20);
+    }];
+    
     UILabel *acount = [[UILabel alloc] init];
     acount.text = @"429536";
     acount.textColor = [UIColor whiteColor];
