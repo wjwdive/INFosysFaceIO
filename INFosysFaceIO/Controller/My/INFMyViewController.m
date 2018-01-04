@@ -23,6 +23,16 @@
 
 @implementation INFMyViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -51,6 +61,15 @@
     [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(130);
         make.top.mas_equalTo(55);
+    }];
+    
+    UIImageView *vipIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vip"]];
+    [self.view addSubview:vipIcon];
+    [vipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(nameLabel.mas_right).offset(5);
+        make.centerY.equalTo(nameLabel);
+        make.width.mas_equalTo(17);
+        make.height.mas_equalTo(20);
     }];
     
     UILabel *acount = [[UILabel alloc] init];
@@ -159,6 +178,7 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 86, kScreenW, kScreenH - 250) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.scrollEnabled = NO;
     [bottomView addSubview:tableView];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView = tableView;
@@ -170,7 +190,7 @@
 - (void)loadData {
     _lists = [NSMutableDictionary dictionaryWithCapacity:0];
     NSArray *titles = @[@"首页", @"查询考勤", @"身份验证"];
-    NSArray *images = @[@"", @"", @""];
+    NSArray *images = @[@"index", @"AttendanceRecord", @"identity"];
     [_lists setObject:titles forKey:@"titles"];
     [_lists setObject:images forKey:@"images"];
 }
@@ -196,10 +216,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0:
-            //.....
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             break;
         case 1:
-            [self presentViewController:[[AttendanceViewController alloc] init] animated:YES completion:nil];
+            [self.navigationController pushViewController:[[AttendanceViewController alloc] init] animated:YES];
+//            [self presentViewController:[[AttendanceViewController alloc] init] animated:YES completion:nil];
             break;
         default:
             break;

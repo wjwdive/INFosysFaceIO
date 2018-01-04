@@ -42,14 +42,27 @@
     [self.contentView addSubview:title];
     _titleLabel = title;
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(70);
+        make.left.mas_equalTo(75);
         make.height.equalTo(self);
+    }];
+    
+    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(37);
+        make.centerY.equalTo(title);
+        make.height.mas_equalTo(20);
+        make.width.mas_equalTo(22);
     }];
 }
 
 - (void)setTitle:(NSString *)title {
     _title = title;
     _titleLabel.text = title;
+}
+
+- (void)setImage:(NSString *)image {
+    _image = image;
+    
+    _imageView.image = [UIImage imageNamed:image];
 }
 
 @end

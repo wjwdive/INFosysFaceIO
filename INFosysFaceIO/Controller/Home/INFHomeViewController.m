@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+#import "BaseNavigationController.h"
 #import "INFCameraOverlayView.h"
 #import "INFOverlayViewController.h"
 #import "INFHomeViewController.h"
@@ -56,8 +57,9 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 }
 
 - (IBAction)gotoMyVC:(id)sender {
-    INFMyViewController *myVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFMyViewController"];
-    [self presentViewController:myVC animated:YES completion:^{
+    INFMyViewController *myVC = [[INFMyViewController alloc] init];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:myVC];
+    [self presentViewController:nav animated:YES completion:^{
         NSLog(@"跳转到MyVC");
     }];
 }
