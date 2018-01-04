@@ -14,18 +14,26 @@
 #import "INFMyViewController.h"
 #import "INFLoginViewController.h"
 #import "INFCheckViewController.h"
+#import "INFCheckSuccessViewController.h"
 #import "NetWorkManager.h"
+#import "UIImage+Utils.h"
+#import "MBProgressHUD/MBProgressHUD.h"
+
 extern NSInteger userStatus;
+NSString *registeFaceUrl = @"facade/registerUserFacade";
+NSString *chechFaceUrl = @"facade/faceClockFacade";
 @interface INFHomeViewController ()<takePhotoDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong) INFCameraOverlayView *overView;
 //@property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
 @property (strong, nonatomic) IBOutlet UIImageView *scanImg;
 @property (strong, nonatomic) IBOutlet UIImageView *barImg;
+@property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
 @property (strong, nonatomic) NSTimer *timer;
 
 @property (strong, nonatomic) NetWorkManager *netManager;
 @property (strong, nonatomic) NSData *faceImgData;
+@property (strong, nonatomic) NSString *faceImgBase64str;
 
 @end
 
@@ -33,30 +41,14 @@ extern NSInteger userStatus;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.navigationController.navigationBar.hidden = YES;
     self.imagePicker = [[UIImagePickerController alloc] init];
     //给图片 添加手势，失败 原因未知
 //    UITapGestureRecognizer *tapTakePicture = [[UITapGestureRecognizer alloc] initWithTarget:self.scanImg action:@selector(takePhoto)];
 //    [self.scanImg addGestureRecognizer:tapTakePicture];
     
-    
 }
 
-
-- (void)viewDidAppear:(BOOL)animated {
-    [UIView animateWithDuration: 2 delay: 0.35 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
-        [self.barImg layoutIfNeeded];
-        [self.barImg setFrame:CGRectMake(77, 383, 220, 4)];
-        self.scanImg.alpha = 0;
-    } completion: ^(BOOL finished) {
-        [UIView animateWithDuration: 2 animations: ^{
-//            [self.barImg setFrame:CGRectMake(77, 383, 220, 4)];
-            self.scanImg.alpha = 1;
-        }];
-    }];
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -83,12 +75,14 @@ extern NSInteger userStatus;
         _imagePicker.delegate = self;
         //类型
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        _imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+//        _imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        //关闭闪光灯
+        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         //设置使用前置摄像头
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         //隐藏系统相机操作
         _imagePicker.showsCameraControls = NO;
-        _imagePicker.editing = YES;
+        _imagePicker.editing = NO;
         [[NSBundle mainBundle] loadNibNamed:@"INFCameraOverlayView" owner:self options:nil];
         //设定相机全屏
         CGSize screenBounds = [UIScreen mainScreen].bounds.size;
@@ -103,22 +97,21 @@ extern NSInteger userStatus;
         self.overlayView = nil;
         //    _imagePicker.cameraOverlayView = [self customViewForImagePicker:_imagePicker];
         
+        WeakObj(self);
         [self presentViewController:_imagePicker animated:YES completion:^{
-            _timer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(takePhoto)  userInfo:nil repeats:NO];
-            [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
+//            [selfWeak timerStart];
+            NSTimer *timerTmp = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(takePhoto)  userInfo:nil repeats:NO];
+            [[NSRunLoop mainRunLoop] addTimer:timerTmp forMode:NSRunLoopCommonModes];
             
             [UIView animateWithDuration: 2 delay: 0.35 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
-                [self.barImg layoutIfNeeded];
-                [self.barImg setFrame:CGRectMake(77, 383, 220, 4)];
-                self.scanImg.alpha = 0;
+                [selfWeak.barImg layoutIfNeeded];
+                [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
+                selfWeak.scanImg.alpha = 0;
             } completion: ^(BOOL finished) {
                 [UIView animateWithDuration: 2 animations: ^{
-                    //            [self.barImg setFrame:CGRectMake(77, 383, 220, 4)];
-                    self.scanImg.alpha = 1;
+                    selfWeak.scanImg.alpha = 1;
                 }];
             }];
-            
-            
         }];
 
     } else {
@@ -184,7 +177,6 @@ extern NSInteger userStatus;
 - (UIView *)customViewForImagePicker:(UIImagePickerController *)imagePicker {
     _overView = [[[UINib nibWithNibName:@"INFCameraOverlayView" bundle:nil]instantiateWithOwner:nil options:nil]objectAtIndex:0];
     _overView.delegate = self;
-
     return  _overView;
 }
 
@@ -198,9 +190,20 @@ extern NSInteger userStatus;
 - (void)closeCamera {
     NSLog(@"代理方法 closeCamera 被调用");
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
+- (void)timerStart {
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(takePhoto) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)removeTimer {
+    if ([_timer isValid]) {
+        [_timer invalidate];
+    }
+    _timer = nil;
+}
 
 #pragma mark - UIImagePickerController代理方法
 //拍完照片的回调方法
@@ -221,53 +224,122 @@ extern NSInteger userStatus;
         }
         //        NSData *imageData = [iamge ]
 //        NSData *imageData;
-        if (UIImagePNGRepresentation(image) == nil) {
-            _faceImgData = UIImageJPEGRepresentation(image, 1);
-        } else {
-            _faceImgData = UIImagePNGRepresentation(image);
-        }
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
+        hud.label.text = @"正在处理图片";
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            //压缩 到 500k
+            NSData *compressedImgData = [UIImage compressOriginalImage:image toMaxDataSizeKBytes:100.0];
+            _faceImgBase64str = [compressedImgData base64EncodedStringWithOptions:0];
+            NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+            [def setObject:_faceImgBase64str forKey:@"userPhoto"];
+            [def synchronize];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
+        });
         
-        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-        [def setObject:_faceImgData forKey:@"userPhoto"];
-        [def synchronize];
         //相片获取成功之后 do post
         [self doPost];
+        NSLog(@"do post");
         
         
-//        NSLog(@"保存图片。。");
         //保存到相册
 //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        
+//        [self removeTimer];
     }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [_timer invalidate];
+//    [_timer invalidate];
+    [self removeTimer];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    if (_imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-    }
-}
+//- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+//{
+//    if (_imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+//        _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+//        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+//    }
+//}
 
+//关闭刷脸界面
 - (IBAction)cancleTakePhoto:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self removeTimer];
+    [self imagePickerControllerDidCancel:_imagePicker];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+// userStatus = 2 的时候，为新注册人脸
 - (void)registerFace {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userPhotoBase64Str = [defaults objectForKey:@"userPhoto"];
+//    NSString *userPhotoBase64String = [userPhotoData base64EncodedStringWithOptions:0];
+    NSString *token = [defaults objectForKey:@"token"];
+//    DLog(@"Encode String Value: %@", base64String);
+
+    NSDictionary *registerFaceParams = @{@"image":userPhotoBase64Str,
+                                         @"token":token
+                                         };
+    
+    
+    [NetWorkManager requestWithType:1 withUrlString:registeFaceUrl withParaments:registerFaceParams withSuccessBlock:^(NSDictionary *responseObject) {
+        //提示注册人脸成功，返回首页让用户登录，同时更新用户状态。为3
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:3 forKey:@"userStatus"];
+        [defaults synchronize];
+    } withFailureBlock:^(NSError *error) {
+        //提示错误信息
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } progress:^(float progress) {
+        //显示进度
+    }];
     
 }
 
-
+//userStatus = 3 的时候，用户已经登录且注册成功。用户点击刷脸进入刷脸打卡界面
+- (void)checkFace {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *userPhotoData = [defaults objectForKey:@"userPhoto"];
+    
+    NSString *token = [defaults objectForKey:@"token"];
+    NSDictionary *checkFaceParams = @{@"image":userPhotoData,
+                                      @"token":token};
+    
+    [NetWorkManager requestWithType:1 withUrlString:chechFaceUrl withParaments:checkFaceParams withSuccessBlock:^(NSDictionary *responseObject) {
+        //打卡成功，跳转到祝贺成功界面
+        INFCheckSuccessViewController *checkSuccesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFCheckSuccessViewController"];
+        [self presentViewController:checkSuccesVC animated:YES completion:^{}];
+    } withFailureBlock:^(NSError *error) {
+        //打卡失败，给出提示
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } progress:^(float progress) {
+        
+    }];
+}
 - (void)doPost {
     if(userStatus == 2){
         //调用注册人脸的api
-        //        [NetWorkManager requestWithType:1 withUrlString:<#(NSString *)#> withParaments:<#(id)#> withSuccessBlock:<#^(NSDictionary *responseObject)successBlock#> withFailureBlock:<#^(NSError *error)failureBlock#> progress:<#^(float progress)progress#> ]
+        NSLog(@"调用注册人脸的api");
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
+        hud.label.text = @"正在注册人脸";
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            [self registerFace];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
+        });
     } else {
+        NSLog(@"调用刷脸签到的api");
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
+        hud.label.text = @"正在打卡";
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            [self checkFace];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
+        });
         //调用刷脸签到的api
     }
     

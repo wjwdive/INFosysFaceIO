@@ -37,11 +37,10 @@
                                     <action selector="gotoMyVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VZc-o6-ibf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpY-Xw-wq9" userLabel="scan">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpY-Xw-wq9" userLabel="scan">
                                 <rect key="frame" x="127" y="381" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.91956768129999999" green="0.91956768129999999" blue="0.91956768129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="photo"/>
+                                <state key="normal" image="faceCheck"/>
                                 <connections>
                                     <action selector="scanBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zBE-1v-PKA"/>
                                 </connections>
@@ -53,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1348" y="85.907046476761622"/>
+            <point key="canvasLocation" x="1079" y="33"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="8bB-W0-KN5">
@@ -200,10 +199,10 @@
             </objects>
             <point key="canvasLocation" x="2529" y="-90"/>
         </scene>
-        <!--View Controller-->
+        <!--Check Success View Controller-->
         <scene sceneID="sRI-WT-0D5">
             <objects>
-                <viewController id="6V7-Re-cfA" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="INFCheckSuccessViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6V7-Re-cfA" customClass="INFCheckSuccessViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="feU-Vk-gFB"/>
                         <viewControllerLayoutGuide type="bottom" id="tTL-xu-5yx"/>
@@ -251,6 +250,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="ampmSymble" destination="Dn8-BC-W7c" id="eWv-U9-32Y"/>
+                        <outlet property="checkTimeLab" destination="WUG-Vk-Rfo" id="xo6-Zi-IIO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ee9-uE-3fq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -509,6 +512,7 @@
         <image name="ID" width="28" height="26"/>
         <image name="background" width="375" height="667"/>
         <image name="close" width="14" height="14"/>
+        <image name="faceCheck" width="156" height="156"/>
         <image name="logo" width="141" height="51"/>
         <image name="map" width="375" height="667"/>
         <image name="mask1" width="375" height="667"/>

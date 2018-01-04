@@ -9,12 +9,15 @@
 #import "INFLoginViewController.h"
 #import "INFUser.h"
 #import "NetWorkManager.h"
+#import "MBProgressHUD/MBProgressHUD.h"
 
 //#define FACE_CHECK_URL @"http://infosys.com/faceCheck"
-static const NSString *faceCheckUrl = @"facade/faceClockFacade";
-static const NSString *loginUrl = @"loginfacade/loginFacade";
+static NSString *faceCheckUrl = @"facade/faceClockFacade";
+static NSString *loginUrl = @"loginfacade/loginFacade";
 extern NSInteger userStatus;
-@interface INFLoginViewController ()<UITextFieldDelegate>
+@interface INFLoginViewController ()<UITextFieldDelegate>{
+    MBProgressHUD *HUD;
+}
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *userNoTF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTF;
@@ -29,11 +32,30 @@ extern NSInteger userStatus;
     [super viewDidLoad];
     [self user];
     [self netManager];
+    
+    self.userNoTF.delegate = self;
+    self.userNameTF.delegate = self;
+    self.passwordTF.delegate = self;
+    //测试 时间
+//    NSDate *currentDate = [NSDate date];
+//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//    dateFormat.AMSymbol = @"AM";
+//    dateFormat.PMSymbol = @"PM";
+//    [dateFormat setDateFormat:@"hh:ss aaa"];
+//    NSString *timeStr = [dateFormat stringFromDate:currentDate];
+//    NSLog(@"time : %@",[timeStr substringToIndex:5]);
+//    NSLog(@"am/pm :%@",[timeStr substringFromIndex:6]);
+    
+    
+    
 }
 //user  对象初始化
 - (INFUser *)user{
     if (!_user) {
         _user = [[INFUser alloc] init];
+        _user.userName = @"";
+        _user.userNo = @"";
+        _user.password = @"";
      }
     return _user;
 }
@@ -68,12 +90,29 @@ extern NSInteger userStatus;
     //用户从未登陆过
     userStatus = 1;
     if (userStatus == 1) {
-//        if ((_user.userName != nil || _user.userNo != nil) && _user.password) {
-            [self doPostLogin];
-//        }else {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"please input your userName&password or userNo&password" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
-//            [alert show];
-//        }
+        if ((self.userNameTF.text.length != 0   && self.passwordTF.text.length !=0 ) || (self.userNoTF.text.length !=0 && self.passwordTF.text.length != 0)) {
+        
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.label.text = @"正在请求登录";
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        //登录操作
+        [self doPostLogin];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
+        });
+        }else {
+            //若用户没有输入用户名和密码，给出提示
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"please input your userName&password or userNo&password" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+            [alert show];
+//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            hud.mode = MBProgressHUDModeText;
+//            hud.margin = 10.f;
+////            hud.yOffset = 150.f;
+//            hud.removeFromSuperViewOnHide = YES;
+//            hud.label.text = @"please input your userName&password or userNo&password";
+//            [hud hideAnimated:YES afterDelay:1.5];
+        }
     }else {
         //用户登陆成功过，且本地存储了 token
         //        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -90,33 +129,32 @@ extern NSInteger userStatus;
         NSDictionary *params = @{
 //                                 @"empid":_user.userNo,
 //                                 @"userNo":_user.userNo,
-//                                 @"password":_user.password
-                                 @"empid":@"160208",
-                                 @"password":@"jerry"
+                                 @"password":_user.password,
+                                 @"empid":_user.userNo,
+                                 @"password":_user.userName
                                  };
         
         [NetWorkManager requestWithType:1
                           withUrlString:loginUrl withParaments:params
                        withSuccessBlock:^(NSDictionary *responseObject) {
-//                           NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:nil];
+                           NSLog(@"请求成功：%@",responseObject);
                            NSString *token = [responseObject objectForKey:@"token"];
                            NSLog(@"token %@",token);
-                           NSLog(@"请求成功：%@",responseObject);
-                           //                       todo
                            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//                           NSString *token = responseObject.tocken;
-//                           [defaults setObject:token forKey:@"token"];
-//                           返回到 扫脸界面
+                           [defaults setObject:token forKey:@"token"];
+                           //返回到 扫脸界面
                            userStatus = 2;
                            [defaults setInteger:userStatus forKey:@"userStatus"];
-//                           NSLog(@"success json: %@",responseObject);
+                           [defaults setObject:[params valueForKey:@"empid"] forKey:@"empid"];
+                           [defaults setObject:[params valueForKey:@"userName"] forKey:@"userName"];
+                           [defaults synchronize];
                        }
                        withFailureBlock:^(NSError *error) {
                            NSLog(@"请求失败：%@",error);
                            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                            userStatus = 1;
                            [defaults setInteger:userStatus forKey:@"userStatus"];
-                           
+                           [defaults synchronize];
                        }
                                progress:^(float progress) {
                                    NSLog(@"请求过程");

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="INFHomeViewController">
             <connections>
                 <outlet property="barImg" destination="OTX-Re-7ad" id="8Fj-7y-86V"/>
+                <outlet property="cancleBtn" destination="Zuv-FE-UxD" id="OvC-zo-361"/>
                 <outlet property="overlayView" destination="iN0-l3-epB" id="uB5-gH-41F"/>
                 <outlet property="scanImg" destination="pFY-XG-S7o" id="LsC-H4-2tp"/>
             </connections>

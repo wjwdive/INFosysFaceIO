@@ -36,6 +36,7 @@
 		B8247D1B1FF0F68C004267E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D1A1FF0F68C004267E8 /* main.m */; };
 		B8247D251FF0F68D004267E8 /* INFosysFaceIOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D241FF0F68D004267E8 /* INFosysFaceIOTests.m */; };
 		B8247D301FF0F68D004267E8 /* INFosysFaceIOUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D2F1FF0F68D004267E8 /* INFosysFaceIOUITests.m */; };
+		B82C250C1FFDC5B600015537 /* INFRegisterFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C250B1FFDC5B600015537 /* INFRegisterFaceViewController.m */; };
 		B84DE79C1FF0FF99008A69DD /* PrefixHeader.pch in Sources */ = {isa = PBXBuildFile; fileRef = B84DE79A1FF0FEBA008A69DD /* PrefixHeader.pch */; };
 		B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE79F1FF145AA008A69DD /* INFLoginViewController.m */; };
 		B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7A21FF145C8008A69DD /* INFMyViewController.m */; };
@@ -46,6 +47,7 @@
 		B84DE7B51FF2202E008A69DD /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7B21FF2202E008A69DD /* NetWorkManager.m */; };
 		B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7B41FF2202E008A69DD /* UIImage+Utils.m */; };
 		B87D10031FF0FC22000D924D /* INFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87D10021FF0FC22000D924D /* INFHomeViewController.m */; };
+		B88AACE61FFB2DA500EF4AE2 /* INFCheckSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B88AACE51FFB2DA500EF4AE2 /* INFCheckSuccessViewController.m */; };
 		B8A296CE1FF3785300D3499A /* INFOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */; };
 		B8A296D01FF3D23000D3499A /* INFOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */; };
 		B8A296D31FF3D58C00D3499A /* INFCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */; };
@@ -124,6 +126,8 @@
 		B8247D2B1FF0F68D004267E8 /* INFosysFaceIOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = INFosysFaceIOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8247D2F1FF0F68D004267E8 /* INFosysFaceIOUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFosysFaceIOUITests.m; sourceTree = "<group>"; };
 		B8247D311FF0F68D004267E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B82C250A1FFDC5B500015537 /* INFRegisterFaceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFRegisterFaceViewController.h; sourceTree = "<group>"; };
+		B82C250B1FFDC5B600015537 /* INFRegisterFaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFRegisterFaceViewController.m; sourceTree = "<group>"; };
 		B84DE79A1FF0FEBA008A69DD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B84DE79E1FF145AA008A69DD /* INFLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFLoginViewController.h; sourceTree = "<group>"; };
 		B84DE79F1FF145AA008A69DD /* INFLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFLoginViewController.m; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 		B87D10011FF0FC22000D924D /* INFHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFHomeViewController.h; sourceTree = "<group>"; };
 		B87D10021FF0FC22000D924D /* INFHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFHomeViewController.m; sourceTree = "<group>"; };
 		B88AACE21FF4D92900EF4AE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		B88AACE41FFB2DA500EF4AE2 /* INFCheckSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFCheckSuccessViewController.h; sourceTree = "<group>"; };
+		B88AACE51FFB2DA500EF4AE2 /* INFCheckSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFCheckSuccessViewController.m; sourceTree = "<group>"; };
 		B8A296CC1FF3785300D3499A /* INFOverlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFOverlayViewController.h; sourceTree = "<group>"; };
 		B8A296CD1FF3785300D3499A /* INFOverlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFOverlayViewController.m; sourceTree = "<group>"; };
 		B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFOverlayViewController.xib; sourceTree = "<group>"; };
@@ -344,11 +350,14 @@
 		B87D0FFD1FF0FB9F000D924D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B88AACE31FFB2D6800EF4AE2 /* checkSuccess */,
 				B84DE79D1FF14592008A69DD /* Login */,
 				B87D10001FF0FBD4000D924D /* Records */,
 				B87D0FFF1FF0FBBA000D924D /* FaceCheck */,
 				B87D0FFE1FF0FBA8000D924D /* My */,
 				B87D0FFC1FF0FB92000D924D /* Home */,
+				B82C250A1FFDC5B500015537 /* INFRegisterFaceViewController.h */,
+				B82C250B1FFDC5B600015537 /* INFRegisterFaceViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -391,6 +400,15 @@
 				B84DE7A81FF145F3008A69DD /* INFRecordsViewController.m */,
 			);
 			path = Records;
+			sourceTree = "<group>";
+		};
+		B88AACE31FFB2D6800EF4AE2 /* checkSuccess */ = {
+			isa = PBXGroup;
+			children = (
+				B88AACE41FFB2DA500EF4AE2 /* INFCheckSuccessViewController.h */,
+				B88AACE51FFB2DA500EF4AE2 /* INFCheckSuccessViewController.m */,
+			);
+			path = checkSuccess;
 			sourceTree = "<group>";
 		};
 		F14FF36BEADD6C13E1F72549 /* Frameworks */ = {
@@ -618,6 +636,7 @@
 				979A81541FF38F74006AF3AF /* AttendanceView.m in Sources */,
 				B8247D101FF0F68C004267E8 /* ViewController.m in Sources */,
 				B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */,
+				B88AACE61FFB2DA500EF4AE2 /* INFCheckSuccessViewController.m in Sources */,
 				979A816C1FF39042006AF3AF /* BXHCalendarDayView.m in Sources */,
 				B84DE7AD1FF20D18008A69DD /* INFUser.m in Sources */,
 				B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */,
@@ -630,6 +649,7 @@
 				B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */,
 				B8A296CE1FF3785300D3499A /* INFOverlayViewController.m in Sources */,
 				979A81741FF39042006AF3AF /* NSDate+BXHCategory.m in Sources */,
+				B82C250C1FFDC5B600015537 /* INFRegisterFaceViewController.m in Sources */,
 				979A81511FF389C9006AF3AF /* AttendanceViewController.m in Sources */,
 				B84DE7A61FF145DC008A69DD /* INFCheckViewController.m in Sources */,
 				B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */,
