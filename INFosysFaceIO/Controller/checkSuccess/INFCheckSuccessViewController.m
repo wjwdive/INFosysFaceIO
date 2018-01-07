@@ -28,7 +28,7 @@
     NSLog(@"time : %@",[timeStr substringToIndex:5]);
     NSLog(@"am/pm :%@",[timeStr substringFromIndex:6]);
     
-    self.checkTimeLab.text = [timeStr substringFromIndex:5];
+    self.checkTimeLab.text = [timeStr substringToIndex:5];
     self.ampmSymble.text = [timeStr substringFromIndex:6];
 }
 

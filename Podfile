@@ -8,5 +8,6 @@ pod 'MBProgressHUD', '1.1.0'
 pod 'YYCache', '~> 1.0.4'
 pod 'FSCalendar'
 pod 'YYModel', '~> 1.0.4'
+pod 'IQKeyboardManager'
 
 end

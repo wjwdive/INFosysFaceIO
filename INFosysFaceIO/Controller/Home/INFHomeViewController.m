@@ -16,9 +16,12 @@
 #import "INFLoginViewController.h"
 #import "INFCheckViewController.h"
 #import "INFCheckSuccessViewController.h"
+#import "INFRegisterFaceViewController.h"
 #import "NetWorkManager.h"
 #import "UIImage+Utils.h"
 #import "MBProgressHUD/MBProgressHUD.h"
+
+#import "INFRegisterViewController.h"
 
 extern NSInteger userStatus;
 NSString *registeFaceUrl = @"facade/registerUserFacade";
@@ -65,9 +68,14 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 }
 //第一种方法，自定义界面、动画显得乏力
 - (void)gotoCheckVCUseImgePicker {
-    //未注册人脸
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"You haven't register your face, pleace register FACE first" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
-//    [alert show];
+    
+    if (![self tokenValided]) {
+        //未注册人脸
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"You haven't register your face or not login, pleace register FACE or login first" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+            [alert show];
+        return;
+    }
+    
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         if (!_imagePicker) {
@@ -100,24 +108,28 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         //    _imagePicker.cameraOverlayView = [self customViewForImagePicker:_imagePicker];
         
         WeakObj(self);
-        [self presentViewController:_imagePicker animated:YES completion:^{
-//            [selfWeak timerStart];
-            NSTimer *timerTmp = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(takePhoto)  userInfo:nil repeats:NO];
-            [[NSRunLoop mainRunLoop] addTimer:timerTmp forMode:NSRunLoopCommonModes];
-            
-            [UIView animateWithDuration: 2 delay: 0.35 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
-                [selfWeak.barImg layoutIfNeeded];
-                [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
-                selfWeak.scanImg.alpha = 0;
-            } completion: ^(BOOL finished) {
-                [UIView animateWithDuration: 2 animations: ^{
-                    selfWeak.scanImg.alpha = 1;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:_imagePicker animated:YES completion:^{
+                //            [selfWeak timerStart];
+                NSTimer *timerTmp = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(takePhoto)  userInfo:nil repeats:NO];
+                [[NSRunLoop mainRunLoop] addTimer:timerTmp forMode:NSRunLoopCommonModes];
+                
+                [UIView animateWithDuration: 2 delay: 0.35 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
+                    [selfWeak.barImg layoutIfNeeded];
+                    [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
+                    selfWeak.scanImg.alpha = 0;
+                } completion: ^(BOOL finished) {
+                    [UIView animateWithDuration: 2 animations: ^{
+                        selfWeak.scanImg.alpha = 1;
+                    }];
                 }];
             }];
-        }];
-
+        });
     } else {
         NSLog(@"照相机不可用");
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"your camera is invalided, please check your camera!" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+        [alert show];
     }
     
     
@@ -138,35 +150,24 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 }
 
 - (IBAction)scanBtnAction:(id)sender {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    extern NSInteger userStatus;
-//    = [defaults integerForKey:@"userStatus"];
-    NSLog(@"scanBtn userStatus:%ld",userStatus);
-//    userStatus = 2;
-    switch (userStatus) {
-        case 1:
-            NSLog(@"用户未登录，请先登录");
-            [self gotoLoginVC];
-            break;
-        case 2:
-            NSLog(@"用户登录成功，但是未注册人脸，请先注册人脸");
-            
-            [self gotoCheckVCUseImgePicker];
-//            [self gotoCheckVCUseAVSession];
-//            [self gotoCheckFaceUseNomalVC];
-            break;
-        case 3:
-            NSLog(@"用户已经登陆成功，可以直接刷脸打卡");
-        default:
-            break;
-    }
+    
+    [self gotoCheckVCUseImgePicker];
 }
+
+#pragma mark -- 界面跳转
 //跳转到LoginVC
 - (void)gotoLoginVC {
     INFLoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFLoginViewController"];
     NSLog(@"LginVC:%@",loginVC);
     [self presentViewController:loginVC animated:YES completion:^{
         NSLog(@"跳转到LoginVC");
+    }];
+}
+
+- (void)gotoRegisterVC {
+    INFRegisterViewController *registerVC = [[INFRegisterViewController  alloc] init];
+    [self presentViewController:registerVC animated:YES completion:^{
+        
     }];
 }
 //跳转到CHeckfaceVC
@@ -303,9 +304,20 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 //userStatus = 3 的时候，用户已经登录且注册成功。用户点击刷脸进入刷脸打卡界面
 - (void)checkFace {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *userPhotoData = [defaults objectForKey:@"userPhoto"];
+    NSString *userPhotoData = [defaults objectForKey:@"userPhoto"];
     
     NSString *token = [defaults objectForKey:@"token"];
+    
+    if (userPhotoData.length == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"获取照片失败" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+        [alert show];
+    }
+    
+    if (token.length == 0) {
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"获取照片失败" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+        [alert show];
+    }
+    
     NSDictionary *checkFaceParams = @{@"image":userPhotoData,
                                       @"token":token};
     
@@ -345,6 +357,22 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         //调用刷脸签到的api
     }
     
+}
+#pragma mark --用户状态检测
+- (NSInteger)checkUserStatus {
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+//    [def integerForKey:@"userStatus"];
+    return [def integerForKey:@"userStatus"];
+}
+
+// TODO 需要加入token验证的逻辑，如是否有token，token是否失效等
+- (BOOL)tokenValided {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    if (token.length != 0) {
+        return YES;
+    }
+    return NO;
 }
 
 /*

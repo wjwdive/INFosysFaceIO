@@ -9,6 +9,9 @@
 #import "INFMyViewController.h"
 #import "AttendanceViewController.h"
 #import "MyViewLitsCell.h"
+#import "INFRegisterViewController.h"
+#import "INFFaceLoginViewController.h"
+#import "INFFaceLoginVC.h"
 
 @interface INFMyViewController () <UITableViewDelegate, UITableViewDataSource> {
     NSMutableDictionary *_lists;
@@ -18,7 +21,11 @@
 }
 
 @property (nonatomic, strong) UIImageView *bgImageView;
-
+@property (nonatomic, strong) UILabel *userNameLab;
+@property (nonatomic, assign) BOOL isVip;
+@property (nonatomic, strong) UIImageView *userPhotoIMG;
+@property (nonatomic, strong) UILabel *acountLab;
+@property (nonatomic, strong) UIImageView *vipIcon;
 @end
 
 @implementation INFMyViewController
@@ -40,46 +47,70 @@
     [self loadData];
     [self configTopView];
     [self configBottomView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserAction:) name:@"changeUserNotification" object:nil];
+    
 }
 
+- (void)changeUserAction:(NSNotification *)notification {
+    NSLog(@"接受消息：%@",notification);
+    SLog(@"消息内容：userInfo: %@, name :%@,object : %@, ",notification.userInfo,notification.name, notification.object )
+//    _userNameLab.text  = [notification.userInfo objectForKey:@"loginUserName"];
+//    NSString *userPhotoStr = [notification.userInfo objectForKey:@"loginUserPhoto"];
+//    NSData *imgData = [[NSData alloc] initWithBase64EncodedString:userPhotoStr options:0];
+//    UIImage *userPhotoImg = [UIImage imageWithData:imgData];
+//    _userPhotoIMG.image = userPhotoImg;
+//    NSString *isVipStr = [notification.userInfo objectForKey:@"isVip"];
+//    if (![isVipStr isEqualToString:@"Y"]) {
+//        _vipIcon.hidden = YES;
+//    }
+//    NSString *empidStr = [notification.userInfo objectForKey:@"loginEmpid"];
+//    _acountLab.text = empidStr;
+//    _userPhotoIMG.image = [
+    
+}
+
+//- (void)dealloc{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeUserNotification" object:self];
+//}
 - (void)configTopView {
     self.bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     self.bgImageView.frame = CGRectMake(0, 0, kScreenW, kScreenH);
     [self.view addSubview:self.bgImageView];
-    UIImageView *iconImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo"]];
-    [self.view addSubview:iconImage];
-    [iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
+    _userPhotoIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo"]];
+    [self.view addSubview:_userPhotoIMG];
+    [_userPhotoIMG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(35);
         make.top.mas_equalTo(50);
         make.height.width.mas_equalTo(70);
     }];
     
-    UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.text = @"lvy_wang06";
-    nameLabel.textColor = [UIColor whiteColor];
-    [self.view addSubview:nameLabel];
-    [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    _userNameLab = [[UILabel alloc] init];
+    _userNameLab.text = @"lvy_wang06";
+    _userNameLab.textColor = [UIColor whiteColor];
+    [self.view addSubview:_userNameLab];
+    [_userNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(130);
         make.top.mas_equalTo(55);
     }];
     
-    UIImageView *vipIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vip"]];
-    [self.view addSubview:vipIcon];
-    [vipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(nameLabel.mas_right).offset(5);
-        make.centerY.equalTo(nameLabel);
+    _vipIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vip"]];
+    [self.view addSubview:_vipIcon];
+    [_vipIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_userNameLab.mas_right).offset(5);
+        make.centerY.equalTo(_userNameLab);
         make.width.mas_equalTo(17);
         make.height.mas_equalTo(20);
     }];
     
-    UILabel *acount = [[UILabel alloc] init];
-    acount.text = @"429536";
-    acount.textColor = [UIColor whiteColor];
-    acount.font = [UIFont systemFontOfSize:14];
-    [self.view addSubview:acount];
-    [acount mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(nameLabel.mas_bottom).offset(15);
-        make.left.equalTo(nameLabel);
+    _acountLab = [[UILabel alloc] init];
+    _acountLab.text = @"429536";
+    _acountLab.textColor = [UIColor whiteColor];
+    _acountLab.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:_acountLab];
+    [_acountLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_userNameLab.mas_bottom).offset(15);
+        make.left.equalTo(_userNameLab);
     }];
     
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -189,8 +220,8 @@
 
 - (void)loadData {
     _lists = [NSMutableDictionary dictionaryWithCapacity:0];
-    NSArray *titles = @[@"首页", @"查询考勤", @"身份验证"];
-    NSArray *images = @[@"index", @"AttendanceRecord", @"identity"];
+    NSArray *titles = @[@"首页", @"注册", @"身份验证", @"查询考勤"];
+    NSArray *images = @[@"index", @"identity", @"identity", @"AttendanceRecord"];
     [_lists setObject:titles forKey:@"titles"];
     [_lists setObject:images forKey:@"images"];
 }
@@ -219,6 +250,12 @@
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             break;
         case 1:
+            [self.navigationController pushViewController:[[INFRegisterViewController alloc] init] animated:YES];
+            break;
+        case 2:
+            [self.navigationController pushViewController:[[INFFaceLoginVC alloc] init] animated:YES];
+            break;
+        case 3:
             [self.navigationController pushViewController:[[AttendanceViewController alloc] init] animated:YES];
 //            [self presentViewController:[[AttendanceViewController alloc] init] animated:YES completion:nil];
             break;

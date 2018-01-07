@@ -36,6 +36,10 @@
 		B8247D251FF0F68D004267E8 /* INFosysFaceIOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D241FF0F68D004267E8 /* INFosysFaceIOTests.m */; };
 		B8247D301FF0F68D004267E8 /* INFosysFaceIOUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D2F1FF0F68D004267E8 /* INFosysFaceIOUITests.m */; };
 		B82C250C1FFDC5B600015537 /* INFRegisterFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C250B1FFDC5B600015537 /* INFRegisterFaceViewController.m */; };
+		B82C250F1FFE0A0400015537 /* INFInputTextFiled.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82C250E1FFE0A0400015537 /* INFInputTextFiled.xib */; };
+		B82C25121FFE0F9A00015537 /* INFInputTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C25111FFE0F9A00015537 /* INFInputTextFiled.m */; };
+		B82C25151FFF50B200015537 /* INFRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C25141FFF50B200015537 /* INFRegisterViewController.m */; };
+		B82C25181FFF511800015537 /* INFRegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C25171FFF511800015537 /* INFRegisterView.m */; };
 		B84DE79C1FF0FF99008A69DD /* PrefixHeader.pch in Sources */ = {isa = PBXBuildFile; fileRef = B84DE79A1FF0FEBA008A69DD /* PrefixHeader.pch */; };
 		B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE79F1FF145AA008A69DD /* INFLoginViewController.m */; };
 		B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84DE7A21FF145C8008A69DD /* INFMyViewController.m */; };
@@ -51,6 +55,15 @@
 		B8A296D01FF3D23000D3499A /* INFOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A296CF1FF3D23000D3499A /* INFOverlayViewController.xib */; };
 		B8A296D31FF3D58C00D3499A /* INFCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */; };
 		B8A296D71FF3D5DB00D3499A /* INFCameraOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A296D61FF3D5DB00D3499A /* INFCameraOverlayView.xib */; };
+		B8D497B02001F53100357ACC /* INFFaceLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D497AF2001F53100357ACC /* INFFaceLoginViewController.m */; };
+		B8D497B220020B5E00357ACC /* INFFaceLoginOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D497B120020B5E00357ACC /* INFFaceLoginOverlayView.xib */; };
+		B8D497B520026ECE00357ACC /* INFFaceLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D497B420026ECE00357ACC /* INFFaceLoginVC.m */; };
+		B8D497B920027EA600357ACC /* INFLoginSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D497B720027EA600357ACC /* INFLoginSuccessViewController.m */; };
+		B8D497BA20027EA600357ACC /* INFLoginSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D497B820027EA600357ACC /* INFLoginSuccessViewController.xib */; };
+		B8D497BE20027EC400357ACC /* INFVipLoginSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D497BC20027EC400357ACC /* INFVipLoginSuccessViewController.m */; };
+		B8D497BF20027EC400357ACC /* INFVipLoginSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D497BD20027EC400357ACC /* INFVipLoginSuccessViewController.xib */; };
+		B8D497C320027EDE00357ACC /* INFLoginFailureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D497C120027EDE00357ACC /* INFLoginFailureViewController.m */; };
+		B8D497C420027EDE00357ACC /* INFLoginFailureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D497C220027EDE00357ACC /* INFLoginFailureViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +136,13 @@
 		B8247D311FF0F68D004267E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B82C250A1FFDC5B500015537 /* INFRegisterFaceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFRegisterFaceViewController.h; sourceTree = "<group>"; };
 		B82C250B1FFDC5B600015537 /* INFRegisterFaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFRegisterFaceViewController.m; sourceTree = "<group>"; };
+		B82C250E1FFE0A0400015537 /* INFInputTextFiled.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFInputTextFiled.xib; sourceTree = "<group>"; };
+		B82C25101FFE0F9A00015537 /* INFInputTextFiled.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFInputTextFiled.h; sourceTree = "<group>"; };
+		B82C25111FFE0F9A00015537 /* INFInputTextFiled.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFInputTextFiled.m; sourceTree = "<group>"; };
+		B82C25131FFF50B200015537 /* INFRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFRegisterViewController.h; sourceTree = "<group>"; };
+		B82C25141FFF50B200015537 /* INFRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFRegisterViewController.m; sourceTree = "<group>"; };
+		B82C25161FFF511800015537 /* INFRegisterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFRegisterView.h; sourceTree = "<group>"; };
+		B82C25171FFF511800015537 /* INFRegisterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFRegisterView.m; sourceTree = "<group>"; };
 		B84DE79A1FF0FEBA008A69DD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B84DE79E1FF145AA008A69DD /* INFLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFLoginViewController.h; sourceTree = "<group>"; };
 		B84DE79F1FF145AA008A69DD /* INFLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFLoginViewController.m; sourceTree = "<group>"; };
@@ -151,6 +171,20 @@
 		B8A296D11FF3D58C00D3499A /* INFCameraOverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFCameraOverlayView.h; sourceTree = "<group>"; };
 		B8A296D21FF3D58C00D3499A /* INFCameraOverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFCameraOverlayView.m; sourceTree = "<group>"; };
 		B8A296D61FF3D5DB00D3499A /* INFCameraOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFCameraOverlayView.xib; sourceTree = "<group>"; };
+		B8D497AE2001F53100357ACC /* INFFaceLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFFaceLoginViewController.h; sourceTree = "<group>"; };
+		B8D497AF2001F53100357ACC /* INFFaceLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFFaceLoginViewController.m; sourceTree = "<group>"; };
+		B8D497B120020B5E00357ACC /* INFFaceLoginOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFFaceLoginOverlayView.xib; sourceTree = "<group>"; };
+		B8D497B320026ECE00357ACC /* INFFaceLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFFaceLoginVC.h; sourceTree = "<group>"; };
+		B8D497B420026ECE00357ACC /* INFFaceLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFFaceLoginVC.m; sourceTree = "<group>"; };
+		B8D497B620027EA600357ACC /* INFLoginSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFLoginSuccessViewController.h; sourceTree = "<group>"; };
+		B8D497B720027EA600357ACC /* INFLoginSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFLoginSuccessViewController.m; sourceTree = "<group>"; };
+		B8D497B820027EA600357ACC /* INFLoginSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFLoginSuccessViewController.xib; sourceTree = "<group>"; };
+		B8D497BB20027EC400357ACC /* INFVipLoginSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFVipLoginSuccessViewController.h; sourceTree = "<group>"; };
+		B8D497BC20027EC400357ACC /* INFVipLoginSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFVipLoginSuccessViewController.m; sourceTree = "<group>"; };
+		B8D497BD20027EC400357ACC /* INFVipLoginSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFVipLoginSuccessViewController.xib; sourceTree = "<group>"; };
+		B8D497C020027EDE00357ACC /* INFLoginFailureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFLoginFailureViewController.h; sourceTree = "<group>"; };
+		B8D497C120027EDE00357ACC /* INFLoginFailureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFLoginFailureViewController.m; sourceTree = "<group>"; };
+		B8D497C220027EDE00357ACC /* INFLoginFailureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFLoginFailureViewController.xib; sourceTree = "<group>"; };
 		EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-INFosysFaceIO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -307,11 +341,41 @@
 			path = ThirdLib;
 			sourceTree = "<group>";
 		};
+		B82C250D1FFDCE5A00015537 /* RegisterFace */ = {
+			isa = PBXGroup;
+			children = (
+				B82C250A1FFDC5B500015537 /* INFRegisterFaceViewController.h */,
+				B82C250B1FFDC5B600015537 /* INFRegisterFaceViewController.m */,
+				B82C250E1FFE0A0400015537 /* INFInputTextFiled.xib */,
+				B82C25101FFE0F9A00015537 /* INFInputTextFiled.h */,
+				B82C25111FFE0F9A00015537 /* INFInputTextFiled.m */,
+				B82C25131FFF50B200015537 /* INFRegisterViewController.h */,
+				B82C25141FFF50B200015537 /* INFRegisterViewController.m */,
+				B82C25161FFF511800015537 /* INFRegisterView.h */,
+				B82C25171FFF511800015537 /* INFRegisterView.m */,
+			);
+			path = RegisterFace;
+			sourceTree = "<group>";
+		};
 		B84DE79D1FF14592008A69DD /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				B84DE79E1FF145AA008A69DD /* INFLoginViewController.h */,
 				B84DE79F1FF145AA008A69DD /* INFLoginViewController.m */,
+				B8D497AE2001F53100357ACC /* INFFaceLoginViewController.h */,
+				B8D497AF2001F53100357ACC /* INFFaceLoginViewController.m */,
+				B8D497B120020B5E00357ACC /* INFFaceLoginOverlayView.xib */,
+				B8D497B320026ECE00357ACC /* INFFaceLoginVC.h */,
+				B8D497B420026ECE00357ACC /* INFFaceLoginVC.m */,
+				B8D497B620027EA600357ACC /* INFLoginSuccessViewController.h */,
+				B8D497B720027EA600357ACC /* INFLoginSuccessViewController.m */,
+				B8D497B820027EA600357ACC /* INFLoginSuccessViewController.xib */,
+				B8D497BB20027EC400357ACC /* INFVipLoginSuccessViewController.h */,
+				B8D497BC20027EC400357ACC /* INFVipLoginSuccessViewController.m */,
+				B8D497BD20027EC400357ACC /* INFVipLoginSuccessViewController.xib */,
+				B8D497C020027EDE00357ACC /* INFLoginFailureViewController.h */,
+				B8D497C120027EDE00357ACC /* INFLoginFailureViewController.m */,
+				B8D497C220027EDE00357ACC /* INFLoginFailureViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -339,14 +403,13 @@
 		B87D0FFD1FF0FB9F000D924D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B82C250D1FFDCE5A00015537 /* RegisterFace */,
 				B88AACE31FFB2D6800EF4AE2 /* checkSuccess */,
 				B84DE79D1FF14592008A69DD /* Login */,
 				B87D10001FF0FBD4000D924D /* Records */,
 				B87D0FFF1FF0FBBA000D924D /* FaceCheck */,
 				B87D0FFE1FF0FBA8000D924D /* My */,
 				B87D0FFC1FF0FB92000D924D /* Home */,
-				B82C250A1FFDC5B500015537 /* INFRegisterFaceViewController.h */,
-				B82C250B1FFDC5B600015537 /* INFRegisterFaceViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -525,11 +588,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8D497BF20027EC400357ACC /* INFVipLoginSuccessViewController.xib in Resources */,
 				B8247D181FF0F68C004267E8 /* LaunchScreen.storyboard in Resources */,
 				978459051FF4907100DD6747 /* YXDayCell.xib in Resources */,
 				B8247D151FF0F68C004267E8 /* Assets.xcassets in Resources */,
 				B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */,
+				B8D497BA20027EA600357ACC /* INFLoginSuccessViewController.xib in Resources */,
+				B8D497C420027EDE00357ACC /* INFLoginFailureViewController.xib in Resources */,
+				B82C250F1FFE0A0400015537 /* INFInputTextFiled.xib in Resources */,
 				B8A296D71FF3D5DB00D3499A /* INFCameraOverlayView.xib in Resources */,
+				B8D497B220020B5E00357ACC /* INFFaceLoginOverlayView.xib in Resources */,
 				B8A296D01FF3D23000D3499A /* INFOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,9 +625,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-INFosysFaceIO/Pods-INFosysFaceIO-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -619,31 +690,36 @@
 			files = (
 				B84DE7B51FF2202E008A69DD /* NetWorkManager.m in Sources */,
 				97B6E7091FF37B3500976902 /* MyViewLitsCell.m in Sources */,
+				B82C25121FFE0F9A00015537 /* INFInputTextFiled.m in Sources */,
 				B84DE79C1FF0FF99008A69DD /* PrefixHeader.pch in Sources */,
 				978459041FF4907100DD6747 /* YXDayCell.m in Sources */,
 				B8247D101FF0F68C004267E8 /* ViewController.m in Sources */,
+				B8D497BE20027EC400357ACC /* INFVipLoginSuccessViewController.m in Sources */,
 				B84DE7B61FF2202E008A69DD /* UIImage+Utils.m in Sources */,
-
+				B8D497C320027EDE00357ACC /* INFLoginFailureViewController.m in Sources */,
 				B88AACE61FFB2DA500EF4AE2 /* INFCheckSuccessViewController.m in Sources */,
-
+				B82C25151FFF50B200015537 /* INFRegisterViewController.m in Sources */,
+				B82C25181FFF511800015537 /* INFRegisterView.m in Sources */,
 				97FD1D6E1FF5EC7D001B34C8 /* BaseNavigationController.m in Sources */,
 				B84DE7AD1FF20D18008A69DD /* INFUser.m in Sources */,
+				B8D497B920027EA600357ACC /* INFLoginSuccessViewController.m in Sources */,
 				B84DE7A31FF145C8008A69DD /* INFMyViewController.m in Sources */,
 				978459031FF4907100DD6747 /* YXDateHelpObject.m in Sources */,
 				B84DE7B01FF21CE6008A69DD /* NSString+Utils.m in Sources */,
 				97FD1D6A1FF4CC0C001B34C8 /* AttendanceCell.m in Sources */,
 				B8A296D31FF3D58C00D3499A /* INFCameraOverlayView.m in Sources */,
+				B8D497B520026ECE00357ACC /* INFFaceLoginVC.m in Sources */,
 				97B6E7061FF3733900976902 /* UIColor+hexColor.m in Sources */,
 				B8247D1B1FF0F68C004267E8 /* main.m in Sources */,
 				97FD1D671FF4C69F001B34C8 /* AttendanceModel.m in Sources */,
 				975860301FF3986300E04F5F /* UIView+Extension.m in Sources */,
 				B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */,
 				B8A296CE1FF3785300D3499A /* INFOverlayViewController.m in Sources */,
-				979A81741FF39042006AF3AF /* NSDate+BXHCategory.m in Sources */,
 				B82C250C1FFDC5B600015537 /* INFRegisterFaceViewController.m in Sources */,
 				979A81511FF389C9006AF3AF /* AttendanceViewController.m in Sources */,
 				97FD1D711FF6166D001B34C8 /* AttendanceLeftLine.m in Sources */,
 				978459061FF4907100DD6747 /* YXMonthView.m in Sources */,
+				B8D497B02001F53100357ACC /* INFFaceLoginViewController.m in Sources */,
 				B84DE7A61FF145DC008A69DD /* INFCheckViewController.m in Sources */,
 				B84DE7A01FF145AA008A69DD /* INFLoginViewController.m in Sources */,
 				B84DE7A91FF145F3008A69DD /* INFRecordsViewController.m in Sources */,

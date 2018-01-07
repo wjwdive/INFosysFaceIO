@@ -122,6 +122,66 @@ extern NSInteger userStatus;
     
 }
 #pragma mark - 本地保存token
+
+//第一次登录
+- (void)firstLogin {
+    NSDictionary *params = @{
+                             //                                 @"empid":_user.userNo,
+                             //                                 @"userNo":_user.userNo,
+                             @"password":_user.password,
+                             @"empid":_user.userNo,
+                             @"password":_user.userName
+                             };
+    
+    [NetWorkManager requestWithType:1
+                      withUrlString:loginUrl withParaments:params
+                   withSuccessBlock:^(NSDictionary *responseObject) {
+                       NSLog(@"请求成功：%@",responseObject);
+                       NSString *token = [responseObject objectForKey:@"token"];
+                       NSLog(@"token %@",token);
+                       NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                       [defaults setObject:token forKey:@"token"];
+                       //返回到 扫脸界面
+                       userStatus = 2;
+                       [defaults setInteger:userStatus forKey:@"userStatus"];
+                       [defaults setObject:[params valueForKey:@"empid"] forKey:@"empid"];
+                       [defaults setObject:[params valueForKey:@"userName"] forKey:@"userName"];
+                       [defaults synchronize];
+                   }
+                   withFailureBlock:^(NSError *error) {
+                       NSLog(@"请求失败：%@",error);
+                       NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                       userStatus = 1;
+                       [defaults setInteger:userStatus forKey:@"userStatus"];
+                       [defaults synchronize];
+                   }
+                           progress:^(float progress) {
+                               NSLog(@"请求过程");
+                           }];
+}
+
+//第二次登录，不用账号和密码，自动登录。登录成功跳转到。这里应该放到 AppDelegate或者home页比较好。自动登录时不显示登录界面
+- (void)autoLogin {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    NSDictionary *params = @{@"token":token};
+    [NetWorkManager requestWithType:1
+                      withUrlString:faceCheckUrl
+                      withParaments:params
+                   withSuccessBlock:^(NSDictionary *responseObject) {
+                       NSLog(@"token 登录 请求成功：%@",responseObject);
+                   }
+                   withFailureBlock:^(NSError *error) {
+                       NSLog(@"token 登录 请求失败：%@",error);
+                   }
+                           progress:^(float progress) {
+                               NSLog(@"请求过程");
+                           }];
+    [NSThread sleepForTimeInterval:1.5];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 //登录请求
 - (void)doPostLogin {
     NSLog(@"userStatus in login vc:%ld", userStatus);

@@ -10,6 +10,7 @@
 #import "INFHomeViewController.h"
 
 /** 定义一个全局外部变量，标注当前用户的状态，此外，每次状态变化把该变量持久化到本地
+ *  0,未成册
  *  1,用户未登录
  *  2,用登录成功，但是未注册人脸
  *  3,用户登陆成功，且注册过人脸，可以刷脸登录了
@@ -33,10 +34,21 @@ NSInteger userStatus;
     INFHomeViewController *HomeVC = [storyboard instantiateViewControllerWithIdentifier:@"INFHomeViewController"];
     
     self.window.rootViewController = HomeVC;
-    NSUserDefaults *defaults = [NSUserDefaults  standardUserDefaults];
-    [self checkUserStatus];
+    [self initUserStatus];
     
     return YES;
+}
+
+- (void)initUserStatus {
+    NSUserDefaults *defaults = [NSUserDefaults  standardUserDefaults];
+    NSInteger tempStatus = [defaults integerForKey:@"userStatus"];
+    if (tempStatus) {
+        NSLog(@"当前用户状态为：%ld", tempStatus);
+    }else{
+        //取不到用户状态，初始化为0 ，未注册
+        [defaults setInteger:0 forKey:@"userStatus"];
+        [defaults synchronize];
+    }
 }
 
 //检查用户状态
@@ -45,16 +57,16 @@ NSInteger userStatus;
     NSInteger tempStatus = [defaults integerForKey:@"userStatus"];
     //如果从缓存获取到了 userStatus，证明以前登陆过，并找到该缓存值  赋值给 全局变量 userStatus
     if (tempStatus) {
-        NSLog(@"if当前用户状态为：%ld",tempStatus);
+        NSLog(@"if当前用户状态为：%ld",(long)tempStatus);
         [defaults setInteger:1 forKey:@"userStatus"];
         [defaults synchronize];
         userStatus = [defaults integerForKey:@"userStatus"];
     }else{
         //如果没有 从缓存获取到了 userStatus, 证明是第一次登录设初始值为1  没有登陆过
-        [defaults setInteger:1 forKey:@"userStatus"];
-        [[NSUserDefaults standardUserDefaults] synchronize]; 
+        [defaults setInteger:0 forKey:@"userStatus"];
+        [defaults synchronize];
         userStatus = [defaults integerForKey:@"userStatus"];
-         NSLog(@"else当前用户状态为：%ld",userStatus);
+        NSLog(@"else当前用户状态为：%ld",(long)userStatus);
     }
 }
 

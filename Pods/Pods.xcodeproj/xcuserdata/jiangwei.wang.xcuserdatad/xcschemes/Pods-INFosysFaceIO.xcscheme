@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0122A7674441CDB72AF3B07C40C07084'
+               BlueprintIdentifier = 'E7F0AA8416453DA80761AC996CF9F89D'
                BlueprintName = 'Pods-INFosysFaceIO'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-INFosysFaceIO.a'>

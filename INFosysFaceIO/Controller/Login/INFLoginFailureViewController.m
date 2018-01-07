@@ -1,22 +1,22 @@
 //
-//  INFRegisterFaceViewController.m
+//  INFLoginFailureViewController.m
 //  INFosysFaceIO
 //
-//  Created by jiangwei.wang on 2018/1/4.
+//  Created by jiangwei.wang on 2018/1/8.
 //  Copyright © 2018年 jiangwei.wang. All rights reserved.
 //
 
-#import "INFRegisterFaceViewController.h"
+#import "INFLoginFailureViewController.h"
 
-@interface INFRegisterFaceViewController ()
+@interface INFLoginFailureViewController ()
 
 @end
 
-@implementation INFRegisterFaceViewController
+@implementation INFLoginFailureViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
