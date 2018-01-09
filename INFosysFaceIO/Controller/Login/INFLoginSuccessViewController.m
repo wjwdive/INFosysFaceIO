@@ -7,6 +7,7 @@
 //
 
 #import "INFLoginSuccessViewController.h"
+#import "NSString+Utils.h"
 
 @interface INFLoginSuccessViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *usrNameLab;
@@ -24,23 +25,16 @@
     _usrNameLab.text = [NSString stringWithFormat:@"%@ %@ ",@"Welcome",_userName];
     _scoreLab.text = [NSString stringWithFormat:@"%@ %@",@"Similarity Score: ",_score];
     NSLog(@" score %@", _score);
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    dateFormat.AMSymbol = @"AM";
-    dateFormat.PMSymbol = @"PM";
-    [dateFormat setDateFormat:@"hh:ss aaa"];
-    NSString *timeStr = [dateFormat stringFromDate:currentDate];
-    NSLog(@"time : %@",[timeStr substringToIndex:5]);
-    NSLog(@"am/pm :%@",[timeStr substringFromIndex:6]);
     
-    self.timeLab.text = [timeStr substringToIndex:5];
-    self.ampmLab.text = [timeStr substringFromIndex:6];
+    NSDictionary *timeDic = [NSString getCurrentTime];
+    self.timeLab.text = [timeDic objectForKey:@"time"];
+    self.ampmLab.text = [timeDic objectForKey:@"ampm"];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navToRoot)];
     [self.view addGestureRecognizer:tap];
     
     //设置导航栏
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.hidden = YES;
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     //去掉navbarbtn 文字

@@ -51,7 +51,29 @@
     
     [self configUI];
     [self loadMocData];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserAction:) name:@"changeUserNotification" object:nil];
 }
+
+- (void)changeUserAction:(NSNotification *)notification {
+    NSLog(@"接受消息：%@",notification);
+    SLog(@"消息内容：userInfo: %@, name :%@,object : %@, ",notification.userInfo,notification.name, notification.object )
+    _userName.text  = [notification.userInfo objectForKey:@"loginUserName"];
+    NSString *userPhotoStr = [notification.userInfo objectForKey:@"loginUserPhoto"];
+    NSData *imgData = [[NSData alloc] initWithBase64EncodedString:userPhotoStr options:0];
+    UIImage *userPhotoImg = [UIImage imageWithData:imgData];
+    _userIcon.image = userPhotoImg;
+//    NSString *isVipStr = [notification.userInfo objectForKey:@"isVip"];
+//    if (![isVipStr isEqualToString:@"Y"]) {
+//        _vipIcon.hidden = YES;
+//    }else {
+//        _vipIcon.hidden = NO;
+//    }
+//    NSString *empidStr = [notification.userInfo objectForKey:@"loginEmpid"];
+//    _acountLab.text = empidStr;
+    
+}
+
 
 - (void)loadMocData {
     _datas = [NSMutableArray arrayWithCapacity:0];
@@ -87,6 +109,8 @@
     
     _userIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-1"]];
     [topImageView addSubview:_userIcon];
+    _userIcon.layer.masksToBounds = YES;
+    _userIcon.layer.cornerRadius = 20.0;
     [_userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.bottom.mas_equalTo(-12);

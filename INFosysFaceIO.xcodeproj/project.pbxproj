@@ -27,6 +27,8 @@
 		97FD1D6A1FF4CC0C001B34C8 /* AttendanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D691FF4CC0C001B34C8 /* AttendanceCell.m */; };
 		97FD1D6E1FF5EC7D001B34C8 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D6D1FF5EC7D001B34C8 /* BaseNavigationController.m */; };
 		97FD1D711FF6166D001B34C8 /* AttendanceLeftLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FD1D701FF6166D001B34C8 /* AttendanceLeftLine.m */; };
+		B81C1A95200376C20043AE85 /* DazStarOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = B81C1A93200376C20043AE85 /* DazStarOutline.png */; };
+		B81C1A96200376C20043AE85 /* DazRing.png in Resources */ = {isa = PBXBuildFile; fileRef = B81C1A94200376C20043AE85 /* DazRing.png */; };
 		B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0C1FF0F68C004267E8 /* AppDelegate.m */; };
 		B8247D101FF0F68C004267E8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8247D0F1FF0F68C004267E8 /* ViewController.m */; };
 		B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8247D111FF0F68C004267E8 /* Main.storyboard */; };
@@ -64,6 +66,10 @@
 		B8D497BF20027EC400357ACC /* INFVipLoginSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D497BD20027EC400357ACC /* INFVipLoginSuccessViewController.xib */; };
 		B8D497C320027EDE00357ACC /* INFLoginFailureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D497C120027EDE00357ACC /* INFLoginFailureViewController.m */; };
 		B8D497C420027EDE00357ACC /* INFLoginFailureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D497C220027EDE00357ACC /* INFLoginFailureViewController.xib */; };
+		B8D497CB20031C0200357ACC /* INFCheckVipSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D497C920031C0200357ACC /* INFCheckVipSuccessViewController.m */; };
+		B8D497CC20031C0200357ACC /* INFCheckVipSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D497CA20031C0200357ACC /* INFCheckVipSuccessViewController.xib */; };
+		B8D497D020031C1800357ACC /* INFCheckFailureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D497CE20031C1800357ACC /* INFCheckFailureViewController.m */; };
+		B8D497D120031C1800357ACC /* INFCheckFailureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8D497CF20031C1800357ACC /* INFCheckFailureViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +124,8 @@
 		97FD1D6D1FF5EC7D001B34C8 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		97FD1D6F1FF6166D001B34C8 /* AttendanceLeftLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttendanceLeftLine.h; sourceTree = "<group>"; };
 		97FD1D701FF6166D001B34C8 /* AttendanceLeftLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttendanceLeftLine.m; sourceTree = "<group>"; };
+		B81C1A93200376C20043AE85 /* DazStarOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazStarOutline.png; sourceTree = "<group>"; };
+		B81C1A94200376C20043AE85 /* DazRing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DazRing.png; sourceTree = "<group>"; };
 		B8247D081FF0F68C004267E8 /* INFosysFaceIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INFosysFaceIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8247D0B1FF0F68C004267E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B8247D0C1FF0F68C004267E8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -185,6 +193,12 @@
 		B8D497C020027EDE00357ACC /* INFLoginFailureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFLoginFailureViewController.h; sourceTree = "<group>"; };
 		B8D497C120027EDE00357ACC /* INFLoginFailureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFLoginFailureViewController.m; sourceTree = "<group>"; };
 		B8D497C220027EDE00357ACC /* INFLoginFailureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFLoginFailureViewController.xib; sourceTree = "<group>"; };
+		B8D497C820031C0200357ACC /* INFCheckVipSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFCheckVipSuccessViewController.h; sourceTree = "<group>"; };
+		B8D497C920031C0200357ACC /* INFCheckVipSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFCheckVipSuccessViewController.m; sourceTree = "<group>"; };
+		B8D497CA20031C0200357ACC /* INFCheckVipSuccessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFCheckVipSuccessViewController.xib; sourceTree = "<group>"; };
+		B8D497CD20031C1800357ACC /* INFCheckFailureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INFCheckFailureViewController.h; sourceTree = "<group>"; };
+		B8D497CE20031C1800357ACC /* INFCheckFailureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INFCheckFailureViewController.m; sourceTree = "<group>"; };
+		B8D497CF20031C1800357ACC /* INFCheckFailureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INFCheckFailureViewController.xib; sourceTree = "<group>"; };
 		EDD3D44E958CE1E288CE7ED5 /* libPods-INFosysFaceIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-INFosysFaceIO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -266,6 +280,15 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		B81C1A92200376A60043AE85 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B81C1A94200376C20043AE85 /* DazRing.png */,
+				B81C1A93200376C20043AE85 /* DazStarOutline.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		B8247CFF1FF0F68C004267E8 = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +314,7 @@
 		B8247D0A1FF0F68C004267E8 /* INFosysFaceIO */ = {
 			isa = PBXGroup;
 			children = (
+				B81C1A92200376A60043AE85 /* Resources */,
 				97FD1D6B1FF5EA8A001B34C8 /* Base */,
 				B84DE7AA1FF1FCF8008A69DD /* Model */,
 				B87D0FFD1FF0FB9F000D924D /* Controller */,
@@ -461,6 +485,12 @@
 			children = (
 				B88AACE41FFB2DA500EF4AE2 /* INFCheckSuccessViewController.h */,
 				B88AACE51FFB2DA500EF4AE2 /* INFCheckSuccessViewController.m */,
+				B8D497C820031C0200357ACC /* INFCheckVipSuccessViewController.h */,
+				B8D497C920031C0200357ACC /* INFCheckVipSuccessViewController.m */,
+				B8D497CA20031C0200357ACC /* INFCheckVipSuccessViewController.xib */,
+				B8D497CD20031C1800357ACC /* INFCheckFailureViewController.h */,
+				B8D497CE20031C1800357ACC /* INFCheckFailureViewController.m */,
+				B8D497CF20031C1800357ACC /* INFCheckFailureViewController.xib */,
 			);
 			path = checkSuccess;
 			sourceTree = "<group>";
@@ -590,7 +620,11 @@
 			files = (
 				B8D497BF20027EC400357ACC /* INFVipLoginSuccessViewController.xib in Resources */,
 				B8247D181FF0F68C004267E8 /* LaunchScreen.storyboard in Resources */,
+				B81C1A95200376C20043AE85 /* DazStarOutline.png in Resources */,
+				B8D497D120031C1800357ACC /* INFCheckFailureViewController.xib in Resources */,
 				978459051FF4907100DD6747 /* YXDayCell.xib in Resources */,
+				B81C1A96200376C20043AE85 /* DazRing.png in Resources */,
+				B8D497CC20031C0200357ACC /* INFCheckVipSuccessViewController.xib in Resources */,
 				B8247D151FF0F68C004267E8 /* Assets.xcassets in Resources */,
 				B8247D131FF0F68C004267E8 /* Main.storyboard in Resources */,
 				B8D497BA20027EA600357ACC /* INFLoginSuccessViewController.xib in Resources */,
@@ -711,6 +745,7 @@
 				B8D497B520026ECE00357ACC /* INFFaceLoginVC.m in Sources */,
 				97B6E7061FF3733900976902 /* UIColor+hexColor.m in Sources */,
 				B8247D1B1FF0F68C004267E8 /* main.m in Sources */,
+				B8D497CB20031C0200357ACC /* INFCheckVipSuccessViewController.m in Sources */,
 				97FD1D671FF4C69F001B34C8 /* AttendanceModel.m in Sources */,
 				975860301FF3986300E04F5F /* UIView+Extension.m in Sources */,
 				B8247D0D1FF0F68C004267E8 /* AppDelegate.m in Sources */,
@@ -725,6 +760,7 @@
 				B84DE7A91FF145F3008A69DD /* INFRecordsViewController.m in Sources */,
 				B87D10031FF0FC22000D924D /* INFHomeViewController.m in Sources */,
 				978459021FF4907100DD6747 /* YXCalendarView.m in Sources */,
+				B8D497D020031C1800357ACC /* INFCheckFailureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

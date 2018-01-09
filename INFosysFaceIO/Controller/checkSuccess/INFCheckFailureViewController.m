@@ -1,28 +1,26 @@
 //
-//  INFCheckSuccessViewController.m
+//  INFCheckFailureViewController.m
 //  INFosysFaceIO
 //
-//  Created by jiangwei.wang on 2018/1/2.
+//  Created by jiangwei.wang on 2018/1/8.
 //  Copyright © 2018年 jiangwei.wang. All rights reserved.
 //
 
-#import "INFCheckSuccessViewController.h"
-#import "NSString+Utils.h"
+#import "INFCheckFailureViewController.h"
 
-@interface INFCheckSuccessViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *checkTimeLab;
-@property (strong, nonatomic) IBOutlet UILabel *ampmSymble;
+@interface INFCheckFailureViewController ()
+@property (strong, nonatomic) IBOutlet UIImageView *faceIMG;
 
 @end
 
-@implementation INFCheckSuccessViewController
+@implementation INFCheckFailureViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSDictionary *timeDic = [NSString getCurrentTime];
-    self.checkTimeLab.text = [timeDic objectForKey:@"time"];
-    self.ampmSymble.text = [timeDic objectForKey:@"ampm"];
+    // Do any additional setup after loading the view from its nib.
+    self.faceIMG.layer.masksToBounds = YES;
+    self.faceIMG.layer.cornerRadius = 82.5;
+    [self.faceIMG setNeedsDisplay];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -71,4 +71,5 @@
 -(CGSize)attrStrSizeWithFont:(UIFont *)font andmaxSize:(CGSize)maxSize lineSpacing:(CGFloat)lineSpacing;
 //时间戳转时间
 -(NSDate *)dateValueWithMillisecondsSince1970;
++ (NSDictionary *)getCurrentTime;
 @end

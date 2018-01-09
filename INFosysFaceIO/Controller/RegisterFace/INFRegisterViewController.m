@@ -33,8 +33,8 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
     [self configOtherUI];
     
     //设置导航栏
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.hidden = YES;
     [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
     //去掉navbarbtn 文字
     [[UIBarButtonItem appearance]setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
@@ -244,22 +244,25 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
                         withSuccessBlock:^(NSDictionary *responseObject) {
                             NSLog(@"responseObject %@", responseObject);
                             NSLog(@"注册新用户成功");
+                            
                             [hud hideAnimated:YES];
                             
-                            MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                            hudCaution.label.text = @"注册成功！";
-                            [hudCaution hideAnimated:YES afterDelay:2];
-                            [self dismissViewControllerAnimated:YES completion:nil];
+                            [self dismissViewControllerAnimated:YES completion:^{
+                                MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                hudCaution.label.text = @"注册成功！";
+                                [hudCaution hideAnimated:YES afterDelay:2];
+                            }];
+                            
                         } withFailureBlock:^(NSError *error) {
                             NSLog(@"error reason: %@",error);
                             NSLog(@"新用户注册失败");
                             [hud hideAnimated:YES];
                             
-                            MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                            hudCaution.label.text = @"注册失败！";
-                            [hudCaution hideAnimated:YES afterDelay:2];
-                            [hud hideAnimated:YES];
-                            [self dismissViewControllerAnimated:YES completion:nil];
+                            [self dismissViewControllerAnimated:YES completion:^{
+                                MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                                hudCaution.label.text = @"注册失败！";
+                                [hudCaution hideAnimated:YES afterDelay:2];
+                            }];
                         } progress:^(float progress) {
                             
                         }];
@@ -284,8 +287,10 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        //压缩 到 100k
-        NSData *compressedImgData = [UIImage compressOriginalImage:image toMaxDataSizeKBytes:100.0];
+        //对照片做正向处理
+        UIImage *fixedImg = [UIImage fixImageOrientation:image];
+        //压缩 到 50k
+        NSData *compressedImgData = [UIImage compressOriginalImage:fixedImg toMaxDataSizeKBytes:50.0];
         NSString *faceImgBase64str = [compressedImgData base64EncodedStringWithOptions:0];
         NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
         [def setObject:faceImgBase64str forKey:@"userPhoto"];

@@ -26,6 +26,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) NSMutableDictionary *mUserInfoDic;
 @property (strong, nonatomic) NSNotification *notifaication;
+@property (strong ,nonatomic) MBProgressHUD *hudRequest;
 @end
 
 @implementation INFFaceLoginVC
@@ -85,7 +86,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         WeakObj(self);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self presentViewController:_imagePicker animated:YES completion:^{
-                [UIView animateWithDuration: 2 delay: 0.35 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
+                [UIView animateWithDuration: 2 delay: 0 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
                     [selfWeak.barImg layoutIfNeeded];
                     [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
                     selfWeak.faceMask.alpha = 0;
@@ -141,14 +142,14 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
         hud.label.text = @"正在处理图片";
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            //压缩 到 500k
-            NSData *compressedImgData = [UIImage compressOriginalImage:image toMaxDataSizeKBytes:100.0];
+            //对照片做正向处理
+            UIImage *fixedImg = [UIImage fixImageOrientation:image];
+            //压缩 到 50k
+            NSData *compressedImgData = [UIImage compressOriginalImage:fixedImg toMaxDataSizeKBytes:50.0];
             _faceImgBase64str = [compressedImgData base64EncodedStringWithOptions:0];
             NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
             [def setObject:_faceImgBase64str forKey:@"loginUserPhoto"];
             [def synchronize];
-            [_mUserInfoDic setObject:_faceImgBase64str forKey:@"loginUserPhoto"];
-            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hideAnimated:YES];
                  [self doLoginPost];
@@ -176,63 +177,86 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
     
     NSDictionary *params = @{@"image":_faceImgBase64str};
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
-    hud.label.text = @"正在登录...";
+    _hudRequest = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
+    _hudRequest.label.text = @"正在登录...";
     [NetWorkManager requestWithType:1
                       withUrlString:faceLoginUrl1
                       withParaments:params
                    withSuccessBlock:^(NSDictionary *responseObject) {
-                       SLog(@"人脸登陆成功！");
-                       SLog(@"responseObject :%@", responseObject);
-                       [hud hideAnimated:YES];
-                       NSString *token = [responseObject valueForKey:@"token"];
-                       NSDictionary *userInfo = [responseObject valueForKey:@"user"];
-                       NSString *userName = [userInfo objectForKey:@"username"];
-                       [_mUserInfoDic setObject:userName forKey:@"loginUserName"];
-                       NSString *isVip = [userInfo objectForKey:@"isadmin"];
-                        [_mUserInfoDic setObject:isVip forKey:@"loginIsVip"];
                        
-                       NSValue *scoreDouble = [userInfo valueForKey:@"score"];
-                       NSLog(@"score :%@", scoreDouble);
-                       NSUserDefaults  *def = [NSUserDefaults  standardUserDefaults];
-                      
-                       //记录token
-                       [def setObject:token forKey:@"token"];
-                       NSDate *currentDate = [NSDate new];
-                       //记录token的生效时间
-                       [def setObject:currentDate forKey:@"tokenTime"];
-                       
-                       INFLoginSuccessViewController *succVC = [[INFLoginSuccessViewController alloc] init];
-                       succVC.userName = userName;
-                       
-                       NSString *scoreStr = [NSString stringWithFormat:@"%@",scoreDouble];
-                       NSLog(@"scoreStr %@",scoreStr);
-                       NSString *empidStr = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"empid"]];
-                        [_mUserInfoDic setObject:empidStr forKey:@"loginEmpid"];
-                       
-                       NSDictionary *dic = @{@"loginEmpid":empidStr,
-                                             @"loginIsVip":isVip,
-//                                        @"loginUserPhoto":_faceImgBase64str,
-                                             @"loginUserName":userName
-                                             };
-                       _notifaication = [NSNotification notificationWithName:@"changeUserNotification" object:nil userInfo:dic];
-                       
-                       [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserNotification" object:nil];
-                       
-                       succVC.score = [scoreStr  substringToIndex:2]; dispatch_async(dispatch_get_main_queue(), ^{
-                           [self dismissViewControllerAnimated:YES completion:^{
-                               [self.navigationController pushViewController:succVC animated:YES];
-                           }];
-                       });
-                       
-                       
-                       
+                       [self successConfig:responseObject];
     } withFailureBlock:^(NSError *error) {
         NSLog(@"人脸登录失败！");
-        [hud hideAnimated:YES];
+        [_hudRequest hideAnimated:YES];
     } progress:^(float progress) {
         
     }];
+    
+}
+
+- (void)successConfig:(NSDictionary *)responseObject {
+    
+    NSLog(@"success :%@", [responseObject objectForKey:@"success"]);
+    NSString *successFlagStr = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"success"]];
+    if ([successFlagStr isEqualToString:@"0"]) {
+        SLog(@"success %@",[responseObject objectForKey:@"success"]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //如果登录失败，也应该返回 userName 和 score
+            INFLoginFailureViewController *failureVC = [[INFLoginFailureViewController alloc] init];
+//            failureVC.userName = userName;
+//            failureVC.score = [scoreStr  substringToIndex:2];
+            
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.navigationController pushViewController:failureVC animated:YES];
+            }];
+        });
+    }else{
+        SLog(@"人脸登陆成功！");
+        SLog(@"responseObject :%@", responseObject);
+        [_hudRequest hideAnimated:YES];
+        NSString *token = [responseObject valueForKey:@"token"];
+        NSDictionary *userInfo = [responseObject valueForKey:@"user"];
+        NSString *userName = [userInfo objectForKey:@"username"];
+        NSString *isVip = [userInfo objectForKey:@"isadmin"];
+        NSValue *scoreDouble = [userInfo valueForKey:@"score"];
+        NSLog(@"score :%@", scoreDouble);
+        NSString *scoreStr = [NSString stringWithFormat:@"%@",scoreDouble];
+        NSLog(@"scoreStr %@",scoreStr);
+        NSString *empidStr = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"empid"]];
+        
+        //记录token 等用户数据
+        NSUserDefaults  *def = [NSUserDefaults  standardUserDefaults];
+        [def setObject:token forKey:@"token"];
+#pragma mark todo 时间可能不准确
+        NSDate *currentDate = [NSDate new];
+        //记录token的生效时间
+        [def setObject:currentDate forKey:@"tokenTime"];
+        [def setObject:userName forKey:@"loginUserName"];
+        [def setObject:empidStr forKey:@"loginEmpid"];
+        
+        
+        
+        
+        [_mUserInfoDic setObject:empidStr forKey:@"loginEmpid"];
+        
+        NSDictionary *dic = @{@"loginEmpid":empidStr,
+                              @"loginIsVip":isVip,
+                              @"loginUserPhoto":_faceImgBase64str,
+                              @"loginUserName":userName
+                              };
+        
+        _notifaication = [NSNotification notificationWithName:@"changeUserNotification" object:self userInfo:dic];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserNotification" object:self userInfo:dic];
+        INFLoginSuccessViewController *succVC = [[INFLoginSuccessViewController alloc] init];
+        succVC.userName = userName;
+        succVC.score = [scoreStr  substringToIndex:2];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.navigationController pushViewController:succVC animated:YES];
+            }];
+        });
+    }
+    
     
 }
 

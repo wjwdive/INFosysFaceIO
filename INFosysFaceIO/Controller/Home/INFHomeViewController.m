@@ -20,6 +20,7 @@
 #import "NetWorkManager.h"
 #import "UIImage+Utils.h"
 #import "MBProgressHUD/MBProgressHUD.h"
+#import "INFCheckFailureViewController.h"
 
 #import "INFRegisterViewController.h"
 
@@ -47,11 +48,12 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
     self.imagePicker = [[UIImagePickerController alloc] init];
-    //给图片 添加手势，失败 原因未知
-//    UITapGestureRecognizer *tapTakePicture = [[UITapGestureRecognizer alloc] initWithTarget:self.scanImg action:@selector(takePhoto)];
-//    [self.scanImg addGestureRecognizer:tapTakePicture];
+    
+    
+//    [self getCurrentTime];
     
 }
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -170,6 +172,25 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         
     }];
 }
+
+- (void)gotoCheckFailure {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //如果登录失败，也应该返回 userName 和 score
+        INFCheckFailureViewController *checkFailureVC = [[INFCheckFailureViewController alloc] init];
+        //    [self dismissViewControllerAnimated:YES completion:^{
+        //
+        //    }];
+//        [self.navigationController pushViewController:checkFailureVC animated:YES];
+        //            failureVC.userName = userName;
+        //            failureVC.score = [scoreStr  substringToIndex:2];
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.navigationController pushViewController:checkFailureVC animated:YES];
+        }];
+    });
+    
+    
+}
 //跳转到CHeckfaceVC
 //- (void)gotoCheckFaceVC {
 //
@@ -195,18 +216,18 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)timerStart {
-    if (!_timer) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(takePhoto) userInfo:nil repeats:NO];
-    }
-}
+//- (void)timerStart {
+//    if (!_timer) {
+//        _timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(takePhoto) userInfo:nil repeats:NO];
+//    }
+//}
 
-- (void)removeTimer {
-    if ([_timer isValid]) {
-        [_timer invalidate];
-    }
-    _timer = nil;
-}
+//- (void)removeTimer {
+//    if ([_timer isValid]) {
+//        [_timer invalidate];
+//    }
+//    _timer = nil;
+//}
 
 #pragma mark - UIImagePickerController代理方法
 //拍完照片的回调方法
@@ -238,38 +259,30 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
             [def synchronize];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hideAnimated:YES];
+                //相片获取成功之后 do post
+                [self checkFace];
+                NSLog(@"do checkFace post");
             });
         });
         
-        //相片获取成功之后 do post
-        [self doPost];
-        NSLog(@"do post");
         
         
         //保存到相册
 //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         
-//        [self removeTimer];
     }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-//    [_timer invalidate];
-    [self removeTimer];
+
+//    [self removeTimer];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-//{
-//    if (_imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-//        _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-//        _imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-//    }
-//}
 
 //关闭刷脸界面
 - (IBAction)cancleTakePhoto:(id)sender {
-    [self removeTimer];
+//    [self removeTimer];
     [self imagePickerControllerDidCancel:_imagePicker];
 //    [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -304,8 +317,7 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 //userStatus = 3 的时候，用户已经登录且注册成功。用户点击刷脸进入刷脸打卡界面
 - (void)checkFace {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *userPhotoData = [defaults objectForKey:@"userPhoto"];
-    
+    NSString *userPhotoData = [defaults objectForKey:@"loginUserPhoto"];
     NSString *token = [defaults objectForKey:@"token"];
     
     if (userPhotoData.length == 0) {
@@ -322,12 +334,16 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
                                       @"token":token};
     
     [NetWorkManager requestWithType:1 withUrlString:chechFaceUrl withParaments:checkFaceParams withSuccessBlock:^(NSDictionary *responseObject) {
+        NSLog(@"打卡成功，准备跳转");
+        [self gotoCheckFailure];
+
         //打卡成功，跳转到祝贺成功界面
-        INFCheckSuccessViewController *checkSuccesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFCheckSuccessViewController"];
-        [self presentViewController:checkSuccesVC animated:YES completion:^{}];
+//        INFCheckSuccessViewController *checkSuccesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFCheckSuccessViewController"];
+//        [self presentViewController:checkSuccesVC animated:YES completion:^{}];
     } withFailureBlock:^(NSError *error) {
         //打卡失败，给出提示
-        [self dismissViewControllerAnimated:YES completion:nil];
+        NSLog(@"打卡失败，准备跳转");
+        [self gotoCheckFailure];
     } progress:^(float progress) {
         
     }];
@@ -338,8 +354,9 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         NSLog(@"调用注册人脸的api");
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
         hud.label.text = @"正在注册人脸";
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            [self registerFace];
+        dispatch_queue_t requestQueue = dispatch_queue_create("doCheckRquest", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(requestQueue, ^{
+            [self checkFace];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hideAnimated:YES];
             });

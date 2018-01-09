@@ -250,5 +250,36 @@
     return [NSDate dateWithTimeIntervalSince1970:[self doubleValue] / 1000];
 }
 
+/**
+ * 获取时间 返回一个字典 第一个 time： 是12钟时时间 ，第二个是 ampm : AM代表上午 PM代表下午
+ */
++ (NSDictionary *)getCurrentTime {
+    NSCalendar *greCalender = [NSCalendar currentCalendar];
+    //获取一个dateComponents并设置时间段
+    NSDateComponents * dateComponentsAsTimeSet = [[NSDateComponents alloc] init];
+    [dateComponentsAsTimeSet setDay:0];
+    //获取当前历法下的当天的时间点
+    /*
+     这里还可以自己设年、月、日、时、分、秒，根据个人需求
+     */
+    NSDate * currentDate = [greCalender dateByAddingComponents:dateComponentsAsTimeSet
+                                                        toDate:[NSDate date] options:0];
+    NSLog(@"%@",currentDate);
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    [dateFormat setTimeZone:timeZone];
+    dateFormat.AMSymbol = @"AM";
+    dateFormat.PMSymbol = @"PM";
+    [dateFormat setDateFormat:@"hh:ss aaa"];
+    NSString *timeStr = [dateFormat stringFromDate:currentDate];
+    NSLog(@"time : %@",[timeStr substringToIndex:5]);
+    NSLog(@"am/pm :%@",[timeStr substringFromIndex:6]);
+    
+    //    self.checkTimeLab.text = [timeStr substringToIndex:5];
+    //    self.ampmSymble.text = [timeStr substringFromIndex:6];
+    return @{@"time":[timeStr substringToIndex:5],
+             @"ampm":[timeStr substringFromIndex:6]
+             };
+}
 
 @end

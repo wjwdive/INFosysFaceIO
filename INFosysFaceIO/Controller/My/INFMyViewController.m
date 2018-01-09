@@ -55,18 +55,19 @@
 - (void)changeUserAction:(NSNotification *)notification {
     NSLog(@"接受消息：%@",notification);
     SLog(@"消息内容：userInfo: %@, name :%@,object : %@, ",notification.userInfo,notification.name, notification.object )
-//    _userNameLab.text  = [notification.userInfo objectForKey:@"loginUserName"];
-//    NSString *userPhotoStr = [notification.userInfo objectForKey:@"loginUserPhoto"];
-//    NSData *imgData = [[NSData alloc] initWithBase64EncodedString:userPhotoStr options:0];
-//    UIImage *userPhotoImg = [UIImage imageWithData:imgData];
-//    _userPhotoIMG.image = userPhotoImg;
-//    NSString *isVipStr = [notification.userInfo objectForKey:@"isVip"];
-//    if (![isVipStr isEqualToString:@"Y"]) {
-//        _vipIcon.hidden = YES;
-//    }
-//    NSString *empidStr = [notification.userInfo objectForKey:@"loginEmpid"];
-//    _acountLab.text = empidStr;
-//    _userPhotoIMG.image = [
+    _userNameLab.text  = [notification.userInfo objectForKey:@"loginUserName"];
+    NSString *userPhotoStr = [notification.userInfo objectForKey:@"loginUserPhoto"];
+    NSData *imgData = [[NSData alloc] initWithBase64EncodedString:userPhotoStr options:0];
+    UIImage *userPhotoImg = [UIImage imageWithData:imgData];
+    _userPhotoIMG.image = userPhotoImg;
+    NSString *isVipStr = [notification.userInfo objectForKey:@"isVip"];
+    if (![isVipStr isEqualToString:@"Y"]) {
+        _vipIcon.hidden = YES;
+    }else {
+        _vipIcon.hidden = NO;
+    }
+    NSString *empidStr = [notification.userInfo objectForKey:@"loginEmpid"];
+    _acountLab.text = empidStr;
     
 }
 
@@ -74,10 +75,25 @@
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeUserNotification" object:self];
 //}
 - (void)configTopView {
+    NSUserDefaults *def  = [NSUserDefaults standardUserDefaults];
+    NSString *loginUserImgStr = [def objectForKey:@"loginUserPhoto"];
+    NSString *loginUserName = [def objectForKey:@"loginUserName"];
+    NSString *loginEmpid = [def objectForKey:@"loginEmpid"];
+    NSString *isVip = [def objectForKey:@"isVip"];
     self.bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     self.bgImageView.frame = CGRectMake(0, 0, kScreenW, kScreenH);
     [self.view addSubview:self.bgImageView];
-    _userPhotoIMG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo"]];
+    _userPhotoIMG = [[UIImageView alloc] init];
+    _userPhotoIMG.layer.masksToBounds = YES;
+    _userPhotoIMG.layer.cornerRadius = 35.0;
+    if (loginUserImgStr.length != 0) {
+        NSData *imgData = [[NSData alloc] initWithBase64EncodedString:loginUserImgStr options:0];
+        UIImage *userPhotImg = [UIImage imageWithData:imgData];
+        _userPhotoIMG.image = userPhotImg;
+    }else {
+        _userPhotoIMG.image = [UIImage imageNamed:@"photo"];
+    }
+    
     [self.view addSubview:_userPhotoIMG];
     [_userPhotoIMG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(35);
@@ -86,13 +102,19 @@
     }];
     
     _userNameLab = [[UILabel alloc] init];
-    _userNameLab.text = @"lvy_wang06";
+    if (loginUserName.length != 0) {
+        _userNameLab.text = loginUserName;
+    }else{
+        _userNameLab.text = @"lvy_wang06";
+    }
     _userNameLab.textColor = [UIColor whiteColor];
     [self.view addSubview:_userNameLab];
     [_userNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(130);
         make.top.mas_equalTo(55);
     }];
+    
+    
     
     _vipIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"vip"]];
     [self.view addSubview:_vipIcon];
@@ -102,9 +124,18 @@
         make.width.mas_equalTo(17);
         make.height.mas_equalTo(20);
     }];
+    if ([isVip isEqualToString:@"N"]) {
+        _vipIcon.hidden = YES;
+    }else {
+        _vipIcon.hidden = YES;
+    }
     
     _acountLab = [[UILabel alloc] init];
-    _acountLab.text = @"429536";
+    if (loginEmpid.length != 0) {
+        _acountLab.text = loginEmpid;
+    }else{
+        _acountLab.text = @"429536";
+    }
     _acountLab.textColor = [UIColor whiteColor];
     _acountLab.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:_acountLab];
@@ -220,7 +251,7 @@
 
 - (void)loadData {
     _lists = [NSMutableDictionary dictionaryWithCapacity:0];
-    NSArray *titles = @[@"首页", @"注册", @"身份验证", @"查询考勤"];
+    NSArray *titles = @[@"首页", @"人脸注册", @"人脸登录", @"查询考勤"];
     NSArray *images = @[@"index", @"identity", @"identity", @"AttendanceRecord"];
     [_lists setObject:titles forKey:@"titles"];
     [_lists setObject:images forKey:@"images"];
