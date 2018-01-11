@@ -18,10 +18,11 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
 @interface INFRegisterViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     UIButton *_takePhotoBtn;
     UIImagePickerController *_imagePickerController;
-    NSString *userName;
-    NSString *password;
-    NSString *userNo;
 }
+
+@property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSString *userName;
+@property (nonatomic, copy) NSString *userNo;
 
 @end
 
@@ -55,6 +56,16 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
 }
 
 - (void)configOtherUI {
+    if (!_imagePickerController) {
+        _imagePickerController = [[UIImagePickerController alloc] init];
+        _imagePickerController.delegate = self;
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        _imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        _imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+        _imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        //            _imagePickerController.allowsEditing = YES;
+    }
+    
     UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg"]];
     bgImageView.frame = self.view.bounds;
     [self.view addSubview:bgImageView];
@@ -121,7 +132,7 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
     NSString *imageString = [[NSUserDefaults standardUserDefaults] objectForKey:@"userPhoto"];
     
     UIImage *takePhotoImage;
-    if (imageString) {
+    if (imageString && ![imageString isEqualToString:@""]) {
         // 将base64字符串转为NSData
         NSData *decodeData = [[NSData alloc]initWithBase64EncodedString:imageString options:(NSDataBase64DecodingIgnoreUnknownCharacters)];
         // 将NSData转为UIImage
@@ -138,6 +149,7 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
         make.width.height.mas_equalTo(80);
     }];
     
+    WeakObj(self);
     NSArray *imageNames = @[@"username-1", @"password-1", @"ID-1"];
     NSArray *placeHolds = @[@" UserName", @" Password", @" Employee Number"];
     for (int i = 0; i < 3; i ++) {
@@ -148,20 +160,20 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
             textField.textField.secureTextEntry = YES;
             textField.passValueBlock = ^(NSString *str){
                 NSLog(@"block 传回的值1 %@",str);
-                password = str;
+                selfWeak.password = str;
             };
         }
         if (i == 2) {
             textField.textField.keyboardType = UIKeyboardTypeNumberPad;
             textField.passValueBlock = ^(NSString *str){
                 NSLog(@"block 传回的值2 %@",str);
-                userNo = str;
+                selfWeak.userNo = str;
             };
         }
         if (i == 0) {
             textField.passValueBlock = ^(NSString *str){
                 NSLog(@"block 传回的值0 %@",str);
-                userName = str;
+                selfWeak.userName = str;
             };
         }
         [bgMidleView addSubview:textField];
@@ -192,38 +204,31 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
 }
 
 - (void)takePhotoBtn {
-    _imagePickerController = [[UIImagePickerController alloc] init];
-    _imagePickerController.delegate = self;
-    _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    _imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    _imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-    _imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-    _imagePickerController.allowsEditing = YES;
-    [self presentViewController:_imagePickerController animated:YES completion:nil];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        [self presentViewController:_imagePickerController animated:YES completion:nil];
+    }
 }
 
 - (void)registerPress {
-    
-    if (userName.length == 0) {
-//        userName = @"666";
+    if (self.userName.length == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"userName can't be empty" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
         [alert show];
         return;
         
     }
-    if (userNo.length == 0) {
+    if (self.userNo.length == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"empid can't be empty" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
         [alert show];
         return;
     }
-    if (password.length == 0) {
-        password = userName;
+    if (self.password.length == 0) {
+        self.password = self.userName;
     }
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     NSString *imgBase64 = [def objectForKey:@"userPhoto"];
-    NSDictionary *params = @{@"username" : userName,
-                             @"empid" : userNo,
-                             @"password" : userName,
+    NSDictionary *params = @{@"username" : self.userName,
+                             @"empid" : self.userNo,
+                             @"password" : self.userName,
                              @"image" : imgBase64,
                              @"firstname":@"",
                              @"lastname":@"",
@@ -234,7 +239,7 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
                              @"mobile":@"",
                              @"address":@"",
                              @"address1":@"",
-                             @"confirmpassword":userName,
+                             @"confirmpassword" : self.userName,
                                  };
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -247,14 +252,12 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
                         [def setObject:@"" forKey:@"userPhoto"];
                         [hud hideAnimated:YES];
                         
-//                        [hudCaution hideAnimated:YES afterDelay:2];
                         [selfWeak dismissViewControllerAnimated:YES completion:^{
                             MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
                             hudCaution.label.text = @"register success！";
                             hudCaution.mode = MBProgressHUDModeText;
                             [hudCaution hideAnimated:YES afterDelay:2];
                         }];
-                        
                     } withFailureBlock:^(NSError *error) {
                         NSLog(@"error reason: %@",error);
                         NSLog(@"新用户注册失败");
@@ -271,10 +274,6 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
                     } progress:^(float progress) {
                         
                     }];
-    
-    
-
-    
 }
 
 - (void)backClick {
@@ -285,7 +284,7 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     NSLog(@"拍完照片回调");
     
-    [_imagePickerController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     //获取原始照片
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -296,11 +295,14 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
         //压缩 到 50k
         NSData *compressedImgData = [UIImage compressOriginalImage:fixedImg toMaxDataSizeKBytes:50.0];
         NSString *faceImgBase64str = [compressedImgData base64EncodedStringWithOptions:0];
-        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-        [def setObject:faceImgBase64str forKey:@"userPhoto"];
-        [def synchronize];
+        [[NSUserDefaults standardUserDefaults] setObject:faceImgBase64str forKey:@"userPhoto"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     });
 
     [_takePhotoBtn setImage:image forState:UIControlStateNormal];
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
 }
 @end

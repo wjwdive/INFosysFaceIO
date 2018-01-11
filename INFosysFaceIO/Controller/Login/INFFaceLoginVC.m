@@ -16,19 +16,20 @@
 
 NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 
-@interface INFFaceLoginVC ()<UIImagePickerControllerDelegate, UINavigationBarDelegate>
+@interface INFFaceLoginVC ()<UIImagePickerControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *wanggeIMG;
 @property (weak, nonatomic) IBOutlet UIView *barImg;
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
 @property (weak, nonatomic) IBOutlet UIImageView *faceMask;
 
-@property (strong, nonatomic) NSString *faceImgBase64str;
+@property (copy, nonatomic) NSString *faceImgBase64str;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
-@property (strong, nonatomic) NSMutableDictionary *mUserInfoDic;
 @property (strong, nonatomic) NSNotification *notifaication;
 @property (strong ,nonatomic) MBProgressHUD *hudRequest;
 
 @property (nonatomic, strong) UIImageView *gbImgV;
+
 @end
 
 @implementation INFFaceLoginVC
@@ -43,10 +44,6 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
     self.view.backgroundColor = [UIColor colorWithHexString:@"#155AC5"];
     
     [self configCamera];
-    _mUserInfoDic = [NSMutableDictionary dictionary];
-    
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,9 +56,9 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         if (!_imagePicker) {
             _imagePicker = [[UIImagePickerController alloc] init];
+            _imagePicker.delegate = self;
         }
-        //代理
-        _imagePicker.delegate = self;
+        
         //类型
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         //        _imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -83,23 +80,19 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         self.overlayView.frame = _imagePicker.cameraOverlayView.frame;
         self.overlayView.backgroundColor = [UIColor clearColor];
         self.imagePicker.cameraOverlayView = self.overlayView;
-        self.overlayView = nil;
-        //    _imagePicker.cameraOverlayView = [self customViewForImagePicker:_imagePicker];
         
         WeakObj(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentViewController:_imagePicker animated:YES completion:^{
-                [UIView animateWithDuration: 2 delay: 0 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
-                    [selfWeak.barImg layoutIfNeeded];
-                    [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
-                    selfWeak.faceMask.alpha = 0;
-                } completion: ^(BOOL finished) {
-                    [UIView animateWithDuration: 2 animations: ^{
-                        selfWeak.faceMask.alpha = 1;
-                    }];
+        [self presentViewController:_imagePicker animated:YES completion:^{
+            [UIView animateWithDuration: 2 delay: 0 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
+                [selfWeak.barImg layoutIfNeeded];
+                [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
+                selfWeak.faceMask.alpha = 0;
+            } completion: ^(BOOL finished) {
+                [UIView animateWithDuration: 2 animations: ^{
+                    selfWeak.faceMask.alpha = 1;
                 }];
             }];
-        });
+        }];
     } else {
         NSLog(@"照相机不可用");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"your camera is invalided, please check your camera!" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
@@ -108,8 +101,6 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
-   
     
 }
 
@@ -127,7 +118,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 //拍完照片的回调方法
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     NSLog(@"拍完照片回调");
-    
+    WeakObj(self);
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     //如果是拍照
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
@@ -157,7 +148,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
             [def synchronize];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hideAnimated:YES];
-                 [self doLoginPost];
+                 [selfWeak doLoginPost];
             });
         });
         
@@ -187,6 +178,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
     
     NSDictionary *params = @{@"image":imgStr};
     
+    WeakObj(self);
     _hudRequest = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
     _hudRequest.label.text = @"loging...";
     [NetWorkManager requestWithType:1
@@ -194,14 +186,13 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
                       withParaments:params
                    withSuccessBlock:^(NSDictionary *responseObject) {
                        
-                       [self successConfig:responseObject];
+                       [selfWeak successConfig:responseObject];
     } withFailureBlock:^(NSError *error) {
         NSLog(@"人脸登录失败！");
-        [_hudRequest hideAnimated:YES];
+        [selfWeak.hudRequest hideAnimated:YES];
     } progress:^(float progress) {
         
     }];
-    
 }
 
 - (void)successConfig:(NSDictionary *)responseObject {
@@ -251,9 +242,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         [def setObject:currentDate forKey:@"tokenTime"];
         [def setObject:userName forKey:@"loginUserName"];
         [def setObject:empidStr forKey:@"loginEmpid"];
-        
-        [_mUserInfoDic setObject:empidStr forKey:@"loginEmpid"];
-        
+
         NSDictionary *dic = @{@"loginEmpid":empidStr,
                               @"loginIsVip":isVip,
                               @"loginUserPhoto":_faceImgBase64str,
@@ -287,19 +276,8 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 - (void)gotoLoginFilueVC {
     
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)dealloc {
+    NSLog(@"dealloc");
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
