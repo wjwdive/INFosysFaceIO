@@ -72,4 +72,5 @@
 //时间戳转时间
 -(NSDate *)dateValueWithMillisecondsSince1970;
 + (NSDictionary *)getCurrentTime;
++(NSDictionary *)ampmFromTimestamp:(NSString *)timestamp;
 @end

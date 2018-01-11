@@ -32,20 +32,13 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
     
     [self configOtherUI];
     
-    //设置导航栏
-//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.hidden = YES;
-    [[[self.navigationController.navigationBar subviews] objectAtIndex:0] setAlpha:0];
-    //去掉navbarbtn 文字
-    [[UIBarButtonItem appearance]setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
-    //设置
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+    //设置导航栏
+    self.navigationController.navigationBar.hidden = YES;
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
@@ -54,7 +47,9 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
 - (void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
-    
+    //设置导航栏
+    self.navigationController.navigationBar.hidden = NO;
+
     [IQKeyboardManager sharedManager].enable = NO;
     
 }
@@ -208,13 +203,18 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
 }
 
 - (void)registerPress {
+    
     if (userName.length == 0) {
 //        userName = @"666";
-        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"userName can't be empty" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+        [alert show];
+        return;
         
     }
     if (userNo.length == 0) {
-        userNo = userName;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"caution" message:@"empid can't be empty" delegate:self cancelButtonTitle:@"Cancle" otherButtonTitles: nil];
+        [alert show];
+        return;
     }
     if (password.length == 0) {
         password = userName;
@@ -239,34 +239,38 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.label.text = @"正在注册..";
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [NetWorkManager  requestWithType:1 withUrlString:registerUrl withParaments:params
-                        withSuccessBlock:^(NSDictionary *responseObject) {
-                            NSLog(@"responseObject %@", responseObject);
-                            NSLog(@"注册新用户成功");
-                            
-                            [hud hideAnimated:YES];
-                            
-                            [self dismissViewControllerAnimated:YES completion:^{
-                                MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                                hudCaution.label.text = @"注册成功！";
-                                [hudCaution hideAnimated:YES afterDelay:2];
-                            }];
-                            
-                        } withFailureBlock:^(NSError *error) {
-                            NSLog(@"error reason: %@",error);
-                            NSLog(@"新用户注册失败");
-                            [hud hideAnimated:YES];
-                            
-                            [self dismissViewControllerAnimated:YES completion:^{
-                                MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                                hudCaution.label.text = @"注册失败！";
-                                [hudCaution hideAnimated:YES afterDelay:2];
-                            }];
-                        } progress:^(float progress) {
-                            
+    WeakObj(self);
+    [NetWorkManager  requestWithType:1 withUrlString:registerUrl withParaments:params
+                    withSuccessBlock:^(NSDictionary *responseObject) {
+                        NSLog(@"responseObject %@", responseObject);
+                        NSLog(@"注册新用户成功");
+                        [def setObject:@"" forKey:@"userPhoto"];
+                        [hud hideAnimated:YES];
+                        
+//                        [hudCaution hideAnimated:YES afterDelay:2];
+                        [selfWeak dismissViewControllerAnimated:YES completion:^{
+                            MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                            hudCaution.label.text = @"register success！";
+                            hudCaution.mode = MBProgressHUDModeText;
+                            [hudCaution hideAnimated:YES afterDelay:2];
                         }];
-    });
+                        
+                    } withFailureBlock:^(NSError *error) {
+                        NSLog(@"error reason: %@",error);
+                        NSLog(@"新用户注册失败");
+                        [hud hideAnimated:YES];
+                        [def setObject:@"" forKey:@"userPhoto"];
+                        [selfWeak dismissViewControllerAnimated:YES completion:^{
+                            MBProgressHUD *hudCaution = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                            hudCaution.mode = MBProgressHUDModeAnnularDeterminate;
+                            hudCaution.label.text = @"register failure, try again";
+                            hudCaution.mode = MBProgressHUDModeText;
+                            [hudCaution hideAnimated:YES afterDelay:2];
+
+                        }];
+                    } progress:^(float progress) {
+                        
+                    }];
     
     
 

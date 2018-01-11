@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface INFCheckFailureViewController : UIViewController
-
+@property (nonatomic, strong) NSString *score;
 @end

@@ -26,7 +26,7 @@
     _scoreLab.text = [NSString stringWithFormat:@"%@ %@",@"Similarity Score: ",_score];
     NSLog(@" score %@", _score);
     
-    NSDictionary *timeDic = [NSString getCurrentTime];
+    NSDictionary *timeDic = [NSString ampmFromTimestamp:_time];
     self.timeLab.text = [timeDic objectForKey:@"time"];
     self.ampmLab.text = [timeDic objectForKey:@"ampm"];
     

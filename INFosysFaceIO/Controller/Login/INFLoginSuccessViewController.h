@@ -11,5 +11,6 @@
 @interface INFLoginSuccessViewController : UIViewController
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *score;
-
+@property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSString *isVip;
 @end

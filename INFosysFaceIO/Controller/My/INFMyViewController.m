@@ -193,7 +193,7 @@
     }];
     
     UILabel *label1 = [[UILabel alloc] init];
-    label1.text = @"本月出勤";
+    label1.text = @"attendence/month";
     label1.textColor = [UIColor colorWithHexString:@"#717171"];
     label1.textAlignment = NSTextAlignmentRight;
     label1.font = [UIFont systemFontOfSize:14];
@@ -216,7 +216,7 @@
     }];
     
     UILabel *label2 = [[UILabel alloc] init];
-    label2.text = @"本月缺勤";
+    label2.text = @"absence/month ";
     label2.textColor = [UIColor colorWithHexString:@"#717171"];
     label2.font = [UIFont systemFontOfSize:14];
     [bottomView addSubview:label2];
@@ -251,8 +251,8 @@
 
 - (void)loadData {
     _lists = [NSMutableDictionary dictionaryWithCapacity:0];
-    NSArray *titles = @[@"首页", @"人脸注册", @"人脸登录", @"查询考勤"];
-    NSArray *images = @[@"index", @"identity", @"identity", @"AttendanceRecord"];
+    NSArray *titles = @[ @"Face Register", @"Face Login", @"Face Check",@"Attendence Records"];
+    NSArray *images = @[  @"identity", @"index", @"identity", @"AttendanceRecord"];
     [_lists setObject:titles forKey:@"titles"];
     [_lists setObject:images forKey:@"images"];
 }
@@ -278,13 +278,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0:
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-            break;
-        case 1:
             [self.navigationController pushViewController:[[INFRegisterViewController alloc] init] animated:YES];
             break;
-        case 2:
+        case 1:
             [self.navigationController pushViewController:[[INFFaceLoginVC alloc] init] animated:YES];
+            break;
+        case 2:
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             break;
         case 3:
             [self.navigationController pushViewController:[[AttendanceViewController alloc] init] animated:YES];

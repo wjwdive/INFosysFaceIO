@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface INFCheckVipSuccessViewController : UIViewController
-@property (nonatomic, strong) NSString *usrName;
+@property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *score;
 @property (nonatomic, strong) NSString *time;
 //Y 代表是 N代表不是

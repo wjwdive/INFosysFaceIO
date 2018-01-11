@@ -10,6 +10,7 @@
 
 @interface INFCheckFailureViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *faceIMG;
+@property (strong, nonatomic) IBOutlet UILabel *scoreLab;
 
 @end
 
@@ -18,14 +19,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.faceIMG.layer.masksToBounds = YES;
-    self.faceIMG.layer.cornerRadius = 82.5;
-    [self.faceIMG setNeedsDisplay];
+//    self.faceIMG.layer.masksToBounds = YES;
+//    self.faceIMG.layer.cornerRadius = 82.5;
+//    [self.faceIMG setNeedsDisplay];
+    self.scoreLab.text = [NSString stringWithFormat:@"%@ %@",@"Simility Score: ",_score];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)goBack:(id)sender {
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

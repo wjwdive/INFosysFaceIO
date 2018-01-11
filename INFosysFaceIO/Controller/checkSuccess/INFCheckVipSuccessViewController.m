@@ -7,6 +7,7 @@
 //
 
 #import "INFCheckVipSuccessViewController.h"
+#import "NSString+Utils.h"
 
 @interface INFCheckVipSuccessViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *bgImgView;
@@ -24,34 +25,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     [self configData];
     [self animation2];
 
-//    if ([_isVip isEqualToString:@"Y"]) {
-//        [self animation2];
-//        self.vipImg.hidden = NO;
-//    }else {
-//        self.vipImg.hidden = YES;
-//    }
+    if ([_isVip isEqualToString:@"1"]) {
+        [self animation2];
+        self.vipImg.hidden = NO;
+    }else {
+        self.vipImg.hidden = YES;
+    }
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goBackVC)];
+    [self.view addGestureRecognizer:tap];
     
 }
 
+
+- (void)goBackVC {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)configData {
     self.userPhotoIMG.layer.masksToBounds = YES;
     self.userPhotoIMG.layer.cornerRadius = 75.5;
     [self.userPhotoIMG setNeedsDisplay];
     NSUserDefaults  *def = [NSUserDefaults standardUserDefaults];
-    NSString *imgStr = [def objectForKey:@"userLoinPhoto"];
+    NSString *imgStr = [def objectForKey:@"userPhotoCheck"];
     NSData *imgData = [[NSData alloc] initWithBase64EncodedString:imgStr options:0];
     self.userPhotoIMG.image = [UIImage imageWithData:imgData];
     
-    self.scoreLab.text = @"Similarity Score:95%";
-    self.timeLab.text = @"11:11";
-    self.ampmLab.text = @"AM";
-    self.userNameLab.text = @"Welcome xxx";
+//    NSString *userName = [def objectForKey:@"userName"];
+    self.scoreLab.text = [NSString stringWithFormat:@"Similarity Score:%@", _score];
+    NSDictionary *currentTime = [NSString ampmFromTimestamp:_time];
+    self.timeLab.text = [currentTime objectForKey:@"time"];
+    self.ampmLab.text = [currentTime objectForKey:@"ampm"];
+    self.userNameLab.text = [NSString stringWithFormat:@"%@ %@",@"Welcome",_userName];
     
 }
 

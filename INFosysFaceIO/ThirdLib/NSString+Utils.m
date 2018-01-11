@@ -249,6 +249,27 @@
 -(NSDate *)dateValueWithMillisecondsSince1970 {
     return [NSDate dateWithTimeIntervalSince1970:[self doubleValue] / 1000];
 }
+//时间戳字符串转时间字符串
++(NSDictionary *)ampmFromTimestamp:(NSString *)timestamp{
+    
+    //时间戳转时间的方法
+    NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"shanghai"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss aa"];
+    NSDate *timeDate = [NSDate dateWithTimeIntervalSince1970:([timestamp doubleValue] / 1000.0)];
+    dateFormatter.AMSymbol = @"AM";
+    dateFormatter.PMSymbol = @"PM";
+    NSString *timeStr = [dateFormatter stringFromDate:timeDate];
+    NSLog(@"timeStr %@",timeStr);
+    NSLog(@"time :%@",[timeStr substringWithRange:NSMakeRange(11, 5)]);
+    NSLog(@"ampm :%@", [timeStr substringWithRange:NSMakeRange(20, 2)]);
+    NSDictionary *dic = @{
+                          @"time":[timeStr substringWithRange:NSMakeRange(11, 5)],
+                          @"ampm":[timeStr substringWithRange:NSMakeRange(20, 2)]
+                          };
+    NSLog(@"time dic %@",dic);
+    return dic;
+}
 
 /**
  * 获取时间 返回一个字典 第一个 time： 是12钟时时间 ，第二个是 ampm : AM代表上午 PM代表下午
@@ -270,7 +291,7 @@
     [dateFormat setTimeZone:timeZone];
     dateFormat.AMSymbol = @"AM";
     dateFormat.PMSymbol = @"PM";
-    [dateFormat setDateFormat:@"hh:ss aaa"];
+    [dateFormat setDateFormat:@"hh:ss aa"];
     NSString *timeStr = [dateFormat stringFromDate:currentDate];
     NSLog(@"time : %@",[timeStr substringToIndex:5]);
     NSLog(@"am/pm :%@",[timeStr substringFromIndex:6]);
