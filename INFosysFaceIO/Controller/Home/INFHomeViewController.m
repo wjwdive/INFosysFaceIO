@@ -9,8 +9,8 @@
 #import "AppDelegate.h"
 
 #import "BaseNavigationController.h"
-#import "INFCameraOverlayView.h"
-#import "INFOverlayViewController.h"
+//#import "INFCameraOverlayView.h"
+//#import "INFOverlayViewController.h"
 #import "INFHomeViewController.h"
 #import "INFMyViewController.h"
 #import "INFLoginViewController.h"
@@ -28,12 +28,12 @@
 extern NSInteger userStatus;
 NSString *registeFaceUrl = @"facade/registerUserFacade";
 NSString *chechFaceUrl = @"facade/faceClockFacade";
-@interface INFHomeViewController ()<takePhotoDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIAlertViewDelegate>
-@property (nonatomic, strong) INFCameraOverlayView *overView;
+@interface INFHomeViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIAlertViewDelegate>
+//@property (nonatomic, strong) INFCameraOverlayView *overView;
 //@property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
-@property (strong, nonatomic) IBOutlet UIImageView *scanImg;
-@property (strong, nonatomic) IBOutlet UIImageView *barImg;
+@property (weak, nonatomic) IBOutlet UIImageView *scanImg;
+@property (weak, nonatomic) IBOutlet UIImageView *barImg;
 @property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
 @property (strong, nonatomic) NSTimer *timer;
 
@@ -107,23 +107,19 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         self.overlayView.backgroundColor = [UIColor clearColor];
         self.imagePicker.cameraOverlayView = self.overlayView;
         self.overlayView = nil;
-        //    _imagePicker.cameraOverlayView = [self customViewForImagePicker:_imagePicker];
         
         WeakObj(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [selfWeak presentViewController:_imagePicker animated:YES completion:^{
+            [selfWeak presentViewController:selfWeak.imagePicker animated:YES completion:^{
                 //            [selfWeak timerStart];
                 NSTimer *timerTmp = [NSTimer timerWithTimeInterval:2 target:selfWeak selector:@selector(takePhoto)  userInfo:nil repeats:NO];
                 [[NSRunLoop mainRunLoop] addTimer:timerTmp forMode:NSRunLoopCommonModes];
                 
                 [UIView animateWithDuration: 2 delay: 0 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
-                    [selfWeak.barImg layoutIfNeeded];
-                    [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
-                    selfWeak.scanImg.alpha = 0;
+                    [_barImg layoutIfNeeded];
+                    [_barImg setFrame:CGRectMake(77, 383, 220, 4)];
+                    _scanImg.alpha = 0;
                 } completion: ^(BOOL finished) {
-//                    [UIView animateWithDuration: 2 animations: ^{
-//                        selfWeak.scanImg.alpha = 1;
-//                    }];
                 }];
             }];
         });
@@ -144,11 +140,11 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 }
 
 //第三种方法
-- (void)gotoCheckFaceUseNomalVC {
-    INFOverlayViewController *overlayVC = [[INFOverlayViewController alloc] initWithNibName:@"INFOverlayViewController" bundle:[NSBundle mainBundle]];
-    [self presentViewController:overlayVC animated:YES completion:nil];
-    NSLog(@"跳转到overLay VC");
-}
+//- (void)gotoCheckFaceUseNomalVC {
+//    INFOverlayViewController *overlayVC = [[INFOverlayViewController alloc] initWithNibName:@"INFOverlayViewController" bundle:[NSBundle mainBundle]];
+//    [self presentViewController:overlayVC animated:YES completion:nil];
+//    NSLog(@"跳转到overLay VC");
+//}
 
 - (IBAction)scanBtnAction:(id)sender {
     
@@ -189,6 +185,7 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 //        NSData *imageData;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
         hud.label.text = @"adjusting photo";
+        WeakObj(self);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             //压缩 到 500k
             NSData *compressedImgData = [UIImage compressOriginalImage:image toMaxDataSizeKBytes:50.0];
@@ -199,7 +196,7 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hideAnimated:YES];
                 //相片获取成功之后 do post
-                [self checkFace];
+                [selfWeak checkFace];
                 NSLog(@"do checkFace post");
             });
         });
@@ -242,21 +239,19 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
     
     MBProgressHUD *hud1 = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
     hud1.label.text = @"checking...";
-//    WeakObj(self);
+    WeakObj(self);
     [NetWorkManager requestWithType:1 withUrlString:chechFaceUrl withParaments:checkFaceParams withSuccessBlock:^(NSDictionary *responseObject) {
         NSLog(@"打卡成功，准备跳转");
         [hud1 hideAnimated:YES];
-        [self gotoCheckResult:(NSDictionary *)responseObject];
         
-        //打卡成功，跳转到祝贺成功界面
-//        INFCheckSuccessViewController *checkSuccesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"INFCheckSuccessViewController"];
-//        [self presentViewController:checkSuccesVC animated:YES completion:^{}];
+        [selfWeak gotoCheckResult:(NSDictionary *)responseObject];
+        
     } withFailureBlock:^(NSError *error) {
         //打卡失败，给出提示
         NSLog(@"打卡失败，准备跳转");
         [hud1 hideAnimated:YES];
         NSLog(@"errror :%@", error);
-        [self gotoCheckFailure];
+        [selfWeak gotoCheckFailure];
     } progress:^(float progress) {
         
     }];
@@ -284,9 +279,12 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         checkSuccessVC.score = scoreStr;
         checkSuccessVC.isVip = isVip;
         checkSuccessVC.time = timeStempStr;
-        //        checkSuccessVC.time = timeStempStr;
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            if(_imagePicker) {
+                _imagePicker = nil;
+            }
+        }];
         [self presentViewController:checkSuccessVC animated:YES completion:nil];
     }else {
         //如果登录失败，也应该返回 userName 和 score
@@ -300,14 +298,12 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 }
 
 - (void)gotoCheckFailure {
-    dispatch_async(dispatch_get_main_queue(), ^{
         //如果登录失败，也应该返回 userName 和 score
         INFCheckFailureViewController *checkFailureVC = [[INFCheckFailureViewController alloc] init];
         [self dismissViewControllerAnimated:YES completion:^{
         }];
         [self.navigationController pushViewController:checkFailureVC animated:YES];
         
-    });
 }
 
 #pragma mark --用户状态检测
@@ -325,6 +321,10 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         return YES;
     }
     return NO;
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
 }
 
 /*

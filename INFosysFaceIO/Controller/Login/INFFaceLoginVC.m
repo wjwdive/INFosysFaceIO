@@ -17,10 +17,10 @@
 NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 
 @interface INFFaceLoginVC ()<UIImagePickerControllerDelegate, UINavigationBarDelegate>
-@property (strong, nonatomic) IBOutlet UIImageView *wanggeIMG;
-@property (strong, nonatomic) IBOutlet UIView *barImg;
+@property (weak, nonatomic) IBOutlet UIImageView *wanggeIMG;
+@property (weak, nonatomic) IBOutlet UIView *barImg;
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
-@property (strong, nonatomic) IBOutlet UIImageView *faceMask;
+@property (weak, nonatomic) IBOutlet UIImageView *faceMask;
 
 @property (strong, nonatomic) NSString *faceImgBase64str;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
@@ -251,7 +251,6 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         [def setObject:currentDate forKey:@"tokenTime"];
         [def setObject:userName forKey:@"loginUserName"];
         [def setObject:empidStr forKey:@"loginEmpid"];
-        
         
         [_mUserInfoDic setObject:empidStr forKey:@"loginEmpid"];
         
