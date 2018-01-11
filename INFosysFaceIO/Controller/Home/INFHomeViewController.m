@@ -55,7 +55,9 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
     
 }
 
-
+-(void)viewWillDisappear:(BOOL)animated {
+    [self.view.layer removeAllAnimations];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -95,7 +97,7 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         //隐藏系统相机操作
         _imagePicker.showsCameraControls = NO;
         _imagePicker.editing = NO;
-        [[NSBundle mainBundle] loadNibNamed:@"INFCameraOverlayView" owner:self options:nil];
+        _overlayView = [[[NSBundle mainBundle] loadNibNamed:@"INFCameraOverlayView" owner:self options:nil] firstObject];
         //设定相机全屏
         CGSize screenBounds = [UIScreen mainScreen].bounds.size;
         CGFloat cameraAspectRatio = 4.0f/3.0f;
@@ -103,12 +105,10 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         CGFloat scale = screenBounds.height / camViewHeight;
         _imagePicker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
         _imagePicker.cameraViewTransform = CGAffineTransformScale(_imagePicker.cameraViewTransform, scale, scale);
-        self.overlayView.frame = _imagePicker.cameraOverlayView.frame;
-        self.overlayView.backgroundColor = [UIColor clearColor];
-        self.imagePicker.cameraOverlayView = self.overlayView;
-
-//        self.overlayView = nil;
-        //    _imagePicker.cameraOverlayView = [self customViewForImagePicker:_imagePicker];
+        _overlayView.frame = _imagePicker.cameraOverlayView.frame;
+        _overlayView.backgroundColor = [UIColor clearColor];
+        _imagePicker.cameraOverlayView = _overlayView;
+        _overlayView = nil;
         
         WeakObj(self);
         [self presentViewController:_imagePicker animated:YES completion:^{
@@ -120,11 +120,7 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
                 [selfWeak.barImg layoutIfNeeded];
                 [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
                 selfWeak.scanImg.alpha = 0;
-            } completion: ^(BOOL finished) {
-                //                    [UIView animateWithDuration: 2 animations: ^{
-                //                        selfWeak.scanImg.alpha = 1;
-                //                    }];
-            }];
+            } completion: nil];
         }];
     } else {
         NSLog(@"照相机不可用");
@@ -142,12 +138,6 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
     }];
 }
 
-//第三种方法
-//- (void)gotoCheckFaceUseNomalVC {
-//    INFOverlayViewController *overlayVC = [[INFOverlayViewController alloc] initWithNibName:@"INFOverlayViewController" bundle:[NSBundle mainBundle]];
-//    [self presentViewController:overlayVC animated:YES completion:nil];
-//    NSLog(@"跳转到overLay VC");
-//}
 
 - (IBAction)scanBtnAction:(id)sender {
     
@@ -248,8 +238,6 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         [selfWeak.hudAll hideAnimated:YES];
         [selfWeak gotoCheckResult:(NSDictionary *)responseObject];
         
-        [selfWeak gotoCheckResult:(NSDictionary *)responseObject];
-        
     } withFailureBlock:^(NSError *error) {
         //打卡失败，给出提示
         NSLog(@"打卡失败，准备跳转");
@@ -295,16 +283,25 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
         NSString *scoreStr = [responseObject objectForKey:@"score"];
         INFCheckFailureViewController *checkFailureVC = [[INFCheckFailureViewController alloc] init];
         checkFailureVC.score = scoreStr;
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            if(_imagePicker) {
+                _imagePicker = nil;
+            }
+        }];
         [self presentViewController:checkFailureVC animated:YES completion:nil];
     }
     
 }
 
+//网络返回失败
 - (void)gotoCheckFailure {
-        //如果登录失败，也应该返回 userName 和 score
-        INFCheckFailureViewController *checkFailureVC = [[INFCheckFailureViewController alloc] init];
-        [self.navigationController pushViewController:checkFailureVC animated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if(_imagePicker) {
+            _imagePicker = nil;
+        }
+    }];
+    INFCheckFailureViewController *checkFailureVC = [[INFCheckFailureViewController alloc] init];
+    [self.navigationController pushViewController:checkFailureVC animated:YES];
 
 }
 

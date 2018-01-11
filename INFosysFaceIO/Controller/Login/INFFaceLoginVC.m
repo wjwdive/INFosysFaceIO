@@ -16,19 +16,17 @@
 
 NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 
-@interface INFFaceLoginVC ()<UIImagePickerControllerDelegate>
+@interface INFFaceLoginVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *wanggeIMG;
 @property (weak, nonatomic) IBOutlet UIView *barImg;
 @property (strong, nonatomic) IBOutlet UIView *overlayView;
 @property (weak, nonatomic) IBOutlet UIImageView *faceMask;
 
-@property (copy, nonatomic) NSString *faceImgBase64str;
+@property (strong, nonatomic) NSString *faceImgBase64str;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) NSNotification *notifaication;
-@property (strong ,nonatomic) MBProgressHUD *hudRequest;
-
-@property (nonatomic, strong) UIImageView *gbImgV;
+@property (weak ,nonatomic) MBProgressHUD *hudRequest;
 
 @end
 
@@ -36,20 +34,17 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _gbImgV = [[UIImageView alloc] init];
-    _gbImgV.image = [UIImage imageNamed:@"background"];
-    [self.view addSubview:_gbImgV];
-//    [self.view setNeedsDisplay];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"#155AC5"];
     
     [self configCamera];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-//    UIImageView *bgIMG = [[UIImageView alloc] init];
-//    bgIMG.image = [UIImage imageNamed:@"background"];
-//    [self.view addSubview:bgIMG];
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [self.view.layer removeAllAnimations];
+    NSLog(@"");
+    
 }
 
 - (void)configCamera {
@@ -69,7 +64,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         //隐藏系统相机操作
         _imagePicker.showsCameraControls = NO;
         _imagePicker.editing = NO;
-        [[NSBundle mainBundle] loadNibNamed:@"INFFaceLoginOverlayView" owner:self options:nil];
+        _overlayView = [[[NSBundle mainBundle] loadNibNamed:@"INFFaceLoginOverlayView" owner:self options:nil] firstObject];
         //设定相机全屏
         CGSize screenBounds = [UIScreen mainScreen].bounds.size;
         CGFloat cameraAspectRatio = 4.0f/3.0f;
@@ -77,10 +72,10 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         CGFloat scale = screenBounds.height / camViewHeight;
         _imagePicker.cameraViewTransform = CGAffineTransformMakeTranslation(0, (screenBounds.height - camViewHeight) / 2.0);
         _imagePicker.cameraViewTransform = CGAffineTransformScale(_imagePicker.cameraViewTransform, scale, scale);
-        self.overlayView.frame = _imagePicker.cameraOverlayView.frame;
-        self.overlayView.backgroundColor = [UIColor clearColor];
-        self.imagePicker.cameraOverlayView = self.overlayView;
-        
+        _overlayView.frame = _imagePicker.cameraOverlayView.frame;
+        _overlayView.backgroundColor = [UIColor clearColor];
+        _imagePicker.cameraOverlayView = _overlayView;
+        _overlayView = nil;
         WeakObj(self);
         [self presentViewController:_imagePicker animated:YES completion:^{
             [UIView animateWithDuration: 2 delay: 0 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations: ^{
@@ -88,9 +83,9 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
                 [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
                 selfWeak.faceMask.alpha = 0;
             } completion: ^(BOOL finished) {
-                [UIView animateWithDuration: 2 animations: ^{
-                    selfWeak.faceMask.alpha = 1;
-                }];
+//                [UIView animateWithDuration: 2 animations: ^{
+//                    selfWeak.faceMask.alpha = 1;
+//                }];
             }];
         }];
     } else {
@@ -100,14 +95,10 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    
-}
 
 - (IBAction)cancleCamera:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)faceLogin:(id)sender {
     [_imagePicker takePicture];
@@ -124,7 +115,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         UIImage *image;
         //如果允许编辑则获得编辑后的照片， 否则获取原始照片
-        if (self.imagePicker.allowsEditing) {
+        if (_imagePicker.allowsEditing) {
             //获取编辑后的照片
             image = [info objectForKey:UIImagePickerControllerEditedImage];
         }else {
@@ -133,8 +124,12 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         }
         //        NSData *imageData = [iamge ]
         //        NSData *imageData;
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
-        hud.label.text = @"adjusting photo";
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
+//        hud.label.text = @"adjusting photo";
+        //照片处理，网络请求，用一个hud 不会导致 hud 内存泄漏
+        _hudRequest = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
+        _hudRequest.label.text = @"login...";
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             //对照片做正向处理
             UIImage *fixedImg = [UIImage fixImageOrientation:image];
@@ -142,21 +137,22 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
             fixedImg = [UIImage imageCompressForWidth:fixedImg targetWidth:400];
             //压缩 到 50k
             NSData *compressedImgData = [UIImage compressOriginalImage:fixedImg toMaxDataSizeKBytes:50.0];
-            _faceImgBase64str = [compressedImgData base64EncodedStringWithOptions:0];
+            NSString *imgBase64str = [compressedImgData base64EncodedStringWithOptions:0];
+            _faceImgBase64str = imgBase64str;
             NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-            [def setObject:_faceImgBase64str forKey:@"loginUserPhoto"];
+            [def setObject:imgBase64str forKey:@"loginUserPhoto"];
             [def synchronize];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hideAnimated:YES];
+//                [hud hideAnimated:YES];
                  [selfWeak doLoginPost];
             });
         });
         
+        
         //相片获取成功之后 do post
        
         NSLog(@"do post");
-        
-        
+
         //保存到相册
         //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         
@@ -179,8 +175,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
     NSDictionary *params = @{@"image":imgStr};
     
     WeakObj(self);
-    _hudRequest = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
-    _hudRequest.label.text = @"loging...";
+   
     [NetWorkManager requestWithType:1
                       withUrlString:faceLoginUrl1
                       withParaments:params
@@ -196,28 +191,29 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 }
 
 - (void)successConfig:(NSDictionary *)responseObject {
+    
+    [_hudRequest hideAnimated:YES];
     SLog(@"responseObject :%@", responseObject);
     NSLog(@"success :%@", [responseObject objectForKey:@"success"]);
     NSString *successFlagStr = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"success"]];
     if ([successFlagStr isEqualToString:@"0"]) {
         SLog(@"success %@",[responseObject objectForKey:@"success"]);
         
-        INFLoginFailureViewController *failureVC = [[INFLoginFailureViewController alloc] init];
-        //            failureVC.userName = userName;
-        //            failureVC.score = [scoreStr  substringToIndex:2];
-        
-        [self dismissViewControllerAnimated:YES completion:^{
-            [self.navigationController pushViewController:failureVC animated:YES];
-        }];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            //如果登录失败，也应该返回 userName 和 score
+//        INFLoginFailureViewController *failureVC = [[INFLoginFailureViewController alloc] init];
 //
-//        });
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            [self.navigationController pushViewController:failureVC animated:YES];
+//        }];
+        [self gotoLoginFilueVC];
+
     }else{
         SLog(@"人脸登陆成功！");
         SLog(@"responseObject :%@", responseObject);
-        [_hudRequest hideAnimated:YES];
         NSString *token = [responseObject valueForKey:@"token"];
+        //记录token 等用户数据
+        NSUserDefaults  *def = [NSUserDefaults  standardUserDefaults];
+        [def setObject:token forKey:@"token"];
+        [def synchronize];
         NSDictionary *userInfo = [responseObject valueForKey:@"user"];
         NSString *userName = [userInfo objectForKey:@"username"];
         NSString *isVip = [NSString stringWithFormat:@"%@", [userInfo objectForKey:@"vip"]];
@@ -228,10 +224,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         NSLog(@"scoreStr %@",scoreStr);
         NSString *empidStr = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"empid"]];
         
-        //记录token 等用户数据
-        NSUserDefaults  *def = [NSUserDefaults  standardUserDefaults];
-        [def setObject:token forKey:@"token"];
-        [def synchronize];
+       
         NSDictionary *dataInfo = [responseObject objectForKey:@"clockRecord"];
         
         NSDictionary *timeDic = [dataInfo objectForKey:@"timeStamp"];
@@ -242,7 +235,8 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         [def setObject:currentDate forKey:@"tokenTime"];
         [def setObject:userName forKey:@"loginUserName"];
         [def setObject:empidStr forKey:@"loginEmpid"];
-
+        [def synchronize];
+        
         NSDictionary *dic = @{@"loginEmpid":empidStr,
                               @"loginIsVip":isVip,
                               @"loginUserPhoto":_faceImgBase64str,
@@ -258,12 +252,14 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         succVC.time = timeStempStr;
         
         [self dismissViewControllerAnimated:YES completion:^{
+            //这里不销毁 _imagePicker的话 会报 _imagePicker 内存泄漏
+            if(_imagePicker){
+                [_imagePicker.cameraOverlayView.layer removeAllAnimations];
+                _imagePicker= nil;
+            }
         }];
         [self.navigationController pushViewController:succVC animated:YES];
 
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//
-//        });
     }
     
     
@@ -274,7 +270,14 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 }
 
 - (void)gotoLoginFilueVC {
-    
+    INFLoginFailureViewController *failureVC = [[INFLoginFailureViewController alloc] init];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if(_imagePicker){
+            [_imagePicker.cameraOverlayView.layer removeAllAnimations];
+            _imagePicker= nil;
+        }
+    }];
+    [self.navigationController pushViewController:failureVC animated:YES];
 }
 - (void)dealloc {
     NSLog(@"dealloc");
