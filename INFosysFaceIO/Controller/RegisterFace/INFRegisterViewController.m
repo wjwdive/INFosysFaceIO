@@ -243,7 +243,7 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
                                  };
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.label.text = @"正在注册..";
+    hud.label.text = @"registering..";
     WeakObj(self);
     [NetWorkManager  requestWithType:1 withUrlString:registerUrl withParaments:params
                     withSuccessBlock:^(NSDictionary *responseObject) {
@@ -300,7 +300,14 @@ NSString *registerUrl = @"loginfacade/registerUserFacade";
     });
 
     [_takePhotoBtn setImage:image forState:UIControlStateNormal];
+    
+    //拍完照片应该吧picker销毁
+    if (_imagePickerController) {
+        _imagePickerController = nil;
+    }
 }
+
+
 
 - (void)dealloc {
     NSLog(@"dealloc");

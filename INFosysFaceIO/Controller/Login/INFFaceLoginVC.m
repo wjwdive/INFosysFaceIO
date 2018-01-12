@@ -25,7 +25,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 
 @property (strong, nonatomic) NSString *faceImgBase64str;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
-@property (strong, nonatomic) NSNotification *notifaication;
+//@property (strong, nonatomic) NSNotification *notifaication;
 @property (weak ,nonatomic) MBProgressHUD *hudRequest;
 
 @end
@@ -43,7 +43,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 
 -(void)viewWillDisappear:(BOOL)animated {
     [self.view.layer removeAllAnimations];
-    NSLog(@"");
+    NSLog(@"viewWillDisappear self: %@",self);
     
 }
 
@@ -82,11 +82,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
                 [selfWeak.barImg layoutIfNeeded];
                 [selfWeak.barImg setFrame:CGRectMake(77, 383, 220, 4)];
                 selfWeak.faceMask.alpha = 0;
-            } completion: ^(BOOL finished) {
-//                [UIView animateWithDuration: 2 animations: ^{
-//                    selfWeak.faceMask.alpha = 1;
-//                }];
-            }];
+            } completion: nil];
         }];
     } else {
         NSLog(@"照相机不可用");
@@ -109,7 +105,6 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 //拍完照片的回调方法
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     NSLog(@"拍完照片回调");
-    WeakObj(self);
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     //如果是拍照
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
@@ -128,8 +123,8 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
 //        hud.label.text = @"adjusting photo";
         //照片处理，网络请求，用一个hud 不会导致 hud 内存泄漏
         _hudRequest = [MBProgressHUD showHUDAddedTo:_imagePicker.cameraOverlayView animated:YES];
-        _hudRequest.label.text = @"login...";
-        
+        _hudRequest.label.text = @"face login";
+        WeakObj(self);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             //对照片做正向处理
             UIImage *fixedImg = [UIImage fixImageOrientation:image];
@@ -180,19 +175,20 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
                       withUrlString:faceLoginUrl1
                       withParaments:params
                    withSuccessBlock:^(NSDictionary *responseObject) {
-                       
+                       [selfWeak.hudRequest hideAnimated:YES];
                        [selfWeak successConfig:responseObject];
-    } withFailureBlock:^(NSError *error) {
-        NSLog(@"人脸登录失败！");
-        [selfWeak.hudRequest hideAnimated:YES];
-    } progress:^(float progress) {
+                   } withFailureBlock:^(NSError *error) {
+                       NSLog(@"人脸登录失败！");
+                       [selfWeak.hudRequest hideAnimated:YES];
+                       [selfWeak gotoLoginFilueVC];
+                   } progress:^(float progress) {
         
     }];
 }
 
 - (void)successConfig:(NSDictionary *)responseObject {
     
-    [_hudRequest hideAnimated:YES];
+    
     SLog(@"responseObject :%@", responseObject);
     NSLog(@"success :%@", [responseObject objectForKey:@"success"]);
     NSString *successFlagStr = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"success"]];
@@ -213,7 +209,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
         //记录token 等用户数据
         NSUserDefaults  *def = [NSUserDefaults  standardUserDefaults];
         [def setObject:token forKey:@"token"];
-        [def synchronize];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         NSDictionary *userInfo = [responseObject valueForKey:@"user"];
         NSString *userName = [userInfo objectForKey:@"username"];
         NSString *isVip = [NSString stringWithFormat:@"%@", [userInfo objectForKey:@"vip"]];
@@ -243,7 +239,7 @@ NSString *faceLoginUrl1 = @"loginfacade/faceLoginFacade";
                               @"loginUserName":userName
                               };
         
-        _notifaication = [NSNotification notificationWithName:@"changeUserNotification" object:self userInfo:dic];
+//        _notifaication = [NSNotification notificationWithName:@"changeUserNotification" object:self userInfo:dic];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"changeUserNotification" object:self userInfo:dic];
         INFLoginSuccessViewController *succVC = [[INFLoginSuccessViewController alloc] init];
         succVC.userName = userName;

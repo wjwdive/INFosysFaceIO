@@ -179,7 +179,7 @@ NSString *chechFaceUrl = @"facade/faceClockFacade";
 
         WeakObj(self);
         _hudAll = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-        _hudAll.label.text = @"adjusting photo";
+        _hudAll.label.text = @"face checking...";
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             //压缩 到 50k
             NSData *compressedImgData = [UIImage compressOriginalImage:image toMaxDataSizeKBytes:50.0];

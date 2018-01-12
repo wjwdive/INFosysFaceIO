@@ -69,11 +69,13 @@
     NSString *empidStr = [notification.userInfo objectForKey:@"loginEmpid"];
     _acountLab.text = empidStr;
     
+//    [[NSNotificationCenter defaultCenter] removeObserver:@"changeUserNotification"];
+    
 }
 
-//- (void)dealloc{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeUserNotification" object:self];
-//}
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeUserNotification" object:nil];
+}
 - (void)configTopView {
     NSUserDefaults *def  = [NSUserDefaults standardUserDefaults];
     NSString *loginUserImgStr = [def objectForKey:@"loginUserPhoto"];
